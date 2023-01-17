@@ -1,3 +1,5 @@
+// ! Muss das hier in einer Funktion geklammert sein? Warum?
+// ! Leichtes Refactoring versuchen.
 (function () {
   // module pattern
 
@@ -225,6 +227,7 @@
       celldown = tcell(tx, ty + 1),
       celldiag = tcell(tx + 1, ty + 1);
 
+    // ? Ist das hier der Collision Check?
     if (entity.dy > 0) {
       if ((celldown && !cell) || (celldiag && !cellright && nx)) {
         entity.y = t2p(ty);
@@ -349,6 +352,7 @@
   // LOAD THE MAP
   //-------------------------------------------------------------------------
 
+  // * Die setup Funktion finde ich gut, weil sie alle Infos aus einer map mit mehreren Layern erhalten kann.
   function setup(map) {
     var data = map.layers[0].data,
       objects = map.layers[1].objects,
@@ -358,6 +362,7 @@
 
     for (n = 0; n < objects.length; n++) {
       obj = objects[n];
+      // * Hier werden alle actors/entities in die entsprechenden Ojekte gepushed.
       entity = setupEntity(obj);
       switch (obj.type) {
         case "player":
@@ -375,6 +380,8 @@
     cells = data;
   }
 
+  // * Diese Funktion entspricht grob meiner actor init Funktion.
+  // ? Muss ich noch eine Sprite Animation Funktion erstellen, die ihre Daten aus dem Entity Object für alle Entities (player, monster, etc.) erhält?
   function setupEntity(obj) {
     var entity = {};
     entity.x = obj.x;

@@ -49,6 +49,11 @@ let t2p = function (t) {
   }
 
 // * Const Sfx from audio files //
+// ! Achrtung: utils müssen in index.html vor den variables geladen werden.
 let sfx = {
   jump: new sound('./audio/Jump.wav'),
+  pickup: new sound('./audio/Pickup_Coin.wav'),
+  die: new sound('./audio/Randomize3.wav'),
+  killMonster: new sound('./audio/Randomize.wav'),
+  powerup: new sound('./audio/Powerup.wav'),
 }

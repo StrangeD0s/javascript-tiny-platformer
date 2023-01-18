@@ -29,3 +29,20 @@ function overlap(x1, y1, w1, h1, x2, y2, w2, h2) {
     y2 + h2 - 1 < y1
   )
 }
+
+// * SFX function
+function sound(src) {
+  this.sound = document.createElement('audio')
+  this.sound.src = src
+  this.sound.setAttribute('preload', 'auto')
+  this.sound.setAttribute('controls', 'none')
+  this.sound.style.display = 'none'
+  document.body.appendChild(this.sound)
+  this.sound.volume = 0.05
+  this.play = function () {
+    this.sound.play()
+  }
+  this.stop = function () {
+    this.sound.pause()
+  }
+}

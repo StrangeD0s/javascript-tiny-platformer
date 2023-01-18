@@ -63,9 +63,11 @@ function checkTreasure() {
 function killMonster(monster) {
   player.killed++
   monster.dead = true
+  sfx.killMonster.play()
 }
 
 function killPlayer(player) {
+  sfx.die.play()
   player.x = player.start.x
   player.y = player.start.y
   player.dx = player.dy = 0
@@ -74,6 +76,7 @@ function killPlayer(player) {
 function collectTreasure(t) {
   player.collected++
   t.collected = true
+  sfx.pickup.play()
 }
 
 function updateEntity(entity, dt) {
@@ -95,6 +98,7 @@ function updateEntity(entity, dt) {
   if (entity.jump && !entity.jumping && !falling) {
     entity.ddy = entity.ddy - entity.impulse // an instant big force impulse
     entity.jumping = true
+    sfx.jump.play()
   }
 
   entity.x = entity.x + dt * entity.dx

@@ -35,6 +35,11 @@ let fps = 60,
   treasure = [],
   cells = []
 
+const scaledCanvas = {
+  width: canvas.width / 2,
+  height: canvas.height / 2,
+}
+
 let t2p = function (t) {
     return t * TILE
   },

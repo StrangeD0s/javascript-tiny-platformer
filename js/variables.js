@@ -22,7 +22,15 @@ let MAP = { tw: 64, th: 48 },
     GOLD: 'gold',
   },
   COLORS = [COLOR.YELLOW, COLOR.BRICK, COLOR.PINK, COLOR.PURPLE, COLOR.GREY],
-  KEY = { SPACE: 32, LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40 }
+  KEY = {
+    SPACE: 'Space',
+    LEFT: 'ArrowLeft',
+    UP: 'ArrowUp',
+    RIGHT: 'ArrowRight',
+    DOWN: 'ArrowDown',
+    PAUSE: 'KeyP',
+    ENTER: 'Enter',
+  }
 
 let fps = 60,
   step = 1 / fps,
@@ -33,7 +41,9 @@ let fps = 60,
   player = {},
   monsters = [],
   treasure = [],
-  cells = []
+  cells = [],
+  paused = false,
+  showDevInfo = false
 
 const scaledCanvas = {
   width: canvas.width / 2,
@@ -54,7 +64,7 @@ let t2p = function (t) {
   }
 
 // * Const Sfx from audio files //
-// ! Achrtung: utils müssen in index.html vor den variables geladen werden.
+// ! Achtung: utils müssen in index.html vor den variables geladen werden.
 let sfx = {
   jump: new sound('./audio/Jump.wav'),
   pickup: new sound('./audio/Pickup_Coin.wav'),

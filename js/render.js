@@ -4,39 +4,19 @@
 
 // Map Limit Variables
 
-const cameraBox = {
-  get x() {
-    return -(canvas.width / 2 - 50 - player.x)
-  },
-  get y() {
-    return -(canvas.height / 2 - 100 - player.y)
-  },
-  width: canvas.width - 100,
-  height: canvas.height - 200,
+// * Pause Function
+function renderPause() {
+  if (paused) {
+    ctx.font = '65px Arial'
+    ctx.fillStyle = 'white'
+    ctx.textAlign = 'center'
+    ctx.fillText('- pause -', canvas.width / 2, canvas.height / 2)
+  }
 }
 
-function renderCamera() {
-  // ! Das hier ist noch zu spezifisch für dieses Level
-  const map_height = 1536
-  const map_width = 2048
-
-  const camera = {
-    get x() {
-      if (player.x < canvas.width / 2 / 2) return -(width / 2 / 2 - 512)
-      if (player.x > width - canvas.width / 2 / 2) return -(width - 1024)
-      else return -(player.x - canvas.width / 2 / 2)
-    },
-    get y() {
-      if (player.y < canvas.height / 2 / 2) return -(height / 2 / 2 - 384)
-      if (player.y > height - canvas.height / 2 / 2) return -(height / 2)
-      else return -(player.y - canvas.height / 2 / 2)
-    },
-    // ! Vielleicht kann ich hier sogar die Variablen für width, height und sogar für map_width und map_height gebrauchen!
-    //width: canvas.width,
-    //height: canvas.height,
-  }
-
-  ctx.translate(camera.x, camera.y)
+function renderCameraBox() {
+  ctx.fillStyle = 'rgba(0, 0, 255, 0.2)'
+  ctx.fillRect(cameraBox.x, cameraBox.y, cameraBox.width, cameraBox.height)
 }
 
 function render(ctx, frame, dt) {
@@ -45,16 +25,18 @@ function render(ctx, frame, dt) {
   ctx.save()
   ctx.scale(2, 2)
   ctx.clearRect(0, 0, width, height)
-  renderCamera()
+  //renderCamera()
+  renderCameraWithBox()
   renderMap(ctx)
   renderTreasure(ctx, frame)
   renderPlayer(ctx, dt)
   renderMonsters(ctx, dt)
 
   // * Draw CameraBox
-  //ctx.fillStyle = 'rgba(0, 0, 255, 0.2)'
-  //ctx.fillRect(cameraBox.x, cameraBox.y, cameraBox.width, cameraBox.height)
+  renderCameraBox()
   ctx.restore()
+  renderPause()
+  renderDevInfos()
 }
 
 // * Import tiles and level map //
@@ -145,7 +127,7 @@ function renderTreasure(ctx, frame) {
 }
 
 function tweenTreasure(frame, duration) {
-  var half = duration / 2
+  const half = duration / 2
   pulse = frame % duration
   return pulse < half ? pulse / half : 1 - (pulse - half) / half
 }

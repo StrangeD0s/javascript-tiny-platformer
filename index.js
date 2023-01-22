@@ -20,7 +20,11 @@ function main() {
     dt = dt + Math.min(1, (now - last) / 1000)
     while (dt > step) {
       dt = dt - step
-      update(step)
+
+      // * Update wird pausiert bei Toggle 'p'.
+      if (!paused) {
+        update(step)
+      }
     }
     render(ctx, counter, dt)
     last = now
@@ -29,21 +33,37 @@ function main() {
     requestAnimationFrame(frame, canvas)
   }
 
-  // ! keycode ist deprecated. Input muss ich sowieso umbauen.
   document.addEventListener(
     'keydown',
     function (ev) {
-      return onkey(ev, ev.keyCode, true)
+      return onkey(ev, ev.code, true)
     },
     false
   )
   document.addEventListener(
     'keyup',
     function (ev) {
-      return onkey(ev, ev.keyCode, false)
+      return onkey(ev, ev.code, false)
     },
     false
   )
+
+  // * EventListener für Pause-Taste
+  window.addEventListener('keydown', function (e) {
+    var key = e.code
+    if (key === 'KeyP') {
+      // p key
+      togglePause()
+    }
+  })
+  // * EventListener für DevInfos Toggle
+  window.addEventListener('keydown', function (e) {
+    var key = e.code
+    if (key === 'KeyO') {
+      // p key
+      toggleDevInfos()
+    }
+  })
 
   setup(level)
   frame()

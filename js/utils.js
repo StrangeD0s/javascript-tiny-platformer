@@ -46,3 +46,87 @@ function sound(src) {
     this.sound.pause()
   }
 }
+
+function togglePause() {
+  console.log('log togglePause', paused)
+  if (!paused) {
+    paused = true
+  } else if (paused) {
+    paused = false
+  }
+}
+
+function toggleDevInfos() {
+  if (!showDevInfo) {
+    showDevInfo = true
+  } else if (showDevInfo) {
+    showDevInfo = false
+  }
+}
+
+// * Renderfunktion für DevInfos
+function renderDevInfos() {
+  if (showDevInfo) {
+    const lineHeight = 50
+
+    const isPaused = paused
+
+    const playerObject = {
+      player_accel: player.accel,
+      player_collected: player.collected,
+      player_ddx: player.ddx,
+      player_ddy: player.ddy,
+      player_dx: player.dx,
+      player_dy: player.dy,
+      player_falling: player.falling,
+      player_friction: player.friction,
+      player_gravity: player.gravity,
+      player_impulse: player.impulse,
+      player_jumping: player.jumping,
+      player_killed: player.killed,
+      player_left: player.left,
+      player_maxdx: player.maxdx,
+      player_maxdy: player.maxdy,
+      player_monster: player.monster,
+      player_player: player.player,
+      player_right: player.right,
+      player_start: player.start,
+      player_treasure: player.treasure,
+      player_x: player.x,
+      player_y: player.y,
+      canvas_width: canvas.height,
+      camera_x: cameraWithBox.position.x,
+    }
+
+    const camerabox_x = camerabox.position.x
+    const camerabox_y = camerabox.position.y
+    const camerabox_width = camerabox.width
+    const camerabox_height = camerabox.height
+    const canvas_width = canvas.width
+    const canvas_height = canvas.height
+
+    function text() {
+      for (const [index, [key, value]] of Object.entries(
+        Object.entries(playerObject)
+      )) {
+        const newIndex = Number(index) + 1
+        const newValue = typeof value === 'number' ? value.toFixed(2) : value
+        ctx.fillText(`${key}: ${newValue}`, 50, lineHeight * newIndex)
+      }
+    }
+
+    ctx.font = '40px Arial'
+    ctx.fillStyle = 'hotpink'
+    ctx.textAlign = 'left'
+
+    /* ctx.fillText('camerabox_x: ' + camerabox_x.toFixed(2), 50, lineHeight * 6)
+    ctx.fillText('camerabox_y: ' + camerabox_y.toFixed(2), 50, lineHeight * 7)
+
+    ctx.fillText('camerabox_width: ' + camerabox_width, 50, lineHeight * 8)
+    ctx.fillText('camerabox_height: ' + camerabox_height, 50, lineHeight * 9)
+    ctx.fillText('canvas_width: ' + canvas_width / 4, 50, lineHeight * 10)
+    ctx.fillText('canvas_height: ' + canvas_height / 4, 50, lineHeight * 11) */
+    ctx.fillStyle = 'papayawhip'
+    text()
+  }
+}

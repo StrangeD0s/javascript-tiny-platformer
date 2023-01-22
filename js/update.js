@@ -6,14 +6,17 @@ function onkey(ev, key, down) {
   switch (key) {
     case KEY.LEFT:
       player.left = down
+      shouldPanCameraToTheRight({ canvas, cameraWithBox })
       ev.preventDefault()
       return false
     case KEY.RIGHT:
       player.right = down
+      shouldPanCameraToTheLeft({ canvas, cameraWithBox })
       ev.preventDefault()
       return false
     case KEY.SPACE:
       player.jump = down
+      shouldPanCameraDown({ canvas, cameraWithBox })
       ev.preventDefault()
 
       return false
@@ -27,6 +30,7 @@ function update(dt) {
 }
 
 function updatePlayer(dt) {
+  //console.log('log player: ', player)
   updateEntity(player, dt)
 }
 
@@ -89,6 +93,7 @@ function updateEntity(entity, dt) {
   entity.ddx = 0
   entity.ddy = entity.gravity
 
+  // * Hier wird die Entity bewegt.
   if (entity.left) entity.ddx = entity.ddx - accel
   else if (wasleft) entity.ddx = entity.ddx + friction
 
@@ -100,6 +105,9 @@ function updateEntity(entity, dt) {
     entity.jumping = true
     sfx.jump.play()
   }
+
+  // ! "dt" ist hier identisch mit "step", was in der index.js in die update() gegeben wird. Konstant bei ca. 0.01666
+  //console.log('log entity.x + dt * entity.dx: ', player.x + dt * player.dx)
 
   entity.x = entity.x + dt * entity.dx
   entity.y = entity.y + dt * entity.dy

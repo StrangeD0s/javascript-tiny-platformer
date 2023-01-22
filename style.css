@@ -9,6 +9,10 @@ body {
   background: var(--shell-color);
 }
 
+.controls-wrapper {
+  display: none;
+}
+
 .dpad-wrapper {
   background-color: darkgray;
   border-radius: 50%;

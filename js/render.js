@@ -76,8 +76,8 @@ function renderMap(ctx) {
         ctx.fillStyle = COLORS[cell - 1]
         ctx.fillRect(x * TILE, y * TILE, TILE, TILE)
 
-        // * Die folgende Funktion funktioniert! Vorerst deaktiviert, bis ich die Map angepasst habe.
-        // drawTile(cell, x, y)
+        // * Malt das Tile aus der TileMap
+        drawTile(cell, x, y)
       }
     }
   }

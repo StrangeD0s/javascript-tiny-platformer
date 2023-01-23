@@ -16,7 +16,7 @@ Simple JS platformer to modify and extend.
 - Character selection?
 - Inventory System mit durchsuchbaren Kisten, Content bleibt erhalten.
 - Auflösung von Gameboy, GBC, Game Gear ist 160 × 144 pixel.
-- Sprite Animation kann ich genauso machen wie bei Pico-8 (<https://www.youtube.com/watch?v=rtWGZ1uiBLY>)!
+- Sprite Animation kann ich genauso machen wie bei Pico-8 (<https://nerdyteachers.com/Explain/AnimateSprite/>, <https://www.youtube.com/watch?v=rtWGZ1uiBLY>)!
 
 ## Todo
 

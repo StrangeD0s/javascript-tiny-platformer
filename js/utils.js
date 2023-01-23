@@ -95,17 +95,14 @@ function renderDevInfos() {
       player_x: player.x,
       player_y: player.y,
       canvas_width: canvas.height,
-      camera_x: cameraWithBox.position.x,
+      cameraWithBox_x: cameraWithBox.position.x,
     }
 
-    const camerabox_x = camerabox.position.x
-    const camerabox_y = camerabox.position.y
-    const camerabox_width = camerabox.width
-    const camerabox_height = camerabox.height
     const canvas_width = canvas.width
     const canvas_height = canvas.height
 
     function text() {
+      ctx.fillStyle = 'hotpink'
       for (const [index, [key, value]] of Object.entries(
         Object.entries(playerObject)
       )) {

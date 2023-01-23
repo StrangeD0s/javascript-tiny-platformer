@@ -80,7 +80,7 @@ function shouldPanCameraToTheLeft({ canvas, camera }) {
     cameraboxRightSide >=
     scaledDownCanvasWidth + Math.abs(cameraWithBox.position.x)
   ) {
-    cameraWithBox.position.x -= 20
+    cameraWithBox.position.x -= player.x - canvas.width / 2 / 2
   }
 }
 

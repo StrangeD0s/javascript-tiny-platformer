@@ -1,29 +1,3 @@
-# Javascript Tiny-Platformer
-
-A very minimal javascript platform game
-
-- [play the game](http://codeincomplete.com/projects/tiny-platformer/index.html)
-- read the [original article](http://codeincomplete.com/posts/2013/5/27/tiny_platformer/)
-- read a [follow up article](http://codeincomplete.com/posts/2013/6/2/tiny_platformer_revisited/) about adding monsters and treasure
-- view the [source](https://github.com/jakesgordon/javascript-tiny-platformer)
-
-Just a sinple example of how to have a tiny rectangle run around some rectangle platforms,
-collecting rectangular gold and avoiding rectangular monsters.
-
-# SUPPORTED BROWSERS
-
-Should work in any modern browser with canvas support
-
-# DEVELOPMENT
-
-The game is 100% client side javascript, html and css. It should run when served up by any web server.
-
-# License
-
-[MIT](http://en.wikipedia.org/wiki/MIT_License) license.
-
----
-
 # Readme
 
 Simple JS platformer to modify and extend.
@@ -41,6 +15,8 @@ Simple JS platformer to modify and extend.
 - Overworld und Levels?
 - Character selection?
 - Inventory System mit durchsuchbaren Kisten, Content bleibt erhalten.
+- Auflösung von Gameboy, GBC, Game Gear ist 160 × 144 pixel.
+- Sprite Animation kann ich genauso machen wie bei Pico-8 (<https://www.youtube.com/watch?v=rtWGZ1uiBLY>)!
 
 ## Todo
 
@@ -52,3 +28,4 @@ Simple JS platformer to modify and extend.
 - [ ] Alle Variablen und Funktionen, die nicht Platformer-spezifisch sind, als Engine auslagern.
 - [ ] "Doors" System entwickeln.
 - [x] Pause Function
+- [ ] Sprite Animation

@@ -28,4 +28,4 @@ Simple JS platformer to modify and extend.
 - [ ] Alle Variablen und Funktionen, die nicht Platformer-spezifisch sind, als Engine auslagern.
 - [ ] "Doors" System entwickeln.
 - [x] Pause Function
-- [ ] Sprite Animation
+- [ ] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)

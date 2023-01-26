@@ -2,7 +2,7 @@
 // GAME CONSTANTS AND letIABLES
 //-------------------------------------------------------------------------
 
-let MAP = { tw: 64, th: 48 },
+let MAP = { tw: 64, th: 48 }, // ! Diese sollte ich auch aus der level.js errechnen.
   TILE = 32,
   METER = TILE,
   GRAVITY = 9.8 * 6, // default (exagerated) gravity
@@ -45,9 +45,11 @@ let fps = 60,
   paused = false,
   showDevInfo = false
 
+const scalingFactor = 8 // * 8 fühlt sich ungefähr nach 8bit Grafik an.
+
 const scaledCanvas = {
-  width: canvas.width / 2,
-  height: canvas.height / 2,
+  width: canvas.width / scalingFactor,
+  height: canvas.height / scalingFactor,
 }
 
 let t2p = function (t) {

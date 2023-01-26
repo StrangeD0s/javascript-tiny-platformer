@@ -4,24 +4,20 @@
 
 function renderCamera() {
   // ! Ich muss diese Funktion gegen eine mit CameraBox austauschen. Diese kann ich aber für TopDown/Overworld Level benutzen.
-  // ! Das hier ist noch zu spezifisch für dieses Level. map_height/width muss ich errechnen.
-  const map_height = 1536
-  const map_width = 2048
 
   const camera = {
     get x() {
-      if (player.x < canvas.width / 2 / 2) return -(width / 2 / 2 - 512)
-      if (player.x > width - canvas.width / 2 / 2) return -(width - 1024)
-      else return -(player.x - canvas.width / 2 / 2)
+      if (player.x < scaledCanvas.width) return 0
+      if (player.x > width - scaledCanvas.width)
+        return -(width - scaledCanvas.width * 2)
+      else return -(player.x - scaledCanvas.width)
     },
     get y() {
-      if (player.y < canvas.height / 2 / 2) return -(height / 2 / 2 - 384)
-      if (player.y > height - canvas.height / 2 / 2) return -(height / 2)
-      else return -(player.y - canvas.height / 2 / 2)
+      if (player.y < scaledCanvas.height) return 0
+      if (player.y > height - scaledCanvas.height)
+        return -(height - scaledCanvas.height * 2)
+      else return -(player.y - scaledCanvas.height)
     },
-    // ! Vielleicht kann ich hier sogar die Variablen für width, height und sogar für map_width und map_height gebrauchen!
-    //width: canvas.width,
-    //height: canvas.height,
   }
 
   ctx.translate(camera.x, camera.y)

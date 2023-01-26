@@ -47,6 +47,7 @@ function sound(src) {
   }
 }
 
+// * Pause function
 function togglePause() {
   console.log('log togglePause', paused)
   if (!paused) {
@@ -71,7 +72,7 @@ function renderDevInfos() {
 
     const isPaused = paused
 
-    const playerObject = {
+    const devObject = {
       player_accel: player.accel,
       player_collected: player.collected,
       player_ddx: player.ddx,
@@ -104,7 +105,7 @@ function renderDevInfos() {
     function text() {
       ctx.fillStyle = 'hotpink'
       for (const [index, [key, value]] of Object.entries(
-        Object.entries(playerObject)
+        Object.entries(devObject)
       )) {
         const newIndex = Number(index) + 1
         const newValue = typeof value === 'number' ? value.toFixed(2) : value

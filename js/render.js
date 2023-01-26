@@ -2,8 +2,6 @@
 // RENDERING
 //-------------------------------------------------------------------------
 
-// Map Limit Variables
-
 // * Pause Function
 function renderPause() {
   if (paused) {
@@ -23,21 +21,23 @@ function render(ctx, frame, dt) {
   // * scale und translate funktioniert! Ich brauche nur noch eine Camera!
   // ? Kann ich mich eigentlich mit scale und translate noch weiter an Pico-8 orientieren und in den variables sowas wie scale = ctx.scale oder so erstellen?
   ctx.save()
-  ctx.scale(2, 2)
+  ctx.scale(scalingFactor / 2, scalingFactor / 2)
   ctx.clearRect(0, 0, width, height)
-  //renderCamera()
-  renderCameraWithBox()
+  renderCamera()
+  //renderCameraWithBox()
   renderMap(ctx)
   renderTreasure(ctx, frame)
   renderPlayer(ctx, dt)
   renderMonsters(ctx, dt)
 
   // * Draw CameraBox
-  renderCameraBox()
+  //renderCameraBox()
   ctx.restore()
   renderPause()
   renderDevInfos()
 }
+
+// Map Limit Variables
 
 // * Import tiles and level map //
 // ! Dies gehört wahrscheinlich in die loadMap.js
@@ -89,12 +89,14 @@ function renderPlayer(ctx, dt) {
 
   var n, max
 
+  // ! Das hier rendert das gesammelte Gold
   ctx.fillStyle = COLOR.GOLD
   for (n = 0, max = player.collected; n < max; n++)
     ctx.fillRect(t2p(2 + n), t2p(2), TILE / 2, TILE / 2)
   /* sourceY = Math.floor(cell / atlasCol) * tileSize
   sourceX = (cell % atlasCol) * tileSize */
 
+  // ! Das hier rendert die getöteten Monster
   ctx.fillStyle = COLOR.SLATE
   for (n = 0, max = player.killed; n < max; n++)
     ctx.fillRect(t2p(2 + n), t2p(3), TILE / 2, TILE / 2)

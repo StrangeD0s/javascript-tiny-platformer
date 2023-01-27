@@ -27,13 +27,15 @@ function render(ctx, frame, dt) {
   //renderCameraWithBox()
   renderMap(ctx)
   renderTreasure(ctx, frame)
-  renderPlayer(ctx, dt)
+  renderPlayer(ctx, dt, frame)
+
   renderMonsters(ctx, dt)
 
   // * Draw CameraBox
   //renderCameraBox()
   ctx.restore()
   renderPause()
+  renderHud(ctx)
   renderDevInfos()
 }
 
@@ -77,29 +79,91 @@ function renderMap(ctx) {
         ctx.fillRect(x * TILE, y * TILE, TILE, TILE)
 
         // * Malt das Tile aus der TileMap
+
         drawTile(cell, x, y)
       }
     }
   }
 }
 
-function renderPlayer(ctx, dt) {
+// * Sprite Animation Test
+
+// ! framerate, frameBuffer und loop wird später eine prop des player/entity Objekts
+
+// ! Die funktioniert schon, ich brauche nur eine Art Übersetzung vom Spritesheet zum sprite. Vielleicht die tatsächlichen Tile Positionen in einem Sprite Objekt sammeln. Vielleicht sogar im Player Objekt. Die Length ist dann auch Teil des Sprite Objects
+
+function drawSprite(entity, dt, frame) {
+  const sprite = entity.sprites
+  const x = entity.x + entity.dx * dt
+  const y = entity.y + entity.dy * dt
+
+  const frameRate = sprite.framerate
+  const frameBuffer = sprite.framebuffer
+  const loop = sprite.loop
+
+  function updateFrames() {
+    if (frame % frameBuffer === 0) {
+      if (sprite.currentFrame < frameRate - 1) sprite.currentFrame++
+      else if (loop) sprite.currentFrame = 0
+    }
+  }
+
+  let spriteTile = sprite.tile
+  let animationLength = sprite.length
+  if ((spriteTile = spriteTile + animationLength)) {
+    spriteTile
+  }
+  spriteTile += sprite.currentFrame
+
+  // make an image position using the
+  // current row and colum
+  sourceY = Math.floor(spriteTile / atlasCol) * tileSize
+  sourceX = (spriteTile % atlasCol) * tileSize
+
+  ctx.drawImage(
+    tileAtlas, // ! Variable daraus machen!
+    sourceX,
+    sourceY,
+    16, // * source Höhe
+    16, // * source Breite
+    x,
+    y,
+    32, // * player Höhe
+    32 // * player Breite
+  )
+  updateFrames()
+}
+
+// * Sprite Animation Test End
+
+function renderPlayer(ctx, dt, frame) {
   ctx.fillStyle = COLOR.YELLOW
-  ctx.fillRect(player.x + player.dx * dt, player.y + player.dy * dt, TILE, TILE)
+  //ctx.fillRect(player.x + player.dx * dt, player.y + player.dy * dt, TILE, TILE)
 
+  drawSprite(player, dt, frame)
+}
+
+function renderHud(ctx) {
   var n, max
+  const hudScaling = 4
 
-  // ! Das hier rendert das gesammelte Gold
   ctx.fillStyle = COLOR.GOLD
   for (n = 0, max = player.collected; n < max; n++)
-    ctx.fillRect(t2p(2 + n), t2p(2), TILE / 2, TILE / 2)
-  /* sourceY = Math.floor(cell / atlasCol) * tileSize
-  sourceX = (cell % atlasCol) * tileSize */
+    ctx.fillRect(
+      t2p(1 + n) * hudScaling,
+      t2p(1) * hudScaling,
+      (TILE / 2) * hudScaling,
+      (TILE / 2) * hudScaling
+    )
 
-  // ! Das hier rendert die getöteten Monster
   ctx.fillStyle = COLOR.SLATE
   for (n = 0, max = player.killed; n < max; n++)
-    ctx.fillRect(t2p(2 + n), t2p(3), TILE / 2, TILE / 2)
+    ctx.fillRect(
+      t2p(1 + n) * hudScaling,
+      t2p(2) * hudScaling,
+      (TILE / 2) * hudScaling,
+      (TILE / 2) * hudScaling
+    )
 }
 
 function renderMonsters(ctx, dt) {

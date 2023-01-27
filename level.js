@@ -167,6 +167,14 @@ const level = {
           width: 32,
           x: 96,
           y: 480,
+          sprites: {
+            tile: 260, //! das muss ein Sprite-Array werden
+            length: 2,
+            framerate: 5,
+            framebuffer: 8,
+            loop: true,
+            currentFrame: 0,
+          },
         },
         {
           height: 32,

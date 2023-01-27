@@ -51,5 +51,6 @@ function setupEntity(obj) {
   entity.right = obj.properties.right
   entity.start = { x: obj.x, y: obj.y }
   entity.killed = entity.collected = 0
+  entity.sprites = obj.sprites
   return entity
 }

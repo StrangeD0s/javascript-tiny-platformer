@@ -30,10 +30,10 @@ function render(ctx, frame, dt) {
   renderCamera()
   //renderCameraWithBox()
   renderMap(ctx)
-  renderTreasure(ctx, frame)
+  renderTreasure(ctx, dt, frame)
   renderPlayer(ctx, dt, frame)
 
-  renderMonsters(ctx, dt)
+  renderMonsters(ctx, dt, frame)
 
   // * Draw CameraBox
   //renderCameraBox()
@@ -90,39 +90,46 @@ function renderMap(ctx) {
   }
 }
 
-// * Sprite Animation Test
-
-// ! framerate, frameBuffer und loop wird später eine prop des player/entity Objekts
-
-// ! Die funktioniert schon, ich brauche nur eine Art Übersetzung vom Spritesheet zum sprite. Vielleicht die tatsächlichen Tile Positionen in einem Sprite Objekt sammeln. Vielleicht sogar im Player Objekt. Die Length ist dann auch Teil des Sprite Objects
-
+// * Sprite Animation
 function drawSprite(entity, dt, frame) {
-  const sprite = entity.sprites
+  const sprites = entity.sprites
+
+  let isJumping = entity.jumping
+
+  let isRunning =
+    (entity.right === true && !isJumping) ||
+    (entity.left === true && !isJumping)
+
+  let sprite = isRunning ? sprites.run : sprites.idle
+
   const x = entity.x + entity.dx * dt
   const y = entity.y + entity.dy * dt
-
-  const frameRate = sprite.framerate
-  const frameBuffer = sprite.framebuffer
-  const loop = sprite.loop
+  const flipped = entity.flipped
+  const width = entity.width
+  const height = entity.height
 
   function updateFrames() {
-    if (frame % frameBuffer === 0) {
-      if (sprite.currentFrame < frameRate - 1) sprite.currentFrame++
-      else if (loop) sprite.currentFrame = 0
+    if (frame % sprite.framebuffer === 0) {
+      if (sprite.currentFrame < sprite.tiles.length - 1) sprite.currentFrame++
+      else if (sprite.loop) sprite.currentFrame = 0
     }
   }
 
-  let spriteTile = sprite.tile
-  let animationLength = sprite.length
+  let spriteTile = sprite.tiles[sprite.currentFrame]
+  let animationLength = sprite.tiles.length
   if ((spriteTile = spriteTile + animationLength)) {
     spriteTile
   }
-  spriteTile += sprite.currentFrame
 
   // make an image position using the
   // current row and colum
   sourceY = Math.floor(spriteTile / atlasCol) * tileSize
   sourceX = (spriteTile % atlasCol) * tileSize
+
+  ctx.save()
+  // * Flip Sprite
+  ctx.scale(flipped ? -1 : 1, 1)
+  let dx = flipped ? -x - width : x
 
   ctx.drawImage(
     tileAtlas, // ! Variable daraus machen!
@@ -130,21 +137,20 @@ function drawSprite(entity, dt, frame) {
     sourceY,
     16, // * source Höhe
     16, // * source Breite
-    x,
+    dx,
     y,
-    32, // * player Höhe
-    32 // * player Breite
+    width, // * player Höhe
+    height // * player Breite
   )
+  ctx.restore()
   updateFrames()
 }
 
-// * Sprite Animation Test End
-
+// * Render Player
 function renderPlayer(ctx, dt, frame) {
-  ctx.fillStyle = COLOR.YELLOW
-  //ctx.fillRect(player.x + player.dx * dt, player.y + player.dy * dt, TILE, TILE)
-
   drawSprite(player, dt, frame)
+  ctx.fillStyle = COLOR.YELLOW
+  // ctx.fillRect(player.x + player.dx * dt, player.y + player.dy * dt, TILE, TILE)
 }
 
 function renderHud(ctx) {
@@ -170,11 +176,12 @@ function renderHud(ctx) {
     )
 }
 
-function renderMonsters(ctx, dt) {
+function renderMonsters(ctx, dt, frame) {
   ctx.fillStyle = COLOR.SLATE
   var n, max, monster
   for (n = 0, max = monsters.length; n < max; n++) {
     monster = monsters[n]
+
     if (!monster.dead)
       ctx.fillRect(
         monster.x + monster.dx * dt,
@@ -182,16 +189,23 @@ function renderMonsters(ctx, dt) {
         TILE,
         TILE
       )
+    if (monster.sprites !== undefined && !monster.dead) {
+      drawSprite(monster, dt, frame)
+    }
   }
 }
 
-function renderTreasure(ctx, frame) {
+function renderTreasure(ctx, dt, frame) {
   ctx.fillStyle = COLOR.GOLD
   ctx.globalAlpha = 0.25 + tweenTreasure(frame, 60)
   var n, max, t
   for (n = 0, max = treasure.length; n < max; n++) {
     t = treasure[n]
-    if (!t.collected) ctx.fillRect(t.x, t.y + TILE / 3, TILE, (TILE * 2) / 3)
+    //if (!t.collected) ctx.fillRect(t.x, t.y + TILE / 3, TILE, (TILE * 2) / 3)
+
+    if (t.sprites !== undefined && !t.collected) {
+      drawSprite(t, dt, frame)
+    }
   }
   ctx.globalAlpha = 1
 }

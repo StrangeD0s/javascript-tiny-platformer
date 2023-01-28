@@ -95,6 +95,7 @@ function renderDevInfos() {
       player_treasure: player.treasure,
       player_x: player.x,
       player_y: player.y,
+      player_flipped: player.flipped,
       canvas_width: canvas.height,
       cameraWithBox_x: cameraWithBox.position.x,
     }

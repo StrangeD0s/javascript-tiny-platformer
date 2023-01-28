@@ -94,10 +94,10 @@ function updateEntity(entity, dt) {
   entity.ddy = entity.gravity
 
   // * Hier wird die Entity bewegt.
-  if (entity.left) entity.ddx = entity.ddx - accel
+  if (entity.left) (entity.ddx = entity.ddx - accel), (entity.flipped = true)
   else if (wasleft) entity.ddx = entity.ddx + friction
 
-  if (entity.right) entity.ddx = entity.ddx + accel
+  if (entity.right) (entity.ddx = entity.ddx + accel), (entity.flipped = false)
   else if (wasright) entity.ddx = entity.ddx - friction
 
   if (entity.jump && !entity.jumping && !falling) {

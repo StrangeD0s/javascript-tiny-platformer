@@ -18,13 +18,6 @@ Simple JS platformer to modify and extend.
 - Auflösung von Gameboy, GBC, Game Gear ist 160 × 144 pixel.
 - Sprite Animation kann ich genauso machen wie bei Pico-8 (<https://nerdyteachers.com/Explain/AnimateSprite/>, <https://www.youtube.com/watch?v=rtWGZ1uiBLY>)!
 
-- Image Scaling Behaviour:
-ctx.mozImageSmoothingEnabled = false;
-ctx.webkitImageSmoothingEnabled = false;
-ctx.msImageSmoothingEnabled = false;
-ctx.imageSmoothingEnabled = false;
-
-
 ## Todo
 
 - [ ] Refactor code. Alles sortieren (Helper, Utils, Functions, Main Function, Objects usw.)
@@ -35,4 +28,4 @@ ctx.imageSmoothingEnabled = false;
 - [ ] Alle Variablen und Funktionen, die nicht Platformer-spezifisch sind, als Engine auslagern.
 - [ ] "Doors" System entwickeln.
 - [x] Pause Function
-- [ ] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
+- [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)

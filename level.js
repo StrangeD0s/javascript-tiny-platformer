@@ -168,12 +168,20 @@ const level = {
           x: 96,
           y: 480,
           sprites: {
-            tile: 260, //! das muss ein Sprite-Array werden
-            length: 2,
-            framerate: 5,
-            framebuffer: 8,
-            loop: true,
-            currentFrame: 0,
+            idle: {
+              tiles: [262],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [261, 260],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
           },
         },
         {
@@ -188,6 +196,22 @@ const level = {
           width: 32,
           x: 64,
           y: 192,
+          sprites: {
+            idle: {
+              tiles: [242],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [241, 240],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -201,6 +225,22 @@ const level = {
           width: 32,
           x: 1120,
           y: 416,
+          sprites: {
+            idle: {
+              tiles: [242],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [241, 240],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -214,6 +254,22 @@ const level = {
           width: 32,
           x: 1632,
           y: 832,
+          sprites: {
+            idle: {
+              tiles: [242],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [241, 240],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -227,6 +283,22 @@ const level = {
           width: 32,
           x: 1056,
           y: 1312,
+          sprites: {
+            idle: {
+              tiles: [242],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [241, 240],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -240,6 +312,22 @@ const level = {
           width: 32,
           x: 640,
           y: 992,
+          sprites: {
+            idle: {
+              tiles: [242],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [241, 240],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -250,6 +338,22 @@ const level = {
           width: 32,
           x: 192,
           y: 864,
+          sprites: {
+            idle: {
+              tiles: [81],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [261, 260],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -260,6 +364,22 @@ const level = {
           width: 32,
           x: 96,
           y: 1312,
+          sprites: {
+            idle: {
+              tiles: [81],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [261, 260],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -270,6 +390,22 @@ const level = {
           width: 32,
           x: 1856,
           y: 384,
+          sprites: {
+            idle: {
+              tiles: [81],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [261, 260],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -280,6 +416,22 @@ const level = {
           width: 32,
           x: 704,
           y: 416,
+          sprites: {
+            idle: {
+              tiles: [81],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [261, 260],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -290,6 +442,22 @@ const level = {
           width: 32,
           x: 1984,
           y: 192,
+          sprites: {
+            idle: {
+              tiles: [81],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [261, 260],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -300,6 +468,22 @@ const level = {
           width: 32,
           x: 608,
           y: 1152,
+          sprites: {
+            idle: {
+              tiles: [81],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [261, 260],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -313,6 +497,22 @@ const level = {
           width: 32,
           x: 1216,
           y: 736,
+          sprites: {
+            idle: {
+              tiles: [242],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [241, 240],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -326,6 +526,22 @@ const level = {
           width: 32,
           x: 1856,
           y: 1344,
+          sprites: {
+            idle: {
+              tiles: [242],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [241, 240],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -339,6 +555,22 @@ const level = {
           width: 32,
           x: 1024,
           y: 192,
+          sprites: {
+            idle: {
+              tiles: [242],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [241, 240],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -349,6 +581,22 @@ const level = {
           width: 32,
           x: 32,
           y: 192,
+          sprites: {
+            idle: {
+              tiles: [81],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [261, 260],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
         {
           height: 32,
@@ -359,6 +607,22 @@ const level = {
           width: 32,
           x: 1984,
           y: 1344,
+          sprites: {
+            idle: {
+              tiles: [81],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+            run: {
+              tiles: [261, 260],
+              framerate: 5,
+              framebuffer: 8,
+              loop: true,
+              currentFrame: 0,
+            },
+          },
         },
       ],
       opacity: 1,

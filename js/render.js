@@ -18,8 +18,12 @@ function renderCameraBox() {
 }
 
 function render(ctx, frame, dt) {
-  // * scale und translate funktioniert! Ich brauche nur noch eine Camera!
   // ? Kann ich mich eigentlich mit scale und translate noch weiter an Pico-8 orientieren und in den variables sowas wie scale = ctx.scale oder so erstellen?
+  // * Disable Image Smoothing
+  ctx.mozImageSmoothingEnabled = false
+  ctx.webkitImageSmoothingEnabled = false
+  ctx.msImageSmoothingEnabled = false
+  ctx.imageSmoothingEnabled = false
   ctx.save()
   ctx.scale(scalingFactor / 2, scalingFactor / 2)
   ctx.clearRect(0, 0, width, height)

@@ -45,7 +45,7 @@ let fps = 60,
   paused = false,
   showDevInfo = false
 
-const scalingFactor = 8 // * 8 fühlt sich ungefähr nach 8bit Grafik an.
+const scalingFactor = 12 // * 8 fühlt sich ungefähr nach 8bit Grafik an.
 
 const scaledCanvas = {
   width: canvas.width / scalingFactor,
@@ -70,7 +70,8 @@ let t2p = function (t) {
 let sfx = {
   jump: new sound('./audio/Jump.wav'),
   pickup: new sound('./audio/Pickup_Coin.wav'),
-  die: new sound('./audio/Randomize3.wav'),
+  die: new sound('./audio/Explosion.wav'),
+  takeDamage: new sound('./audio/Randomize3.wav'),
   killMonster: new sound('./audio/Randomize.wav'),
   powerup: new sound('./audio/Powerup.wav'),
 }

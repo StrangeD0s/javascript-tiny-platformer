@@ -38,7 +38,7 @@ function sound(src) {
   this.sound.setAttribute('controls', 'none')
   this.sound.style.display = 'none'
   document.body.appendChild(this.sound)
-  this.sound.volume = 0.05
+  this.sound.volume = 0.1
   this.play = function () {
     this.sound.play()
   }
@@ -65,16 +65,31 @@ function toggleDevInfos() {
   }
 }
 
+function renderHudSprites() {
+  const hudObject = {
+    player_hitpoints: player.currenthitpoints,
+    player_collected: player.collected,
+  }
+
+  function hitpoints() {
+    ctx.textAlign = 'left'
+    ctx.font = '40px Arial'
+
+    ctx.fillStyle = 'white'
+    ctx.fillText(`health: ${hudObject.player_hitpoints}`, 50, 50)
+  }
+  hitpoints()
+}
+
 // * Renderfunktion für DevInfos
 function renderDevInfos() {
   if (showDevInfo) {
+    const backgroundColor = 'rgba(18, 64, 90, 0.85)'
+    const color = 'white'
     const lineHeight = 50
-
-    const isPaused = paused
 
     const devObject = {
       player_accel: player.accel,
-      player_collected: player.collected,
       player_ddx: player.ddx,
       player_ddy: player.ddy,
       player_dx: player.dx,
@@ -84,17 +99,14 @@ function renderDevInfos() {
       player_gravity: player.gravity,
       player_impulse: player.impulse,
       player_jumping: player.jumping,
-      player_killed: player.killed,
       player_left: player.left,
       player_maxdx: player.maxdx,
       player_maxdy: player.maxdy,
-      player_monster: player.monster,
-      player_player: player.player,
       player_right: player.right,
-      player_start: player.start,
-      player_treasure: player.treasure,
       player_x: player.x,
       player_y: player.y,
+      player_vul: player.vul,
+      player_hurt: player.hurt,
       player_flipped: player.flipped,
       canvas_width: canvas.height,
       cameraWithBox_x: cameraWithBox.position.x,
@@ -104,28 +116,20 @@ function renderDevInfos() {
     const canvas_height = canvas.height
 
     function text() {
-      ctx.fillStyle = 'hotpink'
+      ctx.textAlign = 'left'
+      ctx.font = '40px Arial'
       for (const [index, [key, value]] of Object.entries(
         Object.entries(devObject)
       )) {
         const newIndex = Number(index) + 1
         const newValue = typeof value === 'number' ? value.toFixed(2) : value
+        ctx.fillStyle = backgroundColor
+        ctx.fillRect(40, lineHeight * newIndex - 40, 500, lineHeight)
+        ctx.fillStyle = color
         ctx.fillText(`${key}: ${newValue}`, 50, lineHeight * newIndex)
       }
     }
 
-    ctx.font = '40px Arial'
-    ctx.fillStyle = 'hotpink'
-    ctx.textAlign = 'left'
-
-    /* ctx.fillText('camerabox_x: ' + camerabox_x.toFixed(2), 50, lineHeight * 6)
-    ctx.fillText('camerabox_y: ' + camerabox_y.toFixed(2), 50, lineHeight * 7)
-
-    ctx.fillText('camerabox_width: ' + camerabox_width, 50, lineHeight * 8)
-    ctx.fillText('camerabox_height: ' + camerabox_height, 50, lineHeight * 9)
-    ctx.fillText('canvas_width: ' + canvas_width / 4, 50, lineHeight * 10)
-    ctx.fillText('canvas_height: ' + canvas_height / 4, 50, lineHeight * 11) */
-    ctx.fillStyle = 'papayawhip'
     text()
   }
 }

@@ -183,6 +183,11 @@ const level = {
               currentFrame: 0,
             },
           },
+          maxhitpoints: 3,
+          currenthitpoints: 3,
+          invincible: false,
+          vul: true,
+          hurt: false,
         },
         {
           height: 32,

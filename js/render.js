@@ -39,7 +39,8 @@ function render(ctx, frame, dt) {
   //renderCameraBox()
   ctx.restore()
   renderPause()
-  renderHud(ctx)
+  renderHud(ctx, frame)
+  renderHudSprites()
   renderDevInfos()
 }
 
@@ -148,12 +149,16 @@ function drawSprite(entity, dt, frame) {
 
 // * Render Player
 function renderPlayer(ctx, dt, frame) {
+  if (player.vul === false) {
+    ctx.globalAlpha = 0.25 + tweenTreasure(frame * 3, 60)
+  }
   drawSprite(player, dt, frame)
   ctx.fillStyle = COLOR.YELLOW
   // ctx.fillRect(player.x + player.dx * dt, player.y + player.dy * dt, TILE, TILE)
+  ctx.globalAlpha = 1
 }
 
-function renderHud(ctx) {
+function renderHud(ctx, frame) {
   var n, max
   const hudScaling = 4
 
@@ -174,6 +179,20 @@ function renderHud(ctx) {
       (TILE / 2) * hudScaling,
       (TILE / 2) * hudScaling
     )
+
+  // ! provisorische Hitpoint-Anzeige
+  ctx.fillStyle = 'red'
+  if (player.currenthitpoints === 1) {
+    ctx.globalAlpha = 0.25 + tweenTreasure(frame, 60)
+  }
+  for (n = 0, max = player.currenthitpoints; n < max; n++)
+    ctx.fillRect(
+      t2p(1 + n) * hudScaling,
+      t2p(3) * hudScaling,
+      (TILE / 2) * hudScaling,
+      (TILE / 2) * hudScaling
+    )
+  ctx.globalAlpha = 1
 }
 
 function renderMonsters(ctx, dt, frame) {

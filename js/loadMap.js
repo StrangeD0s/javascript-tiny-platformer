@@ -55,5 +55,10 @@ function setupEntity(obj) {
   entity.flipped = false
   entity.width = obj.width
   entity.height = obj.height
+  entity.maxhitpoints = obj.maxhitpoints
+  entity.currenthitpoints = obj.currenthitpoints
+  entity.invincible = obj.invincible
+  entity.hurt = false
+  entity.vul = true
   return entity
 }

@@ -29,3 +29,9 @@ Simple JS platformer to modify and extend.
 - [ ] "Doors" System entwickeln.
 - [x] Pause Function
 - [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
+
+
+## Sprites
+
+- Chest closed: 388, chest open: 389
+- 

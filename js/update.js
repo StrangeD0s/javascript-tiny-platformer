@@ -47,7 +47,9 @@ function updateMonster(monster, dt) {
       overlap(player.x, player.y, TILE, TILE, monster.x, monster.y, TILE, TILE)
     ) {
       if (player.dy > 0 && monster.y - player.y > TILE / 2) killMonster(monster)
-      else killPlayer(player)
+      else if (player.vul) {
+        reduceHitpoints(player, 1)
+      }
     }
   }
 }
@@ -70,11 +72,36 @@ function killMonster(monster) {
   sfx.killMonster.play()
 }
 
+// * Take Damage Function
+function reduceHitpoints(entity, damage) {
+  if (entity.currenthitpoints > 1) {
+    entity.currenthitpoints -= damage
+    entity.vul = false
+    entity.hurt = true
+    sfx.takeDamage.play()
+    setTimeout(() => {
+      entity.vul = true
+      entity.hurt = false
+    }, '1500')
+  } else killEntity(entity)
+}
+
+function killEntity(entity) {
+  console.log('killEntity: ', entity)
+  if (entity.player === true) {
+    killPlayer(entity)
+  }
+  if (entity.monster === true) {
+    killMonster(monster)
+  }
+}
+
 function killPlayer(player) {
   sfx.die.play()
   player.x = player.start.x
   player.y = player.start.y
   player.dx = player.dy = 0
+  player.currenthitpoints = player.maxhitpoints
 }
 
 function collectTreasure(t) {

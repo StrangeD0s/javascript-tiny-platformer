@@ -60,5 +60,6 @@ function setupEntity(obj) {
   entity.invincible = obj.invincible
   entity.hurt = false
   entity.vul = true
+  entity.sprites = obj.sprites
   return entity
 }

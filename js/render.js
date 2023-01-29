@@ -2,20 +2,81 @@
 // RENDERING
 //-------------------------------------------------------------------------
 
-// * Pause Function
-function renderPause() {
-  if (paused) {
-    ctx.font = '65px Arial'
-    ctx.fillStyle = 'white'
-    ctx.textAlign = 'center'
-    ctx.fillText('- pause -', canvas.width / 2, canvas.height / 2)
-  }
+// * Import tiles and level map //
+// ! Dies gehört wahrscheinlich in die loadMap.js
+
+const tileAtlas = new Image()
+tileAtlas.src = './img/monochrome_tilemap_packed.png'
+
+let tileSize = 16
+let tileOutputSize = 2 // can set to 1 for 32px or higher
+
+const level1Atlas = {
+  mapsize: { tw: 64, th: 48 },
+  tileAtlas: tileAtlas,
+  tileSize: 16,
+  tileOutputSize: 2,
+  updatedTileSize: tileSize * tileOutputSize,
+  atlasCol: 20,
+  atlasRow: 20,
+  mapIndex: 0,
+  sourceX: 0,
+  sourceY: 0,
 }
 
-function renderCameraBox() {
-  ctx.fillStyle = 'rgba(0, 0, 255, 0.2)'
-  ctx.fillRect(cameraBox.x, cameraBox.y, cameraBox.width, cameraBox.height)
+// * end of Import tiles and level map //
+
+// * Test Sprite Imports
+
+const playerSpriteAtlas = new Image()
+playerSpriteAtlas.src = './img/player.png'
+
+const playerAtlas = {
+  mapsize: { tw: 64, th: 48 },
+  tileAtlas: playerSpriteAtlas,
+  tileSize: 16,
+  tileOutputSize: 2,
+  updatedTileSize: tileSize * tileOutputSize,
+  atlasCol: 4,
+  atlasRow: 2,
+  mapIndex: 0,
+  sourceX: 0,
+  sourceY: 0,
 }
+
+const enemySpriteAtlas = new Image()
+enemySpriteAtlas.src = './img/enemies.png'
+
+const enemyAtlas = {
+  mapsize: { tw: 64, th: 48 },
+  tileAtlas: enemySpriteAtlas,
+  tileSize: 16,
+  tileOutputSize: 2,
+  updatedTileSize: tileSize * tileOutputSize,
+  atlasCol: 4,
+  atlasRow: 3,
+  mapIndex: 0,
+  sourceX: 0,
+  sourceY: 0,
+}
+
+const itemsSpriteAtlas = new Image()
+itemsSpriteAtlas.src = './img/items.png'
+
+const itemsAtlas = {
+  mapsize: { tw: 64, th: 48 },
+  tileAtlas: itemsSpriteAtlas,
+  tileSize: 16,
+  tileOutputSize: 2,
+  updatedTileSize: tileSize * tileOutputSize,
+  atlasCol: 4,
+  atlasRow: 4,
+  mapIndex: 0,
+  sourceX: 0,
+  sourceY: 0,
+}
+
+// * End Test Sprite Imports
 
 function render(ctx, frame, dt) {
   // ? Kann ich mich eigentlich mit scale und translate noch weiter an Pico-8 orientieren und in den variables sowas wie scale = ctx.scale oder so erstellen?
@@ -29,11 +90,11 @@ function render(ctx, frame, dt) {
   ctx.clearRect(0, 0, width, height)
   renderCamera()
   //renderCameraWithBox()
-  renderMap(ctx)
-  renderTreasure(ctx, dt, frame)
-  renderPlayer(ctx, dt, frame)
+  renderMap(ctx, level1Atlas)
+  renderTreasure(ctx, itemsAtlas, dt, frame)
+  renderPlayer(ctx, playerAtlas, dt, frame)
 
-  renderMonsters(ctx, dt, frame)
+  renderMonsters(ctx, enemyAtlas, dt, frame)
 
   // * Draw CameraBox
   //renderCameraBox()
@@ -46,35 +107,28 @@ function render(ctx, frame, dt) {
 
 // Map Limit Variables
 
-// * Import tiles and level map //
-// ! Dies gehört wahrscheinlich in die loadMap.js
-
-const tileAtlas = new Image()
-tileAtlas.src = './img/monochrome_tilemap_packed.png'
-
-let tileSize = 16
-let tileOutputSize = 2 // can set to 1 for 32px or higher
-let updatedTileSize = tileSize * tileOutputSize
-
-let atlasCol = 20
-let atlasRow = 20
-
-let mapIndex = 0
-let sourceX = 0
-let sourceY = 0
-
-// * end of Import tiles and level map //
-
 // * Das hier ist die allgemeine Funktion um Tiles aus dem TileAtlas auf den Canvas zu malen.
-// ? Macht es Sinn, den tileAtlas auch als Variable reinzugeben? Dann kann ich den je nach Level anpassen.
-function drawTile(cell, dx, dy) {
-  sourceY = Math.floor(cell / atlasCol) * tileSize
-  sourceX = (cell % atlasCol) * tileSize
+function drawTile(levelAtlas, cell, dx, dy) {
+  //console.log('log levelAtlas:', levelAtlas)
+
+  levelAtlas.sourceY =
+    Math.floor(cell / levelAtlas.atlasCol) * levelAtlas.tileSize
+  levelAtlas.sourceX = (cell % levelAtlas.atlasCol) * levelAtlas.tileSize
   // ? Wofür stehen die Werte sWidth, sHeight, dWidth, dHeight
-  ctx.drawImage(tileAtlas, sourceX, sourceY, 16, 16, dx * 32, dy * 32, 32, 32)
+  ctx.drawImage(
+    levelAtlas.tileAtlas,
+    levelAtlas.sourceX,
+    levelAtlas.sourceY,
+    16,
+    16,
+    dx * 32,
+    dy * 32,
+    32,
+    32
+  )
 }
 
-function renderMap(ctx) {
+function renderMap(ctx, levelAtlas) {
   var x, y, cell
   for (y = 0; y < MAP.th; y++) {
     for (x = 0; x < MAP.tw; x++) {
@@ -85,23 +139,29 @@ function renderMap(ctx) {
 
         // * Malt das Tile aus der TileMap
 
-        drawTile(cell, x, y)
+        drawTile(levelAtlas, cell, x, y)
       }
     }
   }
 }
 
 // * Sprite Animation
-function drawSprite(entity, dt, frame) {
+function drawSprite(entity, spriteAtlas, dt, frame) {
   const sprites = entity.sprites
 
-  let isJumping = entity.jumping
+  //console.log('log spriteAtlas:', spriteAtlas)
+
+  let isJumping = entity.jumping || entity.falling
 
   let isRunning =
     (entity.right === true && !isJumping) ||
     (entity.left === true && !isJumping)
 
-  let sprite = isRunning ? sprites.run : sprites.idle
+  let sprite = isRunning
+    ? sprites.run
+    : !!sprites.jump && isJumping
+    ? sprites.jump
+    : sprites.idle
 
   const x = entity.x + entity.dx * dt
   const y = entity.y + entity.dy * dt
@@ -116,16 +176,18 @@ function drawSprite(entity, dt, frame) {
     }
   }
 
+  //entity.player === true && console.log('log sprite.currentFrame: ', sprite)
   let spriteTile = sprite.tiles[sprite.currentFrame]
   let animationLength = sprite.tiles.length
-  if ((spriteTile = spriteTile + animationLength)) {
-    spriteTile
-  }
 
   // make an image position using the
   // current row and colum
-  sourceY = Math.floor(spriteTile / atlasCol) * tileSize
-  sourceX = (spriteTile % atlasCol) * tileSize
+  spriteAtlas.sourceY =
+    Math.floor(spriteTile / spriteAtlas.atlasCol) * spriteAtlas.tileSize
+  spriteAtlas.sourceX =
+    (spriteTile % spriteAtlas.atlasCol) * spriteAtlas.tileSize
+
+  entity.player === true && console.log('log spriteTile: ', spriteTile)
 
   ctx.save()
   // * Flip Sprite
@@ -133,9 +195,9 @@ function drawSprite(entity, dt, frame) {
   let dx = flipped ? -x - width : x
 
   ctx.drawImage(
-    tileAtlas, // ! Variable daraus machen!
-    sourceX,
-    sourceY,
+    spriteAtlas.tileAtlas,
+    spriteAtlas.sourceX,
+    spriteAtlas.sourceY,
     16, // * source Höhe
     16, // * source Breite
     dx,
@@ -148,11 +210,11 @@ function drawSprite(entity, dt, frame) {
 }
 
 // * Render Player
-function renderPlayer(ctx, dt, frame) {
+function renderPlayer(ctx, spriteAtlas, dt, frame) {
   if (player.vul === false) {
     ctx.globalAlpha = 0.25 + tweenTreasure(frame * 3, 60)
   }
-  drawSprite(player, dt, frame)
+  drawSprite(player, spriteAtlas, dt, frame)
   ctx.fillStyle = COLOR.YELLOW
   // ctx.fillRect(player.x + player.dx * dt, player.y + player.dy * dt, TILE, TILE)
   ctx.globalAlpha = 1
@@ -195,13 +257,28 @@ function renderHud(ctx, frame) {
   ctx.globalAlpha = 1
 }
 
-function renderMonsters(ctx, dt, frame) {
+// * Pause Function
+function renderPause() {
+  if (paused) {
+    ctx.font = '65px Arial'
+    ctx.fillStyle = 'white'
+    ctx.textAlign = 'center'
+    ctx.fillText('- pause -', canvas.width / 2, canvas.height / 2)
+  }
+}
+
+function renderCameraBox() {
+  ctx.fillStyle = 'rgba(0, 0, 255, 0.2)'
+  ctx.fillRect(cameraBox.x, cameraBox.y, cameraBox.width, cameraBox.height)
+}
+
+function renderMonsters(ctx, spriteAtlas, dt, frame) {
   ctx.fillStyle = COLOR.SLATE
   var n, max, monster
   for (n = 0, max = monsters.length; n < max; n++) {
     monster = monsters[n]
 
-    if (!monster.dead)
+    if (monster.sprites === undefined && !monster.dead)
       ctx.fillRect(
         monster.x + monster.dx * dt,
         monster.y + monster.dy * dt,
@@ -209,12 +286,12 @@ function renderMonsters(ctx, dt, frame) {
         TILE
       )
     if (monster.sprites !== undefined && !monster.dead) {
-      drawSprite(monster, dt, frame)
+      drawSprite(monster, spriteAtlas, dt, frame)
     }
   }
 }
 
-function renderTreasure(ctx, dt, frame) {
+function renderTreasure(ctx, spriteAtlas, dt, frame) {
   ctx.fillStyle = COLOR.GOLD
   ctx.globalAlpha = 0.25 + tweenTreasure(frame, 60)
   var n, max, t
@@ -223,7 +300,7 @@ function renderTreasure(ctx, dt, frame) {
     //if (!t.collected) ctx.fillRect(t.x, t.y + TILE / 3, TILE, (TILE * 2) / 3)
 
     if (t.sprites !== undefined && !t.collected) {
-      drawSprite(t, dt, frame)
+      drawSprite(t, spriteAtlas, dt, frame)
     }
   }
   ctx.globalAlpha = 1

@@ -30,6 +30,8 @@ let MAP = { tw: 64, th: 48 }, // ! Diese sollte ich auch aus der level.js errech
     DOWN: 'ArrowDown',
     PAUSE: 'KeyP',
     ENTER: 'Enter',
+    X: 'KeyX',
+    Y: 'KeyY',
   }
 
 let fps = 60,

@@ -169,14 +169,21 @@ const level = {
           y: 480,
           sprites: {
             idle: {
-              tiles: [262],
+              tiles: [5],
               framerate: 5,
               framebuffer: 8,
               loop: true,
               currentFrame: 0,
             },
             run: {
-              tiles: [261, 260],
+              tiles: [0, 1, 2, 1],
+              framerate: 5,
+              framebuffer: 10,
+              loop: true,
+              currentFrame: 0,
+            },
+            jump: {
+              tiles: [4],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -203,14 +210,14 @@ const level = {
           y: 192,
           sprites: {
             idle: {
-              tiles: [242],
+              tiles: [3],
               framerate: 5,
               framebuffer: 8,
               loop: true,
               currentFrame: 0,
             },
             run: {
-              tiles: [241, 240],
+              tiles: [4, 5, 6],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -232,14 +239,14 @@ const level = {
           y: 416,
           sprites: {
             idle: {
-              tiles: [242],
+              tiles: [0],
               framerate: 5,
               framebuffer: 8,
               loop: true,
               currentFrame: 0,
             },
             run: {
-              tiles: [241, 240],
+              tiles: [0, 1, 2],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -261,14 +268,14 @@ const level = {
           y: 832,
           sprites: {
             idle: {
-              tiles: [242],
+              tiles: [3],
               framerate: 5,
               framebuffer: 8,
               loop: true,
               currentFrame: 0,
             },
             run: {
-              tiles: [241, 240],
+              tiles: [4, 5, 6],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -290,14 +297,14 @@ const level = {
           y: 1312,
           sprites: {
             idle: {
-              tiles: [242],
+              tiles: [3],
               framerate: 5,
               framebuffer: 8,
               loop: true,
               currentFrame: 0,
             },
             run: {
-              tiles: [241, 240],
+              tiles: [0, 1, 2],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -319,14 +326,14 @@ const level = {
           y: 992,
           sprites: {
             idle: {
-              tiles: [242],
+              tiles: [3],
               framerate: 5,
               framebuffer: 8,
               loop: true,
               currentFrame: 0,
             },
             run: {
-              tiles: [241, 240],
+              tiles: [4, 5, 6],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -345,7 +352,7 @@ const level = {
           y: 864,
           sprites: {
             idle: {
-              tiles: [81],
+              tiles: [4, 5, 6, 7],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -371,7 +378,7 @@ const level = {
           y: 1312,
           sprites: {
             idle: {
-              tiles: [81],
+              tiles: [4, 5, 6, 7],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -397,7 +404,7 @@ const level = {
           y: 384,
           sprites: {
             idle: {
-              tiles: [81],
+              tiles: [4, 5, 6, 7],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -423,7 +430,7 @@ const level = {
           y: 416,
           sprites: {
             idle: {
-              tiles: [81],
+              tiles: [4, 5, 6, 7],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -449,7 +456,7 @@ const level = {
           y: 192,
           sprites: {
             idle: {
-              tiles: [81],
+              tiles: [4, 5, 6, 7],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -475,7 +482,7 @@ const level = {
           y: 1152,
           sprites: {
             idle: {
-              tiles: [81],
+              tiles: [4, 5, 6, 7],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -504,14 +511,14 @@ const level = {
           y: 736,
           sprites: {
             idle: {
-              tiles: [242],
+              tiles: [3],
               framerate: 5,
               framebuffer: 8,
               loop: true,
               currentFrame: 0,
             },
             run: {
-              tiles: [241, 240],
+              tiles: [4, 5, 6],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -533,14 +540,14 @@ const level = {
           y: 1344,
           sprites: {
             idle: {
-              tiles: [242],
+              tiles: [3],
               framerate: 5,
               framebuffer: 8,
               loop: true,
               currentFrame: 0,
             },
             run: {
-              tiles: [241, 240],
+              tiles: [4, 5, 6],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -562,14 +569,14 @@ const level = {
           y: 192,
           sprites: {
             idle: {
-              tiles: [242],
+              tiles: [3],
               framerate: 5,
               framebuffer: 8,
               loop: true,
               currentFrame: 0,
             },
             run: {
-              tiles: [241, 240],
+              tiles: [4, 5, 6],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -588,7 +595,7 @@ const level = {
           y: 192,
           sprites: {
             idle: {
-              tiles: [81],
+              tiles: [4, 5, 6, 7],
               framerate: 5,
               framebuffer: 8,
               loop: true,
@@ -614,7 +621,7 @@ const level = {
           y: 1344,
           sprites: {
             idle: {
-              tiles: [81],
+              tiles: [4, 5, 6, 7],
               framerate: 5,
               framebuffer: 8,
               loop: true,

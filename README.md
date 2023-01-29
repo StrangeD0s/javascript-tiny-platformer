@@ -33,12 +33,14 @@ Simple JS platformer to modify and extend.
 - [x] Pause Function
 - [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
 
-
 ## Sprites
 
 - Chest closed: 388, chest open: 389
-- 
+-
 
+### Welche Tiles nutze ich
+
+- Grotto Escape Pack by Ansimuz
 
 ## Feature Roadmap
 
@@ -48,3 +50,7 @@ Simple JS platformer to modify and extend.
 - [ ] Global Player Object
 - [ ] Inventory System
 - [ ] CameraBox
+
+## Story
+
+Harry Bolton, sidekick to intergalactic space adventurer Ace Hunter, is stranded on a strange planet after several parts of his ship fail and he has to make an emergency landing. To repair his ship he must explore the planet and delve deep into its mysterious caves and catacombs.

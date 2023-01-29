@@ -48,6 +48,7 @@ Simple JS platformer to modify and extend.
 - [ ] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
 - [ ] zweite Map
   - [ ] Variablen für alle Props, die die Map betreffen (MAP.tw/.th, Scaling, HUD-Scaling, TileAtlas)
+- [ ] Alphabet Map für Menus
 - [ ] Map Transitions
 - [ ] Global Player Object
 - [ ] Inventory System

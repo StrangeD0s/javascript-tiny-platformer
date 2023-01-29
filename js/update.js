@@ -6,10 +6,10 @@ function update(dt) {
   updatePlayer(dt)
   updateMonsters(dt)
   checkTreasure()
+  theme.level1.play()
 }
 
 function updatePlayer(dt) {
-  //console.log('log player: ', player)
   updateEntity(player, dt)
 }
 

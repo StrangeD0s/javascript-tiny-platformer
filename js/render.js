@@ -109,8 +109,6 @@ function render(ctx, frame, dt) {
 
 // * Das hier ist die allgemeine Funktion um Tiles aus dem TileAtlas auf den Canvas zu malen.
 function drawTile(levelAtlas, cell, dx, dy) {
-  //console.log('log levelAtlas:', levelAtlas)
-
   levelAtlas.sourceY =
     Math.floor(cell / levelAtlas.atlasCol) * levelAtlas.tileSize
   levelAtlas.sourceX = (cell % levelAtlas.atlasCol) * levelAtlas.tileSize
@@ -149,8 +147,6 @@ function renderMap(ctx, levelAtlas) {
 function drawSprite(entity, spriteAtlas, dt, frame) {
   const sprites = entity.sprites
 
-  //console.log('log spriteAtlas:', spriteAtlas)
-
   let isJumping = entity.jumping || entity.falling
 
   let isRunning =
@@ -176,9 +172,7 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
     }
   }
 
-  //entity.player === true && console.log('log sprite.currentFrame: ', sprite)
   let spriteTile = sprite.tiles[sprite.currentFrame]
-  let animationLength = sprite.tiles.length
 
   // make an image position using the
   // current row and colum
@@ -186,8 +180,6 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
     Math.floor(spriteTile / spriteAtlas.atlasCol) * spriteAtlas.tileSize
   spriteAtlas.sourceX =
     (spriteTile % spriteAtlas.atlasCol) * spriteAtlas.tileSize
-
-  entity.player === true && console.log('log spriteTile: ', spriteTile)
 
   ctx.save()
   // * Flip Sprite

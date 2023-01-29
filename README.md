@@ -38,9 +38,10 @@ Simple JS platformer to modify and extend.
 - Chest closed: 388, chest open: 389
 -
 
-### Welche Tiles nutze ich
+### Welche Assets nutze ich
 
-- Grotto Escape Pack by Ansimuz
+- "Grotto Escape Pack" by Ansimuz
+- "8-Bit Cave Loop" by Wolfgang
 
 ## Feature Roadmap
 

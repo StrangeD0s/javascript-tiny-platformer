@@ -69,11 +69,19 @@ let t2p = function (t) {
 
 // * Const Sfx from audio files //
 // ! Achtung: utils müssen in index.html vor den variables geladen werden.
+
+let sfxVolume = 0.2
+let musicVolume = 0.5
+
 let sfx = {
-  jump: new sound('./audio/Jump.wav'),
-  pickup: new sound('./audio/Pickup_Coin.wav'),
-  die: new sound('./audio/Explosion.wav'),
-  takeDamage: new sound('./audio/Randomize3.wav'),
-  killMonster: new sound('./audio/Randomize.wav'),
-  powerup: new sound('./audio/Powerup.wav'),
+  jump: new sound('./audio/Jump.wav', sfxVolume),
+  pickup: new sound('./audio/Pickup_Coin.wav', sfxVolume),
+  die: new sound('./audio/Explosion.wav', sfxVolume),
+  takeDamage: new sound('./audio/Randomize3.wav', sfxVolume),
+  killMonster: new sound('./audio/Randomize.wav', sfxVolume),
+  powerup: new sound('./audio/Powerup.wav', sfxVolume),
+}
+
+let theme = {
+  level1: new music('./audio/music/8BitCave.wav', musicVolume),
 }

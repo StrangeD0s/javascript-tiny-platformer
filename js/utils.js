@@ -31,19 +31,37 @@ function overlap(x1, y1, w1, h1, x2, y2, w2, h2) {
 }
 
 // * SFX function
-function sound(src) {
+function sound(src, volume) {
   this.sound = document.createElement('audio')
   this.sound.src = src
   this.sound.setAttribute('preload', 'auto')
   this.sound.setAttribute('controls', 'none')
   this.sound.style.display = 'none'
   document.body.appendChild(this.sound)
-  this.sound.volume = 0.1
+  this.sound.volume = volume
   this.play = function () {
     this.sound.play()
   }
   this.stop = function () {
     this.sound.pause()
+  }
+}
+
+// * Music function
+function music(src, volume) {
+  this.music = document.createElement('audio')
+  this.music.src = src
+  this.music.setAttribute('preload', 'auto')
+  this.music.setAttribute('controls', 'none')
+  this.music.setAttribute('loop', 'loop')
+  this.music.style.display = 'none'
+  document.body.appendChild(this.music)
+  this.music.volume = volume
+  this.play = function () {
+    this.music.play()
+  }
+  this.stop = function () {
+    this.music.pause()
   }
 }
 

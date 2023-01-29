@@ -41,6 +41,7 @@ Simple JS platformer to modify and extend.
 
 ## Feature Roadmap
 
+- [ ] Sprite Flags
 - [ ] zweite Map
 - [ ] Map Transitions
 - [ ] Global Player Object

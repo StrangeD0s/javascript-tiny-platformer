@@ -85,7 +85,7 @@ function toggleDevInfos() {
 
 function renderHudSprites() {
   const hudObject = {
-    player_hitpoints: player.currenthitpoints,
+    player_hitpoints: player.currentHitpoints,
     player_collected: player.collected,
   }
 

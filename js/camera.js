@@ -67,10 +67,10 @@ function shouldPanCameraToTheLeft({ canvas, camera }) {
 
   //console.log('log scaledDownCanvasWidth: ', scaledDownCanvasWidth)
 
-  console.log(
+  /* console.log(
     'log shouldPanCameraToTheLeft: ',
     cameraboxRightSide >= scaledDownCanvasWidth
-  )
+  ) */
 
   if (
     cameraboxRightSide >=
@@ -81,7 +81,7 @@ function shouldPanCameraToTheLeft({ canvas, camera }) {
 }
 
 function shouldPanCameraToTheRight({ canvas, cameraprop }) {
-  console.log('log shouldPanCameraToTheRight')
+  //console.log('log shouldPanCameraToTheRight')
   //console.log('log entity x update: ', (player.x + step * player.dx).toFixed(2))
   //console.log('log cameraBox.x <= 0: ', cameraBox.x <= 0)
   if (cameraBox.x <= 0) return
@@ -92,7 +92,7 @@ function shouldPanCameraToTheRight({ canvas, cameraprop }) {
 }
 
 function shouldPanCameraDown({ canvas, camera }) {
-  console.log('log shouldPanCameraDown')
+  //console.log('log shouldPanCameraDown')
   /* if (cameraBox.position.y + this.velocity.y <= 0) return
 
   if (cameraBox.position.y <= Math.abs(camera.position.y)) {

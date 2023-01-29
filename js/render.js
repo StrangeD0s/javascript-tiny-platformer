@@ -2,30 +2,6 @@
 // RENDERING
 //-------------------------------------------------------------------------
 
-// * Import tiles and level map //
-// ! Dies gehört wahrscheinlich in die loadMap.js
-
-const tileAtlas = new Image()
-tileAtlas.src = './img/monochrome_tilemap_packed.png'
-
-let tileSize = 16
-let tileOutputSize = 2 // can set to 1 for 32px or higher
-
-const level1Atlas = {
-  mapsize: { tw: 64, th: 48 },
-  tileAtlas: tileAtlas,
-  tileSize: 16,
-  tileOutputSize: 2,
-  updatedTileSize: tileSize * tileOutputSize,
-  atlasCol: 20,
-  atlasRow: 20,
-  mapIndex: 0,
-  sourceX: 0,
-  sourceY: 0,
-}
-
-// * end of Import tiles and level map //
-
 // * Test Sprite Imports
 
 const playerSpriteAtlas = new Image()
@@ -90,7 +66,7 @@ function render(ctx, frame, dt) {
   ctx.clearRect(0, 0, width, height)
   renderCamera()
   //renderCameraWithBox()
-  renderMap(ctx, level1Atlas)
+  renderMap(ctx, currentLevel.levelAtlas)
   renderTreasure(ctx, itemsAtlas, dt, frame)
   renderPlayer(ctx, playerAtlas, dt, frame)
 
@@ -113,6 +89,7 @@ function drawTile(levelAtlas, cell, dx, dy) {
     Math.floor(cell / levelAtlas.atlasCol) * levelAtlas.tileSize
   levelAtlas.sourceX = (cell % levelAtlas.atlasCol) * levelAtlas.tileSize
   // ? Wofür stehen die Werte sWidth, sHeight, dWidth, dHeight
+  // ! Kann ich die ganzen festen Zahlen als Variablen aus der Map holen?
   ctx.drawImage(
     levelAtlas.tileAtlas,
     levelAtlas.sourceX,
@@ -236,10 +213,10 @@ function renderHud(ctx, frame) {
 
   // ! provisorische Hitpoint-Anzeige
   ctx.fillStyle = 'red'
-  if (player.currenthitpoints === 1) {
+  if (player.currentHitpoints === 1) {
     ctx.globalAlpha = 0.25 + tweenTreasure(frame, 60)
   }
-  for (n = 0, max = player.currenthitpoints; n < max; n++)
+  for (n = 0, max = player.currentHitpoints; n < max; n++)
     ctx.fillRect(
       t2p(1 + n) * hudScaling,
       t2p(3) * hudScaling,

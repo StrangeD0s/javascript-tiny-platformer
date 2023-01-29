@@ -6,7 +6,8 @@ function update(dt) {
   updatePlayer(dt)
   updateMonsters(dt)
   checkTreasure()
-  theme.level1.play()
+  // ! Vielleicht eigene update Funktion für Musik schreiben
+  // theme.level1.play()
 }
 
 function updatePlayer(dt) {
@@ -53,8 +54,8 @@ function killMonster(monster) {
 
 // * Take Damage Function
 function reduceHitpoints(entity, damage) {
-  if (entity.currenthitpoints > 1) {
-    entity.currenthitpoints -= damage
+  if (entity.currentHitpoints > 1) {
+    entity.currentHitpoints -= damage
     entity.vul = false
     entity.hurt = true
     sfx.takeDamage.play()
@@ -80,7 +81,7 @@ function killPlayer(player) {
   player.x = player.start.x
   player.y = player.start.y
   player.dx = player.dy = 0
-  player.currenthitpoints = player.maxhitpoints
+  player.currentHitpoints = player.maxHitpoints
 }
 
 function collectTreasure(t) {
@@ -128,12 +129,39 @@ function updateEntity(entity, dt) {
     ty = p2t(entity.y),
     nx = entity.x % TILE,
     ny = entity.y % TILE,
-    cell = tcell(tx, ty),
+    cell = tcell(tx, ty), //! Was ist das hier?
     cellright = tcell(tx + 1, ty),
     celldown = tcell(tx, ty + 1),
     celldiag = tcell(tx + 1, ty + 1)
 
+  if (entity.player === true) {
+    console.log('log cell: ', cell)
+    console.log('log celldown: ', (celldown && !cell) === true)
+  }
   // ? Ist das hier der Collision Check?
+  // ? kann ich das umbauen und je nach Flag zurückgeben, was passieren soll?
+  // z.B.
+  // (Flag 1 = solid)
+  // let isSolid = flags.${cell}.includes(1)
+  //
+  // if (entity.dy > 0) {
+  //   if ((celldown && !cell) || (celldiag && !cellright && nx)) {
+  // if (isSolid) {
+  // entity.y = t2p(ty)
+  // entity.dy = 0
+  // entity.falling = false
+  // entity.jumping = false
+  // ny = 0
+  // } else if (!isSolid) {
+  // entity.y = t2p(ty + 1)
+  // entity.dy = 0
+  // cell = celldown
+  // cellright = celldiag
+  // ny = 0
+  // }
+  //
+  // oder sowas.
+
   if (entity.dy > 0) {
     if ((celldown && !cell) || (celldiag && !cellright && nx)) {
       entity.y = t2p(ty)

@@ -45,8 +45,9 @@ Simple JS platformer to modify and extend.
 
 ## Feature Roadmap
 
-- [ ] Sprite Flags
+- [ ] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
 - [ ] zweite Map
+  - [ ] Variablen für alle Props, die die Map betreffen (MAP.tw/.th, Scaling, HUD-Scaling, TileAtlas)
 - [ ] Map Transitions
 - [ ] Global Player Object
 - [ ] Inventory System
@@ -54,4 +55,4 @@ Simple JS platformer to modify and extend.
 
 ## Story
 
-Harry Bolton, sidekick to intergalactic space adventurer Ace Hunter, is stranded on a strange planet after several parts of his ship fail and he has to make an emergency landing. To repair his ship he must explore the planet and delve deep into its mysterious caves and catacombs.
+Biff Bolton, sidekick to intergalactic space adventurer Ace Hunter, is stranded on a strange planet after several parts of his ship fail and he has to make an emergency landing. To repair his ship he must explore the planet and delve deep into its mysterious caves and catacombs.

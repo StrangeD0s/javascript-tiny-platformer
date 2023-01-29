@@ -65,7 +65,7 @@ function main() {
     }
   })
 
-  setup(level)
+  setup(currentLevel.levelData) // ! Was brauche ich hier, damit das variabel alle Level laden kann?
   frame()
 }
 

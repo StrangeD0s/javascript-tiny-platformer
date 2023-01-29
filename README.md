@@ -22,7 +22,7 @@ Simple JS platformer to modify and extend.
 
 - [ ] Refactor code. Alles sortieren (Helper, Utils, Functions, Main Function, Objects usw.)
 - [ ] Allgemeine btn() Funktion bauen, angelehnt an Pico-8.
-- [ ] Robuste collision checks und collision maps bauen
+- [x] Robuste collision checks und collision maps bauen
 - [ ] Bessere flags bauen
 - [x] Irgendeine Art Dev Function bauen, die mir übersichtliche console logs ausgibt.
 - [ ] Alle Variablen und Funktionen, die nicht Platformer-spezifisch sind, als Engine auslagern.
@@ -35,3 +35,11 @@ Simple JS platformer to modify and extend.
 
 - Chest closed: 388, chest open: 389
 - 
+
+
+## Feature Roadmap
+
+- [ ] Map Transitions
+- [ ] Global Player Object
+- [ ] Inventory System
+- [ ] CameraBox

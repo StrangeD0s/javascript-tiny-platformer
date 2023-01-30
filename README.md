@@ -45,8 +45,8 @@ Simple JS platformer to modify and extend.
 
 ## Feature Roadmap
 
-- [ ] zweite Map
-  - [ ] Variablen für alle Props, die die Map betreffen (MAP.tw/.th, Scaling, HUD-Scaling, TileAtlas)
+- [x] zweite Map
+  - [x] Variablen für alle Props, die die Map betreffen (MAP.tw/.th, Scaling, HUD-Scaling, TileAtlas)
 - [ ] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
 - [ ] Map Transitions
 - [ ] Global Player Object

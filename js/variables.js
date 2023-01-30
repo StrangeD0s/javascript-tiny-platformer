@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-// GAME CONSTANTS AND letIABLES
+// 2. GAME CONSTANTS AND VARIABLES
 //-------------------------------------------------------------------------
 
 // * Import tiles and level map //
@@ -41,10 +41,85 @@ const level2Atlas = {
 
 // * end of Import tiles and level map //
 
-let MAP = { tw: 64, th: 48 }, // ! Diese sollte ich auch aus der level.js errechnen. Achtung! Wenn ich Maps in anderen Dimensionen lade, dann ändert sich auch das Scaling (Das wirkt sich auch aufs HUD aus)! Entweder ich mache eine Scaling-Variable, die zur Map gehört, oder ich erstelle nur Maps in einer Bestimmten Größe.
-  TILE = 32,
-  METER = TILE,
-  GRAVITY = 9.8 * 6, // default (exagerated) gravity
+// * Test Sprite Imports
+
+const playerSpriteAtlas = new Image()
+playerSpriteAtlas.src = './img/player.png'
+
+const playerAtlas = {
+  mapsize: { tw: 64, th: 48 },
+  tileAtlas: playerSpriteAtlas,
+  tileSize: 16,
+  tileOutputSize: 2,
+  updatedTileSize: tileSize * tileOutputSize,
+  atlasCol: 4,
+  atlasRow: 2,
+  mapIndex: 0,
+  sourceX: 0,
+  sourceY: 0,
+}
+
+const enemySpriteAtlas = new Image()
+enemySpriteAtlas.src = './img/enemies.png'
+
+const enemyAtlas = {
+  mapsize: { tw: 64, th: 48 },
+  tileAtlas: enemySpriteAtlas,
+  tileSize: 16,
+  tileOutputSize: 2,
+  updatedTileSize: tileSize * tileOutputSize,
+  atlasCol: 4,
+  atlasRow: 3,
+  mapIndex: 0,
+  sourceX: 0,
+  sourceY: 0,
+}
+
+const itemsSpriteAtlas = new Image()
+itemsSpriteAtlas.src = './img/items.png'
+
+const itemsAtlas = {
+  mapsize: { tw: 64, th: 48 },
+  tileAtlas: itemsSpriteAtlas,
+  tileSize: 16,
+  tileOutputSize: 2,
+  updatedTileSize: tileSize * tileOutputSize,
+  atlasCol: 4,
+  atlasRow: 4,
+  mapIndex: 0,
+  sourceX: 0,
+  sourceY: 0,
+}
+
+// * End Test Sprite Imports
+
+// * Das currentLevel Objekt sollte durch irgendeine Funktion befüllt werden, wenn ein Level gewechselt wird.
+
+let levelObject = {
+  level1: {
+    scalingFactor: 8,
+    levelData: level1,
+    levelAtlas: level1Atlas,
+    playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
+  },
+  level2: {
+    scalingFactor: 3.5,
+    levelData: level2,
+    levelAtlas: level2Atlas,
+    playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
+  },
+}
+
+let currentLevel = levelObject.level1 // ! hier kann ich noch eine function draus machen, die das currentLevel immer auf dem aktuellen Stand hält. Vorläufig erstmal mit einem Button-Press
+
+const mapWidth = currentLevel.levelData.width
+const mapHeight = currentLevel.levelData.height
+console.log(mapWidth)
+
+let MAP = { tw: mapWidth, th: mapHeight } // ! Diese sollte ich auch aus der level.js errechnen. Achtung! Wenn ich Maps in anderen Dimensionen lade, dann ändert sich auch das Scaling (Das wirkt sich auch aufs HUD aus)! Entweder ich mache eine Scaling-Variable, die zur Map gehört, oder ich erstelle nur Maps in einer Bestimmten Größe.
+let TILE = 32
+let METER = TILE
+let GRAVITY = 9.8 * 6, // default (exagerated) gravity
   MAXDX = 15, // default max horizontal speed (15 tiles per second)
   MAXDY = 60, // default max vertical speed   (60 tiles per second)
   ACCEL = 1 / 2, // default take 1/2 second to reach maxdx (horizontal acceleration)
@@ -71,14 +146,13 @@ let MAP = { tw: 64, th: 48 }, // ! Diese sollte ich auch aus der level.js errech
     ENTER: 'Enter',
     X: 'KeyX',
     Y: 'KeyY',
+    L: 'KeyL',
   }
 
 let fps = 60,
   step = 1 / fps,
   canvas = document.getElementById('canvas'),
   ctx = canvas.getContext('2d'),
-  width = (canvas.width = MAP.tw * TILE), // * Das ist clever, weil ich so der Canvas immer von der Map Size abhängig ist. Zusammen mit ctx.scale und ctx.translate bekomme ich so auch eine Camera hin!
-  height = (canvas.height = MAP.th * TILE),
   player = {},
   monsters = [],
   treasure = [],
@@ -86,7 +160,10 @@ let fps = 60,
   paused = false,
   showDevInfo = false
 
-const scalingFactor = 8 // * 8 fühlt sich ungefähr nach 8bit Grafik an.
+let width = (canvas.width = MAP.tw * TILE) // * Das ist clever, weil ich so der Canvas immer von der Map Size abhängig ist. Zusammen mit ctx.scale und ctx.translate bekomme ich so auch eine Camera hin!
+let height = (canvas.height = MAP.th * TILE)
+
+const scalingFactor = currentLevel.scalingFactor // * 8 fühlt sich ungefähr nach 8bit Grafik an.
 
 const scaledCanvas = {
   width: canvas.width / scalingFactor,
@@ -149,44 +226,6 @@ let globalPlayer = {
     },
     jump: {
       tiles: [4],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-  },
-}
-
-let bounderMonster = {
-  sprites: {
-    idle: {
-      tiles: [3],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-    run: {
-      tiles: [4, 5, 6],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-  },
-}
-
-let slimeMonster = {
-  sprites: {
-    idle: {
-      tiles: [0],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-    run: {
-      tiles: [0, 1, 2],
       framerate: 5,
       framebuffer: 8,
       loop: true,

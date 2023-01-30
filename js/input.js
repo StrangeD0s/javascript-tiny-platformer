@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-// INPUT
+// 3.1 INPUT
 //-------------------------------------------------------------------------
 
 function onkey(ev, key, down) {
@@ -18,7 +18,6 @@ function onkey(ev, key, down) {
       player.jump = down
       shouldPanCameraDown({ canvas, cameraWithBox })
       ev.preventDefault()
-
       return false
   }
 }

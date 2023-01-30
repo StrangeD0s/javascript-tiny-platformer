@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-// Simple CAMERA
+// 3.2 Simple CAMERA
 //-------------------------------------------------------------------------
 
 function renderCamera() {
@@ -101,7 +101,7 @@ function shouldPanCameraDown({ canvas, camera }) {
 }
 
 function shouldPanCameraUp({ canvas, camera }) {
-  console.log('log shouldPanCameraUp')
+  // console.log('log shouldPanCameraUp')
   /* if (cameraBox.position.y + cameraBox.height + this.velocity.y >= 432) return
 
   const scaledCanvasHeight = canvas.height / 4

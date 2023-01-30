@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-// LOAD THE MAP
+// 5. LOAD THE MAP
 //-------------------------------------------------------------------------
 
 // * Die setup Funktion finde ich gut, weil sie alle Infos aus einer map mit mehreren Layern erhalten kann.

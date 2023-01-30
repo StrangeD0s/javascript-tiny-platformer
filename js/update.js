@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-// UPDATE LOOP
+// 3. UPDATE LOOP
 //-------------------------------------------------------------------------
 
 function update(dt) {
@@ -135,8 +135,8 @@ function updateEntity(entity, dt) {
     celldiag = tcell(tx + 1, ty + 1)
 
   if (entity.player === true) {
-    console.log('log cell: ', cell)
-    console.log('log celldown: ', (celldown && !cell) === true)
+    // console.log('log cell: ', cell)
+    // console.log('log celldown: ', (celldown && !cell) === true)
   }
   // ? Ist das hier der Collision Check?
   // ? kann ich das umbauen und je nach Flag zurückgeben, was passieren soll?

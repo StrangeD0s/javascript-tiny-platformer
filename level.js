@@ -1,3 +1,71 @@
+let playerObject = {
+  maxHitpoints: 6,
+  currentHitpoints: 3,
+  vul: true,
+  hurt: false,
+  sprites: {
+    idle: {
+      tiles: [5],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+    run: {
+      tiles: [0, 1, 2, 1],
+      framerate: 5,
+      framebuffer: 10,
+      loop: true,
+      currentFrame: 0,
+    },
+    jump: {
+      tiles: [4],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+  },
+}
+
+let bounderMonster = {
+  sprites: {
+    idle: {
+      tiles: [3],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+    run: {
+      tiles: [4, 5, 6],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+  },
+}
+
+let slimeMonster = {
+  sprites: {
+    idle: {
+      tiles: [0],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+    run: {
+      tiles: [0, 1, 2],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+  },
+}
+
 const level1 = {
   height: 48,
   layers: [
@@ -168,11 +236,9 @@ const level1 = {
           width: 32,
           x: 96,
           y: 480,
-          sprites: globalPlayer.sprites,
-          maxHitpoints: globalPlayer.maxHitpoints,
-          currentHitpoints: globalPlayer.currentHitpoints,
-          vul: globalPlayer.vul,
-          hurt: globalPlayer.hurt,
+          sprites: playerObject.sprites,
+          maxHitpoints: playerObject.maxHitpoints,
+          currentHitpoints: playerObject.currentHitpoints,
         },
         {
           height: 32,
@@ -580,11 +646,9 @@ const level2 = {
           width: 32,
           x: 96,
           y: 180,
-          sprites: globalPlayer.sprites,
-          maxHitpoints: globalPlayer.maxHitpoints,
-          currentHitpoints: globalPlayer.currentHitpoints,
-          vul: globalPlayer.vul,
-          hurt: globalPlayer.hurt,
+          sprites: playerObject.sprites,
+          maxHitpoints: playerObject.maxHitpoints,
+          currentHitpoints: playerObject.currentHitpoints,
         },
       ],
       opacity: 1,
@@ -615,11 +679,4 @@ const level2 = {
   tilewidth: 16,
   version: 1,
   width: 30,
-}
-
-// * Das currentLevel Objekt sollte durch irgendeine Funktion befüllt werden, wenn ein Level gewechselt wird.
-let currentLevel = {
-  levelData: level1,
-  levelAtlas: level1Atlas,
-  playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
 }

@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-// UTILITIES
+// 1. UTILITIES
 //-------------------------------------------------------------------------
 
 function timestamp() {
@@ -90,11 +90,14 @@ function renderHudSprites() {
   }
 
   function hitpoints() {
+    ctx.save()
+    ctx.scale(scalingFactor / 4, scalingFactor / 4)
     ctx.textAlign = 'left'
     ctx.font = '40px Arial'
 
     ctx.fillStyle = 'white'
     ctx.fillText(`health: ${hudObject.player_hitpoints}`, 50, 50)
+    ctx.restore()
   }
   hitpoints()
 }

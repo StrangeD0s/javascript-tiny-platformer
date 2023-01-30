@@ -1,58 +1,6 @@
 //-------------------------------------------------------------------------
-// RENDERING
+// 4. RENDERING
 //-------------------------------------------------------------------------
-
-// * Test Sprite Imports
-
-const playerSpriteAtlas = new Image()
-playerSpriteAtlas.src = './img/player.png'
-
-const playerAtlas = {
-  mapsize: { tw: 64, th: 48 },
-  tileAtlas: playerSpriteAtlas,
-  tileSize: 16,
-  tileOutputSize: 2,
-  updatedTileSize: tileSize * tileOutputSize,
-  atlasCol: 4,
-  atlasRow: 2,
-  mapIndex: 0,
-  sourceX: 0,
-  sourceY: 0,
-}
-
-const enemySpriteAtlas = new Image()
-enemySpriteAtlas.src = './img/enemies.png'
-
-const enemyAtlas = {
-  mapsize: { tw: 64, th: 48 },
-  tileAtlas: enemySpriteAtlas,
-  tileSize: 16,
-  tileOutputSize: 2,
-  updatedTileSize: tileSize * tileOutputSize,
-  atlasCol: 4,
-  atlasRow: 3,
-  mapIndex: 0,
-  sourceX: 0,
-  sourceY: 0,
-}
-
-const itemsSpriteAtlas = new Image()
-itemsSpriteAtlas.src = './img/items.png'
-
-const itemsAtlas = {
-  mapsize: { tw: 64, th: 48 },
-  tileAtlas: itemsSpriteAtlas,
-  tileSize: 16,
-  tileOutputSize: 2,
-  updatedTileSize: tileSize * tileOutputSize,
-  atlasCol: 4,
-  atlasRow: 4,
-  mapIndex: 0,
-  sourceX: 0,
-  sourceY: 0,
-}
-
-// * End Test Sprite Imports
 
 function render(ctx, frame, dt) {
   // ? Kann ich mich eigentlich mit scale und translate noch weiter an Pico-8 orientieren und in den variables sowas wie scale = ctx.scale oder so erstellen?
@@ -191,7 +139,7 @@ function renderPlayer(ctx, spriteAtlas, dt, frame) {
 
 function renderHud(ctx, frame) {
   var n, max
-  const hudScaling = 4
+  const hudScaling = scalingFactor / 2
 
   ctx.fillStyle = COLOR.GOLD
   for (n = 0, max = player.collected; n < max; n++)

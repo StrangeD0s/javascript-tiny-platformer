@@ -18,8 +18,7 @@ Simple JS platformer to modify and extend.
 - Auflösung von Gameboy, GBC, Game Gear ist 160 × 144 pixel.
 - Sprite Animation kann ich genauso machen wie bei Pico-8 (<https://nerdyteachers.com/Explain/AnimateSprite/>, <https://www.youtube.com/watch?v=rtWGZ1uiBLY>)!
 - Setting ist ein Space Adventure. Mit einem Raumschiff kann man viele verschiedene Umgebungen erreichen (Dschungel, Techno, Unterwasser, Höhlen,...)
-- Modulares Raumschiff. Module mit verschiedenen Spieler-Charakteren können gefunden und verbunden werden.
-- Besser: Commander Keen trifft Metroidvania (mit ein bisschen Subnautica?)
+- Commander Keen trifft Metroidvania (mit ein bisschen Subnautica?)
 
 ## Todo
 
@@ -52,6 +51,7 @@ Simple JS platformer to modify and extend.
 - [ ] Global Player Object
 - [ ] Inventory System
 - [ ] CameraBox
+- [ ] Alphabet TileMap
 
 ## Story
 

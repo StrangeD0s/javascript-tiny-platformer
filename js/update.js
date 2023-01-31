@@ -12,6 +12,34 @@ function update(dt) {
 
 function updatePlayer(dt) {
   updateEntity(player, dt)
+  // ! Hier habe ich rudimentär einen Levelwechsel eingebaut.
+  // ! Was noch fehlt ist, dass ein globales Player-Objekt beibehalten wird.
+  if (player.collected >= 2) {
+    //  console.log('log currentLevel: ', currentLevel)
+    console.log('log collected 2! ', levelObject.level2)
+    monsters = []
+    treasure = []
+    cells = []
+    currentLevel = levelObject.level2
+    player.collected = 0
+
+    mapWidth = currentLevel.levelData.width
+    mapHeight = currentLevel.levelData.height
+
+    canvas.width = mapWidth * TILE
+    canvas.height = mapHeight * TILE
+
+    scalingFactor = currentLevel.scalingFactor
+
+    scaledCanvas = {
+      width: canvas.width / scalingFactor,
+      height: canvas.height / scalingFactor,
+    }
+
+    setup(levelObject.level2.levelData)
+
+    // console.log('log currentLevel: ', currentLevel)
+  }
 }
 
 function updateMonsters(dt) {
@@ -129,10 +157,10 @@ function updateEntity(entity, dt) {
     ty = p2t(entity.y),
     nx = entity.x % TILE,
     ny = entity.y % TILE,
-    cell = tcell(tx, ty), //! Was ist das hier?
-    cellright = tcell(tx + 1, ty),
-    celldown = tcell(tx, ty + 1),
-    celldiag = tcell(tx + 1, ty + 1)
+    cell = tcell(tx, ty, mapWidth), //! Was ist das hier?
+    cellright = tcell(tx + 1, ty, mapWidth),
+    celldown = tcell(tx, ty + 1, mapWidth),
+    celldiag = tcell(tx + 1, ty + 1, mapWidth)
 
   if (entity.player === true) {
     // console.log('log cell: ', cell)

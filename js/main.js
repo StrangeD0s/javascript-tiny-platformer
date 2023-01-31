@@ -26,7 +26,8 @@ function main() {
         update(step)
       }
     }
-    render(ctx, counter, dt)
+
+    render(ctx, counter, dt, currentLevel)
     last = now
     counter++
     fpsmeter.tick()

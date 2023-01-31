@@ -112,9 +112,8 @@ let levelObject = {
 
 let currentLevel = levelObject.level1 // ! hier kann ich noch eine function draus machen, die das currentLevel immer auf dem aktuellen Stand hält. Vorläufig erstmal mit einem Button-Press
 
-const mapWidth = currentLevel.levelData.width
-const mapHeight = currentLevel.levelData.height
-console.log(mapWidth)
+let mapWidth = currentLevel.levelData.width
+let mapHeight = currentLevel.levelData.height
 
 let MAP = { tw: mapWidth, th: mapHeight } // ! Diese sollte ich auch aus der level.js errechnen. Achtung! Wenn ich Maps in anderen Dimensionen lade, dann ändert sich auch das Scaling (Das wirkt sich auch aufs HUD aus)! Entweder ich mache eine Scaling-Variable, die zur Map gehört, oder ich erstelle nur Maps in einer Bestimmten Größe.
 let TILE = 32
@@ -160,12 +159,15 @@ let fps = 60,
   paused = false,
   showDevInfo = false
 
-let width = (canvas.width = MAP.tw * TILE) // * Das ist clever, weil ich so der Canvas immer von der Map Size abhängig ist. Zusammen mit ctx.scale und ctx.translate bekomme ich so auch eine Camera hin!
-let height = (canvas.height = MAP.th * TILE)
+canvas.width = mapWidth * TILE
+canvas.height = mapHeight * TILE
 
-const scalingFactor = currentLevel.scalingFactor // * 8 fühlt sich ungefähr nach 8bit Grafik an.
+let width = (canvas.width = mapWidth * TILE) // * Das ist clever, weil ich so der Canvas immer von der Map Size abhängig ist. Zusammen mit ctx.scale und ctx.translate bekomme ich so auch eine Camera hin!
+let height = (canvas.height = mapHeight * TILE)
 
-const scaledCanvas = {
+let scalingFactor = currentLevel.scalingFactor // * 8 fühlt sich ungefähr nach 8bit Grafik an.
+
+let scaledCanvas = {
   width: canvas.width / scalingFactor,
   height: canvas.height / scalingFactor,
 }
@@ -177,10 +179,10 @@ let t2p = function (t) {
     return Math.floor(p / TILE)
   },
   cell = function (x, y) {
-    return tcell(p2t(x), p2t(y))
+    return tcell(p2t(x), p2t(y), mapWidth)
   },
-  tcell = function (tx, ty) {
-    return cells[tx + ty * MAP.tw]
+  tcell = function (tx, ty, mapWidth) {
+    return cells[tx + ty * mapWidth]
   }
 
 // * Const Sfx from audio files //

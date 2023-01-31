@@ -2,6 +2,8 @@
 // 5. LOAD THE MAP
 //-------------------------------------------------------------------------
 
+// ! Wenn ich die Setup-Funktion zum Levelwechsel aufrufe, dann werden die Variablen nicht upgedated!
+
 // * Die setup Funktion finde ich gut, weil sie alle Infos aus einer map mit mehreren Layern erhalten kann.
 function setup(map) {
   var data = map.layers[0].data,

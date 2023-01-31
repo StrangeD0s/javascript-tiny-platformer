@@ -2,7 +2,7 @@
 // 4. RENDERING
 //-------------------------------------------------------------------------
 
-function render(ctx, frame, dt) {
+function render(ctx, frame, dt, thiscurrentLevel) {
   // ? Kann ich mich eigentlich mit scale und translate noch weiter an Pico-8 orientieren und in den variables sowas wie scale = ctx.scale oder so erstellen?
   // * Disable Image Smoothing
   ctx.mozImageSmoothingEnabled = false
@@ -10,11 +10,15 @@ function render(ctx, frame, dt) {
   ctx.msImageSmoothingEnabled = false
   ctx.imageSmoothingEnabled = false
   ctx.save()
-  ctx.scale(scalingFactor / 2, scalingFactor / 2)
+  ctx.scale(
+    thiscurrentLevel.scalingFactor / 2,
+    thiscurrentLevel.scalingFactor / 2
+  )
+
   ctx.clearRect(0, 0, width, height)
   renderCamera()
   //renderCameraWithBox()
-  renderMap(ctx, currentLevel.levelAtlas)
+  renderMap(ctx, thiscurrentLevel.levelAtlas)
   renderTreasure(ctx, itemsAtlas, dt, frame)
   renderPlayer(ctx, playerAtlas, dt, frame)
 
@@ -53,9 +57,9 @@ function drawTile(levelAtlas, cell, dx, dy) {
 
 function renderMap(ctx, levelAtlas) {
   var x, y, cell
-  for (y = 0; y < MAP.th; y++) {
-    for (x = 0; x < MAP.tw; x++) {
-      cell = tcell(x, y)
+  for (y = 0; y < mapHeight; y++) {
+    for (x = 0; x < mapWidth; x++) {
+      cell = tcell(x, y, mapWidth)
       if (cell) {
         ctx.fillStyle = COLORS[cell - 1]
         ctx.fillRect(x * TILE, y * TILE, TILE, TILE)

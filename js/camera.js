@@ -58,7 +58,7 @@ function shouldPanCameraToTheLeft({ canvas, camera }) {
   const cameraboxRightSide = cameraBox.x + cameraBox.width
   const scaledDownCanvasWidth = canvas.width / 2
 
-  console.log('log cameraboxRightSide: ', cameraboxRightSide)
+  // console.log('log cameraboxRightSide: ', cameraboxRightSide)
   //console.log('log cameraboxRightSide >= 2048: ', cameraboxRightSide >= 2048)
   // ! Woher kommt der Wert hier?
   if (cameraboxRightSide >= 2048) return

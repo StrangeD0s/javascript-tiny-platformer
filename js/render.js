@@ -177,7 +177,7 @@ function renderHud(ctx, frame) {
 // * Pause Function
 function renderPause() {
   if (paused) {
-    ctx.font = '65px Arial'
+    ctx.font = '65px C64 TrueType'
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
     ctx.fillText('- pause -', canvas.width / 2, canvas.height / 2)

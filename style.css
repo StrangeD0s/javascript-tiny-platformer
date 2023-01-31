@@ -5,6 +5,16 @@
   --start-button-color: #597ea7;
 }
 
+
+@font-face {
+  font-family: "C64 TrueType";
+  src: url('fonts/C64_Pro_Mono-STYLE.eot');
+  src: url('fonts/C64_Pro_Mono-STYLE.eot') format('embedded-opentype'),
+       url('fonts/C64_Pro_Mono-STYLE.woff2') format('woff2'),
+       url('fonts/C64_Pro_Mono-STYLE.woff') format('woff'),
+       url('fonts/C64_Pro_Mono-STYLE.ttf') format('truetype');
+}
+
 body {
   background: var(--shell-color);
 }

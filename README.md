@@ -51,7 +51,7 @@ Simple JS platformer to modify and extend.
 - [ ] Global Player Object
 - [ ] Inventory System
 - [ ] CameraBox
-- [ ] Alphabet TileMap
+- [x] Alphabet TileMap (oder font!)
 
 ## Story
 

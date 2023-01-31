@@ -93,7 +93,7 @@ function renderHudSprites() {
     ctx.save()
     ctx.scale(scalingFactor / 4, scalingFactor / 4)
     ctx.textAlign = 'left'
-    ctx.font = '40px Arial'
+    ctx.font = '20px C64 TrueType'
 
     ctx.fillStyle = 'white'
     ctx.fillText(`health: ${hudObject.player_hitpoints}`, 50, 50)
@@ -138,7 +138,7 @@ function renderDevInfos() {
 
     function text() {
       ctx.textAlign = 'left'
-      ctx.font = '40px Arial'
+      ctx.font = '40px C64 TrueType'
       for (const [index, [key, value]] of Object.entries(
         Object.entries(devObject)
       )) {

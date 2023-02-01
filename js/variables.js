@@ -170,6 +170,11 @@ let fps = 60,
   treasure = [],
   doors = [], // ! Hier sammel ich alle Door Objekte.
   cells = [], // ! vielleicht kann ich hieraus aber auch einfach ein Objekt machen, das Arrays für collCells, bgCells und fgCells beinhaltet
+  // cells = {
+  // collCells: [],
+  // bgCells: [],
+  // fgCells: [],
+  // }
   bgCells = [], // ! Die sind für die background cells.
   fgCells = [], // ! Die sind für die foreground cells.
   paused = false,

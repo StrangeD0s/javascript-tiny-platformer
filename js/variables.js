@@ -185,6 +185,31 @@ let t2p = function (t) {
     return cells[tx + ty * mapWidth]
   }
 
+// * Init Level Funtion
+function _initLevel(newLevel) {
+  console.log('log collected 2! ', newLevel)
+  monsters = []
+  treasure = []
+  cells = []
+  currentLevel = newLevel
+  player.collected = 0
+
+  mapWidth = currentLevel.levelData.width
+  mapHeight = currentLevel.levelData.height
+
+  canvas.width = mapWidth * TILE
+  canvas.height = mapHeight * TILE
+
+  scalingFactor = currentLevel.scalingFactor
+
+  scaledCanvas = {
+    width: canvas.width / scalingFactor,
+    height: canvas.height / scalingFactor,
+  }
+
+  setup(newLevel.levelData)
+}
+
 // * Const Sfx from audio files //
 // ! Achtung: utils müssen in index.html vor den variables geladen werden.
 

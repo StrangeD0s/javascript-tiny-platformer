@@ -66,6 +66,7 @@ function main() {
     }
   })
 
+  // ! Vielleicht kann ich statt des setup() an dieser Stelle auch eine gameStart() Funktion erstellen, die beim erstmaligen Start alles erledigt. Später wird dann ja immer die _initLevel() aufgerufen.
   setup(currentLevel.levelData) // ! Was brauche ich hier, damit das variabel alle Level laden kann?
   frame()
 }

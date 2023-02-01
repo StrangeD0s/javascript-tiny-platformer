@@ -15,30 +15,7 @@ function updatePlayer(dt) {
   // ! Hier habe ich rudimentär einen Levelwechsel eingebaut.
   // ! Was noch fehlt ist, dass ein globales Player-Objekt beibehalten wird.
   if (player.collected >= 2) {
-    //  console.log('log currentLevel: ', currentLevel)
-    console.log('log collected 2! ', levelObject.level2)
-    monsters = []
-    treasure = []
-    cells = []
-    currentLevel = levelObject.level2
-    player.collected = 0
-
-    mapWidth = currentLevel.levelData.width
-    mapHeight = currentLevel.levelData.height
-
-    canvas.width = mapWidth * TILE
-    canvas.height = mapHeight * TILE
-
-    scalingFactor = currentLevel.scalingFactor
-
-    scaledCanvas = {
-      width: canvas.width / scalingFactor,
-      height: canvas.height / scalingFactor,
-    }
-
-    setup(levelObject.level2.levelData)
-
-    // console.log('log currentLevel: ', currentLevel)
+    _initLevel(levelObject.level2)
   }
 }
 

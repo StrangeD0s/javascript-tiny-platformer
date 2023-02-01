@@ -46,12 +46,12 @@ Simple JS platformer to modify and extend.
 
 - [x] zweite Map
   - [x] Variablen für alle Props, die die Map betreffen (MAP.tw/.th, Scaling, HUD-Scaling, TileAtlas)
+- [x] Alphabet TileMap (oder font!)
+- [ ] Map Transitions (mit einem Doors Object)
 - [ ] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
-- [ ] Map Transitions
 - [ ] Global Player Object
 - [ ] Inventory System
 - [ ] CameraBox
-- [x] Alphabet TileMap (oder font!)
 
 ## Story
 

@@ -8,6 +8,7 @@
 function setup(map) {
   var data = map.layers[0].data,
     objects = map.layers[1].objects,
+    background = map.layers[2]?.background,
     n,
     obj,
     entity

@@ -47,8 +47,10 @@ Simple JS platformer to modify and extend.
 - [x] zweite Map
   - [x] Variablen für alle Props, die die Map betreffen (MAP.tw/.th, Scaling, HUD-Scaling, TileAtlas)
 - [x] Alphabet TileMap (oder font!)
+- [ ] Map Layers (CollisionLayer, Background, Foreground, Object-Layer) inkl. Anleitung für Tiled
 - [ ] Map Transitions (mit einem Doors Object)
 - [ ] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
+  - [ ] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.
 - [ ] Global Player Object
 - [ ] Inventory System
 - [ ] CameraBox

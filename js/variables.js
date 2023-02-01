@@ -10,11 +10,16 @@ tileAtlas.src = './img/monochrome_tilemap_packed.png'
 const tileAtlas2 = new Image()
 tileAtlas2.src = './img/tiles.png'
 
+const tileAtlas3 = new Image()
+tileAtlas3.src = './img/Grotto-escape-2-files/PNG/environment-tiles.png'
+
+const tileAtlasBg = new Image()
+tileAtlasBg.src = './img/Grotto-escape-2-files/PNG/environment-background.png'
+
 let tileSize = 16
 let tileOutputSize = 2 // can set to 1 for 32px or higher
 
 const level1Atlas = {
-  mapsize: { tw: 64, th: 48 },
   tileAtlas: tileAtlas2,
   tileSize: 16,
   tileOutputSize: 2,
@@ -27,13 +32,24 @@ const level1Atlas = {
 }
 
 const level2Atlas = {
-  mapsize: { tw: 30, th: 20 },
-  tileAtlas: tileAtlas2,
+  tileAtlas: tileAtlas3,
   tileSize: 16,
   tileOutputSize: 2,
   updatedTileSize: tileSize * tileOutputSize,
-  atlasCol: 8,
-  atlasRow: 5,
+  atlasCol: 42,
+  atlasRow: 16,
+  mapIndex: 0,
+  sourceX: 0,
+  sourceY: 0,
+}
+
+const backgroundAtlas = {
+  tileAtlas: tileAtlasBg,
+  tileSize: 16,
+  tileOutputSize: 2,
+  updatedTileSize: tileSize * tileOutputSize,
+  atlasCol: 28,
+  atlasRow: 10,
   mapIndex: 0,
   sourceX: 0,
   sourceY: 0,
@@ -47,7 +63,6 @@ const playerSpriteAtlas = new Image()
 playerSpriteAtlas.src = './img/player.png'
 
 const playerAtlas = {
-  mapsize: { tw: 64, th: 48 },
   tileAtlas: playerSpriteAtlas,
   tileSize: 16,
   tileOutputSize: 2,
@@ -63,7 +78,6 @@ const enemySpriteAtlas = new Image()
 enemySpriteAtlas.src = './img/enemies.png'
 
 const enemyAtlas = {
-  mapsize: { tw: 64, th: 48 },
   tileAtlas: enemySpriteAtlas,
   tileSize: 16,
   tileOutputSize: 2,
@@ -79,7 +93,6 @@ const itemsSpriteAtlas = new Image()
 itemsSpriteAtlas.src = './img/items.png'
 
 const itemsAtlas = {
-  mapsize: { tw: 64, th: 48 },
   tileAtlas: itemsSpriteAtlas,
   tileSize: 16,
   tileOutputSize: 2,

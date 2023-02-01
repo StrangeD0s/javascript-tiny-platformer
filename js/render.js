@@ -66,7 +66,7 @@ function renderMap(ctx, levelAtlas) {
 
         // * Malt das Tile aus der TileMap
 
-        drawTile(levelAtlas, cell, x, y)
+        drawTile(levelAtlas, cell - 1, x, y)
       }
     }
   }
@@ -178,13 +178,17 @@ function renderHud(ctx, frame) {
   ctx.globalAlpha = 1
 }
 
-// * Pause Function
+// * Render Pause Function
 function renderPause() {
   if (paused) {
-    ctx.font = '65px C64 TrueType'
+    ctx.save()
+    ctx.scale(scalingFactor / 2, scalingFactor / 2)
+
+    ctx.font = '16px C64 TrueType'
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
-    ctx.fillText('- pause -', canvas.width / 2, canvas.height / 2)
+    ctx.fillText('- pause -', scaledCanvas.width, scaledCanvas.height)
+    ctx.restore()
   }
 }
 

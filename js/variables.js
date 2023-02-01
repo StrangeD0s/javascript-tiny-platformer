@@ -168,7 +168,10 @@ let fps = 60,
   player = {},
   monsters = [],
   treasure = [],
-  cells = [],
+  doors = [], // ! Hier sammel ich alle Door Objekte.
+  cells = [], // ! vielleicht kann ich hieraus aber auch einfach ein Objekt machen, das Arrays für collCells, bgCells und fgCells beinhaltet
+  bgCells = [], // ! Die sind für die background cells.
+  fgCells = [], // ! Die sind für die foreground cells.
   paused = false,
   showDevInfo = false
 
@@ -194,7 +197,7 @@ let t2p = function (t) {
   cell = function (x, y) {
     return tcell(p2t(x), p2t(y), mapWidth)
   },
-  tcell = function (tx, ty, mapWidth) {
+  tcell = function (tx, ty, mapWidth) { // ! Hier brauche ich entweder eine allgemeinere Funktion oder noch weiter für bgCells ud fgCells.
     return cells[tx + ty * mapWidth]
   }
 

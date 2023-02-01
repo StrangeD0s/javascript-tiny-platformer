@@ -6,9 +6,11 @@
 
 // * Die setup Funktion finde ich gut, weil sie alle Infos aus einer map mit mehreren Layern erhalten kann.
 function setup(map) {
+  // ! Hier muss ich noch mehr Variablen anlegen. "data" hat nur den bisherigen TileLayer. Wenn ich noch Background und Foreground haben will, brauche ich dafür auch Variablen.
   var data = map.layers[0].data,
     objects = map.layers[1].objects,
     background = map.layers[2]?.background,
+    foreground = map.layers32]?.foreground,
     n,
     obj,
     entity

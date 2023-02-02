@@ -43,6 +43,11 @@ Simple JS platformer to modify and extend.
 - "Grotto Escape Pack" by Ansimuz
 - "8-Bit Cave Loop" by Wolfgang
 
+## Welche Tools nutze ich
+
+- Beepbox für Musik <https://www.beepbox.co/>
+- Tiled für Sprites und Maps <https://www.mapeditor.org/>
+
 ## Feature Roadmap
 
 - [x] zweite Map

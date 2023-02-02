@@ -29,6 +29,7 @@ Simple JS platformer to modify and extend.
 - [x] Irgendeine Art Dev Function bauen, die mir übersichtliche console logs ausgibt.
 - [ ] Alle Variablen und Funktionen, die nicht Platformer-spezifisch sind, als Engine auslagern.
 - [ ] "Doors" System entwickeln.
+- [ ] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten.
 - [x] Pause Function
 - [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
 

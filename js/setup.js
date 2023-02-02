@@ -10,7 +10,7 @@ function setup(map) {
   var data = map.layers[0].data,
     objects = map.layers[1].objects,
     background = map.layers[2]?.background,
-    foreground = map.layers32]?.foreground,
+    foreground = map.layers[3]?.foreground,
     n,
     obj,
     entity

@@ -5,8 +5,8 @@
 function renderCamera() {
   // ! Ich muss diese Funktion gegen eine mit CameraBox austauschen. Diese kann ich aber für TopDown/Overworld Level benutzen.
 
-  console.log('log camera width: ', width)
-  console.log('log camera scaledCanvas.width: ', scaledCanvas.width)
+  //console.log('log camera width: ', width)
+  //console.log('log camera scaledCanvas.width: ', scaledCanvas.width)
 
   const camera = {
     get x() {

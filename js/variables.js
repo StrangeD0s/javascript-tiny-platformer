@@ -4,14 +4,11 @@
 
 // * Import tiles and level map //
 
-const tileAtlas = new Image()
-tileAtlas.src = './img/monochrome_tilemap_packed.png'
+const tileAtlas1 = new Image()
+tileAtlas1.src = './img/tiles.png'
 
 const tileAtlas2 = new Image()
-tileAtlas2.src = './img/tiles.png'
-
-const tileAtlas3 = new Image()
-tileAtlas3.src = './img/Grotto-escape-2-files/PNG/environment-tiles.png'
+tileAtlas2.src = './img/Grotto-escape-2-files/PNG/environment-tiles.png'
 
 const tileAtlasBg = new Image()
 tileAtlasBg.src = './img/Grotto-escape-2-files/PNG/environment-background.png'
@@ -20,7 +17,7 @@ let tileSize = 16
 let tileOutputSize = 2 // can set to 1 for 32px or higher
 
 const level1Atlas = {
-  tileAtlas: tileAtlas2,
+  tileAtlas: tileAtlas1,
   tileSize: 16,
   tileOutputSize: 2,
   updatedTileSize: tileSize * tileOutputSize,
@@ -32,7 +29,7 @@ const level1Atlas = {
 }
 
 const level2Atlas = {
-  tileAtlas: tileAtlas3,
+  tileAtlas: tileAtlas2,
   tileSize: 16,
   tileOutputSize: 2,
   updatedTileSize: tileSize * tileOutputSize,
@@ -112,7 +109,7 @@ let levelObject = {
   level1: {
     scalingFactor: 8,
     levelData: level1,
-    levelAtlas: level1Atlas,
+    levelAtlas: level2Atlas,
     playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
   },
   level2: {
@@ -202,7 +199,8 @@ let t2p = function (t) {
   cell = function (x, y) {
     return tcell(p2t(x), p2t(y), mapWidth)
   },
-  tcell = function (tx, ty, mapWidth) { // ! Hier brauche ich entweder eine allgemeinere Funktion oder noch weiter für bgCells ud fgCells.
+  tcell = function (tx, ty, mapWidth) {
+    // ! Hier brauche ich entweder eine allgemeinere Funktion oder noch weiter für bgCells ud fgCells.
     return cells[tx + ty * mapWidth]
   }
 

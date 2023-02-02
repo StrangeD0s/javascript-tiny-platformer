@@ -28,6 +28,8 @@ function setup(map) {
         break
       case 'treasure':
         treasure.push(entity)
+      case 'door':
+        doors.push(entity)
         break
     }
   }
@@ -38,6 +40,21 @@ function setup(map) {
 // * Diese Funktion entspricht grob meiner actor init Funktion.
 // ? Muss ich noch eine Sprite Animation Funktion erstellen, die ihre Daten aus dem Entity Object für alle Entities (player, monster, etc.) erhält?
 function setupEntity(obj) {
+  let entitySprites =
+    obj.type == 'monster'
+      ? bounderMonster.sprites
+      : obj.type == 'player'
+      ? playerObject.sprites
+      : obj.type == 'treasure'
+      ? coinTreasure.sprites
+      : null
+
+  const entityMaxHitpoints =
+    obj.type == 'player' ? playerObject.maxHitpoints : null
+
+  const entityCurrentHitpoints =
+    obj.type == 'player' ? playerObject.currentHitpoints : null
+
   var entity = {}
   entity.x = obj.x
   entity.y = obj.y
@@ -56,12 +73,12 @@ function setupEntity(obj) {
   entity.right = obj.properties.right
   entity.start = { x: obj.x, y: obj.y }
   entity.killed = entity.collected = 0
-  entity.sprites = obj.sprites
+  entity.sprites = entitySprites
   entity.flipped = false
   entity.width = obj.width
   entity.height = obj.height
-  entity.maxHitpoints = obj.maxHitpoints
-  entity.currentHitpoints = obj.currentHitpoints
+  entity.maxHitpoints = entityMaxHitpoints
+  entity.currentHitpoints = entityCurrentHitpoints
   entity.hurt = false
   entity.vul = true
 

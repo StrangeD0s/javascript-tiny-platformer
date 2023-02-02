@@ -1,71 +1,3 @@
-let playerObject = {
-  maxHitpoints: 6,
-  currentHitpoints: 3,
-  vul: true,
-  hurt: false,
-  sprites: {
-    idle: {
-      tiles: [5],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-    run: {
-      tiles: [0, 1, 2, 1],
-      framerate: 5,
-      framebuffer: 10,
-      loop: true,
-      currentFrame: 0,
-    },
-    jump: {
-      tiles: [4],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-  },
-}
-
-let bounderMonster = {
-  sprites: {
-    idle: {
-      tiles: [3],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-    run: {
-      tiles: [4, 5, 6],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-  },
-}
-
-let slimeMonster = {
-  sprites: {
-    idle: {
-      tiles: [0],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-    run: {
-      tiles: [0, 1, 2],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
-  },
-}
-
 const level1 = {
   height: 48,
   layers: [
@@ -236,9 +168,6 @@ const level1 = {
           width: 32,
           x: 96,
           y: 480,
-          sprites: playerObject.sprites,
-          maxHitpoints: playerObject.maxHitpoints,
-          currentHitpoints: playerObject.currentHitpoints,
         },
         {
           height: 32,
@@ -252,7 +181,6 @@ const level1 = {
           width: 32,
           x: 64,
           y: 192,
-          sprites: bounderMonster.sprites,
         },
         {
           height: 32,
@@ -266,7 +194,6 @@ const level1 = {
           width: 32,
           x: 1120,
           y: 416,
-          sprites: slimeMonster.sprites,
         },
         {
           height: 32,
@@ -280,7 +207,6 @@ const level1 = {
           width: 32,
           x: 1632,
           y: 832,
-          sprites: bounderMonster.sprites,
         },
         {
           height: 32,
@@ -294,7 +220,6 @@ const level1 = {
           width: 32,
           x: 1056,
           y: 1312,
-          sprites: slimeMonster.sprites,
         },
         {
           height: 32,
@@ -308,7 +233,6 @@ const level1 = {
           width: 32,
           x: 640,
           y: 992,
-          sprites: bounderMonster.sprites,
         },
         {
           height: 32,
@@ -319,22 +243,6 @@ const level1 = {
           width: 32,
           x: 192,
           y: 864,
-          sprites: {
-            idle: {
-              tiles: [4, 5, 6, 7],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-            run: {
-              tiles: [261, 260],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-          },
         },
         {
           height: 32,
@@ -345,22 +253,6 @@ const level1 = {
           width: 32,
           x: 96,
           y: 1312,
-          sprites: {
-            idle: {
-              tiles: [4, 5, 6, 7],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-            run: {
-              tiles: [261, 260],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-          },
         },
         {
           height: 32,
@@ -371,22 +263,6 @@ const level1 = {
           width: 32,
           x: 1856,
           y: 384,
-          sprites: {
-            idle: {
-              tiles: [4, 5, 6, 7],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-            run: {
-              tiles: [261, 260],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-          },
         },
         {
           height: 32,
@@ -397,22 +273,6 @@ const level1 = {
           width: 32,
           x: 704,
           y: 416,
-          sprites: {
-            idle: {
-              tiles: [4, 5, 6, 7],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-            run: {
-              tiles: [261, 260],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-          },
         },
         {
           height: 32,
@@ -423,22 +283,6 @@ const level1 = {
           width: 32,
           x: 1984,
           y: 192,
-          sprites: {
-            idle: {
-              tiles: [4, 5, 6, 7],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-            run: {
-              tiles: [261, 260],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-          },
         },
         {
           height: 32,
@@ -449,22 +293,6 @@ const level1 = {
           width: 32,
           x: 608,
           y: 1152,
-          sprites: {
-            idle: {
-              tiles: [4, 5, 6, 7],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-            run: {
-              tiles: [261, 260],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-          },
         },
         {
           height: 32,
@@ -478,7 +306,6 @@ const level1 = {
           width: 32,
           x: 1216,
           y: 736,
-          sprites: bounderMonster.sprites,
         },
         {
           height: 32,
@@ -492,7 +319,6 @@ const level1 = {
           width: 32,
           x: 1856,
           y: 1344,
-          sprites: bounderMonster.sprites,
         },
         {
           height: 32,
@@ -506,7 +332,6 @@ const level1 = {
           width: 32,
           x: 1024,
           y: 192,
-          sprites: bounderMonster.sprites,
         },
         {
           height: 32,
@@ -517,22 +342,6 @@ const level1 = {
           width: 32,
           x: 32,
           y: 192,
-          sprites: {
-            idle: {
-              tiles: [4, 5, 6, 7],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-            run: {
-              tiles: [261, 260],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-          },
         },
         {
           height: 32,
@@ -543,22 +352,6 @@ const level1 = {
           width: 32,
           x: 1984,
           y: 1344,
-          sprites: {
-            idle: {
-              tiles: [4, 5, 6, 7],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-            run: {
-              tiles: [261, 260],
-              framerate: 5,
-              framebuffer: 8,
-              loop: true,
-              currentFrame: 0,
-            },
-          },
         },
       ],
       opacity: 1,
@@ -589,104 +382,4 @@ const level1 = {
   tilewidth: 32,
   version: 1,
   width: 64,
-}
-
-const level2 = {
-  height: 24,
-  layers: [
-    {
-      data: [
-        516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516,
-        516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516,
-        516, 516, 516, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516, 516, 0, 0,
-        0, 0, 0, 0, 0, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 516, 0, 0, 0, 0, 0, 0, 0, 516, 516, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        516, 516, 0, 0, 0, 0, 0, 0, 516, 516, 516, 516, 0, 0, 0, 0, 0, 516, 516,
-        516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516, 0, 0, 0, 516, 516,
-        516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 516, 516, 516, 516, 0, 0, 0, 204, 204, 76, 204,
-        204, 76, 204, 204, 204, 516, 516, 0, 0, 516, 516, 516, 516, 516, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 114, 115, 516,
-        516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 157, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516,
-        516, 516, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 516,
-        516, 516, 516, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 403, 404, 406, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 445, 446, 448,
-        516, 516, 0, 0, 0, 0, 0, 516, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        516, 516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 516, 516, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        516, 516, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 483, 0,
-        0, 0, 0, 485, 0, 0, 0, 0, 0, 0, 516, 516, 516, 516, 516, 516, 516, 516,
-        516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516,
-        516, 516, 516, 516, 516, 516, 516, 516, 516, 516, 516,
-      ],
-      height: 24,
-      name: 'background',
-      opacity: 1,
-      type: 'tilelayer',
-      visible: true,
-      width: 32,
-      x: 0,
-      y: 0,
-    },
-    {
-      height: 24,
-      name: 'Object Layer 1',
-      objects: [
-        {
-          height: 32,
-          name: 'player',
-          properties: {},
-          type: 'player',
-          visible: true,
-          width: 32,
-          x: 96,
-          y: 180,
-          sprites: playerObject.sprites,
-          maxHitpoints: playerObject.maxHitpoints,
-          currentHitpoints: playerObject.currentHitpoints,
-        },
-      ],
-      opacity: 1,
-      type: 'objectgroup',
-      visible: true,
-      width: 32,
-      x: 0,
-      y: 0,
-    },
-  ],
-  orientation: 'orthogonal',
-  properties: {},
-  tileheight: 16,
-  tilesets: [
-    {
-      firstgid: 1,
-      image: 'tiles.png',
-      imageheight: 32,
-      imagewidth: 160,
-      margin: 0,
-      name: 'tiles',
-      properties: {},
-      spacing: 0,
-      tileheight: 32,
-      tilewidth: 32,
-    },
-  ],
-  tilewidth: 16,
-  version: 1,
-  width: 32,
 }

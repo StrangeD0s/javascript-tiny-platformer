@@ -32,6 +32,7 @@ Simple JS platformer to modify and extend.
 - [ ] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten.
 - [x] Pause Function
 - [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
+- [ ] Maps umrüsten auf 16x16 px tiles
 
 ## Sprites
 
@@ -47,6 +48,14 @@ Simple JS platformer to modify and extend.
 
 - Beepbox für Musik <https://www.beepbox.co/>
 - Tiled für Sprites und Maps <https://www.mapeditor.org/>
+
+### Tiled
+
+#### Map Setup
+
+- Orthogonal
+- CSV
+- Left Down (! das ist wichtig)
 
 ## Feature Roadmap
 

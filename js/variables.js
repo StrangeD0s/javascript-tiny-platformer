@@ -113,7 +113,7 @@ let levelObject = {
     playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
   },
   level2: {
-    scalingFactor: 3.5,
+    scalingFactor: 4,
     levelData: level2,
     levelAtlas: level2Atlas,
     playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
@@ -126,7 +126,7 @@ let mapWidth = currentLevel.levelData.width
 let mapHeight = currentLevel.levelData.height
 
 let MAP = { tw: mapWidth, th: mapHeight } // ! Diese sollte ich auch aus der level.js errechnen. Achtung! Wenn ich Maps in anderen Dimensionen lade, dann ändert sich auch das Scaling (Das wirkt sich auch aufs HUD aus)! Entweder ich mache eine Scaling-Variable, die zur Map gehört, oder ich erstelle nur Maps in einer Bestimmten Größe.
-let TILE = 32
+let TILE = 16
 let METER = TILE
 let GRAVITY = 9.8 * 6, // default (exagerated) gravity
   MAXDX = 15, // default max horizontal speed (15 tiles per second)

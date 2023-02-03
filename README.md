@@ -32,7 +32,7 @@ Simple JS platformer to modify and extend.
 - [ ] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten. Liegt das am Level selbst?
 - [x] Pause Function
 - [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
-- [ ] Maps umrüsten auf 16x16 px tiles
+- [ ] Maps umrüsten auf 16x16 px tiles. Ist in den Variablen schon vorbereitet, muss nur die Maps noch mal aus Tiled exportieren
 
 ### Welche Assets nutze ich
 

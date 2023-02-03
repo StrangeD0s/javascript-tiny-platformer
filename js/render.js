@@ -48,10 +48,10 @@ function drawTile(levelAtlas, cell, dx, dy) {
     levelAtlas.sourceY,
     16,
     16,
-    dx * 32,
-    dy * 32,
-    32,
-    32
+    dx * 16,
+    dy * 16,
+    16,
+    16
   )
 }
 
@@ -74,6 +74,10 @@ function renderMap(ctx, levelAtlas) {
 
 // * Sprite Animation
 function drawSprite(entity, spriteAtlas, dt, frame) {
+  /* entity.start.x === 48 &&
+    entity.start.y === 656 &&
+    console.log('log frame ', entity.sprites.idle)
+ */
   const sprites = entity.sprites
 
   let isJumping = entity.jumping || entity.falling
@@ -82,11 +86,12 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
     (entity.right === true && !isJumping) ||
     (entity.left === true && !isJumping)
 
-  let sprite = isRunning
-    ? sprites.run
-    : !!sprites.jump && isJumping
-    ? sprites.jump
-    : sprites.idle
+  let sprite =
+    !!sprites.run && isRunning
+      ? sprites.run
+      : !!sprites.jump && isJumping
+      ? sprites.jump
+      : sprites.idle
 
   const x = entity.x + entity.dx * dt
   const y = entity.y + entity.dy * dt
@@ -95,8 +100,12 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
   const height = entity.height
 
   function updateFrames() {
+    entity.start.x === 48 &&
+      entity.start.y === 656 &&
+      console.log('log  frame ', entity)
+
     if (frame % sprite.framebuffer === 0) {
-      if (sprite.currentFrame < sprite.tiles.length - 1) sprite.currentFrame++
+      if (sprite.currentFrame + 1 < sprite.tiles.length) sprite.currentFrame++
       else if (sprite.loop) sprite.currentFrame = 0
     }
   }
@@ -184,7 +193,7 @@ function renderPause() {
     ctx.save()
     ctx.scale(scalingFactor / 2, scalingFactor / 2)
 
-    ctx.font = '16px C64 TrueType'
+    ctx.font = '12px C64 TrueType'
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
     ctx.fillText('- pause -', scaledCanvas.width, scaledCanvas.height)

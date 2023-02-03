@@ -93,7 +93,7 @@ function renderHudSprites() {
     ctx.save()
     ctx.scale(scalingFactor / 4, scalingFactor / 4)
     ctx.textAlign = 'left'
-    ctx.font = '20px C64 TrueType'
+    ctx.font = '12px C64 TrueType'
 
     ctx.fillStyle = 'white'
     ctx.fillText(`health: ${hudObject.player_hitpoints}`, 50, 50)
@@ -104,10 +104,12 @@ function renderHudSprites() {
 
 // * Renderfunktion für DevInfos
 function renderDevInfos() {
+  ctx.save()
+  ctx.scale(scalingFactor / 4, scalingFactor / 4)
   if (showDevInfo) {
     const backgroundColor = 'rgba(18, 64, 90, 0.85)'
     const color = 'white'
-    const lineHeight = 50
+    const lineHeight = 18
 
     const devObject = {
       player_accel: player.accel,
@@ -138,19 +140,20 @@ function renderDevInfos() {
 
     function text() {
       ctx.textAlign = 'left'
-      ctx.font = '40px C64 TrueType'
+      ctx.font = '12px C64 TrueType'
       for (const [index, [key, value]] of Object.entries(
         Object.entries(devObject)
       )) {
         const newIndex = Number(index) + 1
         const newValue = typeof value === 'number' ? value.toFixed(2) : value
         ctx.fillStyle = backgroundColor
-        ctx.fillRect(40, lineHeight * newIndex - 40, 500, lineHeight)
+        ctx.fillRect(15, lineHeight * newIndex - 15, 500, lineHeight)
         ctx.fillStyle = color
-        ctx.fillText(`${key}: ${newValue}`, 50, lineHeight * newIndex)
+        ctx.fillText(`${key}: ${newValue}`, 15, lineHeight * newIndex)
       }
     }
 
     text()
   }
+  ctx.restore()
 }

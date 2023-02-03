@@ -75,12 +75,5 @@ let coinTreasure = {
       loop: true,
       currentFrame: 0,
     },
-    run: {
-      tiles: [261, 260],
-      framerate: 5,
-      framebuffer: 8,
-      loop: true,
-      currentFrame: 0,
-    },
   },
 }

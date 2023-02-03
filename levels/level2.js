@@ -55,18 +55,18 @@ const level2 = {
       name: 'Object Layer 1',
       objects: [
         {
-          height: 32,
+          height: 16,
           name: 'player',
           properties: {},
           type: 'player',
           visible: true,
-          width: 32,
+          width: 16,
           x: 96,
           y: 180,
         },
 
         {
-          height: 32,
+          height: 16,
           name: 'monster',
           properties: {
             maxdx: '10',
@@ -74,9 +74,9 @@ const level2 = {
           },
           type: 'monster',
           visible: true,
-          width: 32,
-          x: 256 * 2,
-          y: 207 * 2,
+          width: 16,
+          x: 256,
+          y: 207,
         },
       ],
       opacity: 1,

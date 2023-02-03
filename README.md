@@ -51,7 +51,8 @@ Simple JS platformer to modify and extend.
 
 ### Tiled
 
-#### Map Setup
+
+Map Setup:
 
 - Orthogonal
 - CSV
@@ -67,7 +68,9 @@ Simple JS platformer to modify and extend.
 - [ ] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
   - [ ] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.
 - [ ] Global Player Object
+- [ ] Weapons
 - [ ] Inventory System
+- [ ] Destructibles (haben eigenes "destructibles = {}" Objekt wie monsters oder treasure und haben hitpoints)
 - [ ] CameraBox
 
 ## Story

@@ -11,18 +11,20 @@ function render(ctx, frame, dt, thiscurrentLevel) {
   ctx.imageSmoothingEnabled = false
   ctx.save()
   ctx.scale(
-    thiscurrentLevel.scalingFactor / 2,
-    thiscurrentLevel.scalingFactor / 2
+    Math.round(thiscurrentLevel.scalingFactor / 2),
+    Math.round(thiscurrentLevel.scalingFactor / 2)
   )
 
   ctx.clearRect(0, 0, width, height)
   renderCamera()
   //renderCameraWithBox()
-  renderMap(ctx, thiscurrentLevel.levelAtlas)
+  renderBackground(ctx, thiscurrentLevel.backgroundAtlas, bgCells)
+  renderMap(ctx, thiscurrentLevel.levelAtlas, cells)
   renderTreasure(ctx, itemsAtlas, dt, frame)
   renderPlayer(ctx, playerAtlas, dt, frame)
 
   renderMonsters(ctx, enemyAtlas, dt, frame)
+  renderForeground(ctx, thiscurrentLevel.foregroundAtlas, fgCells)
 
   // * Draw CameraBox
   //renderCameraBox()
@@ -55,18 +57,37 @@ function drawTile(levelAtlas, cell, dx, dy) {
   )
 }
 
+function renderBackground(ctx, levelAtlas) {
+  var x, y, cell
+  for (y = 0; y < mapHeight; y++) {
+    for (x = 0; x < mapWidth; x++) {
+      cell = bgTcell(x, y, mapWidth)
+      if (cell) {
+        drawTile(levelAtlas, cell - levelAtlas.offset, x, y)
+      }
+    }
+  }
+}
+
+function renderForeground(ctx, levelAtlas) {
+  var x, y, cell
+  for (y = 0; y < mapHeight; y++) {
+    for (x = 0; x < mapWidth; x++) {
+      cell = fgTcell(x, y, mapWidth)
+      if (cell) {
+        drawTile(levelAtlas, cell - levelAtlas.offset, x, y)
+      }
+    }
+  }
+}
+
 function renderMap(ctx, levelAtlas) {
   var x, y, cell
   for (y = 0; y < mapHeight; y++) {
     for (x = 0; x < mapWidth; x++) {
       cell = tcell(x, y, mapWidth)
       if (cell) {
-        ctx.fillStyle = COLORS[cell - 1]
-        ctx.fillRect(x * TILE, y * TILE, TILE, TILE)
-
-        // * Malt das Tile aus der TileMap
-
-        drawTile(levelAtlas, cell - 1, x, y)
+        drawTile(levelAtlas, cell - levelAtlas.offset, x, y)
       }
     }
   }
@@ -100,9 +121,9 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
   const height = entity.height
 
   function updateFrames() {
-    entity.start.x === 48 &&
+    /* entity.start.x === 48 &&
       entity.start.y === 656 &&
-      console.log('log  frame ', entity)
+     console.log('log  frame ', entity) */
 
     if (frame % sprite.framebuffer === 0) {
       if (sprite.currentFrame + 1 < sprite.tiles.length) sprite.currentFrame++

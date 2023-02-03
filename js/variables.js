@@ -18,6 +18,7 @@ let tileOutputSize = 2 // can set to 1 for 32px or higher
 
 const level1Atlas = {
   tileAtlas: tileAtlas1,
+  offset: 1,
   tileSize: 16,
   tileOutputSize: 2,
   updatedTileSize: tileSize * tileOutputSize,
@@ -30,6 +31,7 @@ const level1Atlas = {
 
 const level2Atlas = {
   tileAtlas: tileAtlas2,
+  offset: 1,
   tileSize: 16,
   tileOutputSize: 2,
   updatedTileSize: tileSize * tileOutputSize,
@@ -42,6 +44,7 @@ const level2Atlas = {
 
 const backgroundAtlas = {
   tileAtlas: tileAtlasBg,
+  offset: 673,
   tileSize: 16,
   tileOutputSize: 2,
   updatedTileSize: tileSize * tileOutputSize,
@@ -110,12 +113,16 @@ let levelObject = {
     scalingFactor: 8,
     levelData: level1,
     levelAtlas: level2Atlas,
+    backgroundAtlas: backgroundAtlas,
+    foregroundAtlas: level2Atlas,
     playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
   },
   level2: {
     scalingFactor: 4,
     levelData: level2,
     levelAtlas: level2Atlas,
+    backgroundAtlas: backgroundAtlas,
+    foregroundAtlas: level2Atlas,
     playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
   },
 }
@@ -125,7 +132,7 @@ let currentLevel = levelObject.level1 // ! hier kann ich noch eine function drau
 let mapWidth = currentLevel.levelData.width
 let mapHeight = currentLevel.levelData.height
 
-let MAP = { tw: mapWidth, th: mapHeight } // ! Diese sollte ich auch aus der level.js errechnen. Achtung! Wenn ich Maps in anderen Dimensionen lade, dann ändert sich auch das Scaling (Das wirkt sich auch aufs HUD aus)! Entweder ich mache eine Scaling-Variable, die zur Map gehört, oder ich erstelle nur Maps in einer Bestimmten Größe.
+let MAP = { tw: mapWidth, th: mapHeight }
 let TILE = 16
 let METER = TILE
 let GRAVITY = 9.8 * 6, // default (exagerated) gravity
@@ -172,8 +179,8 @@ let fps = 60,
   // bgCells: [],
   // fgCells: [],
   // }
-  bgCells = [], // ! Die sind für die background cells.
-  fgCells = [], // ! Die sind für die foreground cells.
+  bgCells = [], // * Die sind für die background cells.
+  fgCells = [], // * Die sind für die foreground cells.
   paused = false,
   showDevInfo = false
 
@@ -202,6 +209,12 @@ let t2p = function (t) {
   tcell = function (tx, ty, mapWidth) {
     // ! Hier brauche ich entweder eine allgemeinere Funktion oder noch weiter für bgCells ud fgCells.
     return cells[tx + ty * mapWidth]
+  },
+  bgTcell = function (tx, ty, mapWidth) {
+    return bgCells[tx + ty * mapWidth]
+  },
+  fgTcell = function (tx, ty, mapWidth) {
+    return fgCells[tx + ty * mapWidth]
   }
 
 // * Init Level Funtion
@@ -209,6 +222,7 @@ function _initLevel(newLevel) {
   console.log('log collected 2! ', newLevel)
   monsters = []
   treasure = []
+  doors = []
   cells = []
   currentLevel = newLevel
   player.collected = 0

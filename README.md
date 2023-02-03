@@ -32,7 +32,10 @@ Simple JS platformer to modify and extend.
 - [ ] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten. Liegt das am Level selbst?
 - [x] Pause Function
 - [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
-- [ ] Maps umrüsten auf 16x16 px tiles. Ist in den Variablen schon vorbereitet, muss nur die Maps noch mal aus Tiled exportieren
+- [x] Maps umrüsten auf 16x16 px tiles. Ist in den Variablen schon vorbereitet, muss nur die Maps noch mal aus Tiled exportieren
+  - [x] Aus Tiled werden die Custom Properties nicht richtig exportiert
+  - [x] "type" muss ich ändern in "class" in der setup Funktion
+  - [x] Die properties werden als Array exportiert. Da brauche ich in der setup Funktion noch eine Function um die zu Konviertieren.
 
 ### Welche Assets nutze ich
 
@@ -52,6 +55,15 @@ Map Setup:
 - CSV
 - Left Down (! das ist wichtig)
 
+Layer in folgender Reihenfolge:
+
+- foreground
+- Object Layer 1
+- tileLayer
+- background
+
+Export als ".tmj"
+
 ### Beepbox
 
 - Inspiration für Soundtrack: Commander Keen 4 <https://www.youtube.com/watch?v=g8o1NObgsCQ&list=PLsQNBc1Davyu69-eYRoAqdvVdaGQDhEVU>
@@ -61,7 +73,7 @@ Map Setup:
 - [x] zweite Map
   - [x] Variablen für alle Props, die die Map betreffen (MAP.tw/.th, Scaling, HUD-Scaling, TileAtlas)
 - [x] Alphabet TileMap (oder font!)
-- [ ] Map Layers (CollisionLayer, Background, Foreground, Object-Layer) inkl. Anleitung für Tiled
+- [x] Map Layers (CollisionLayer, Background, Foreground, Object-Layer) inkl. Anleitung für Tiled
 - [ ] Map Transitions (mit einem Doors Object)
 - [ ] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
   - [ ] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.

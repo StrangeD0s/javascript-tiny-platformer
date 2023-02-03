@@ -6,71 +6,91 @@
 
 // * Die setup Funktion finde ich gut, weil sie alle Infos aus einer map mit mehreren Layern erhalten kann.
 function setup(map) {
-  // ! Hier muss ich noch mehr Variablen anlegen. "data" hat nur den bisherigen TileLayer. Wenn ich noch Background und Foreground haben will, brauche ich dafür auch Variablen.
-  var data = map.layers[0].data,
-    objects = map.layers[1].objects,
-    background = map.layers[2]?.background,
-    foreground = map.layers[3]?.foreground,
+  var background = map.layers[0]?.data,
+    data = map.layers[1].data,
+    objects = map.layers[2].objects,
+    foreground = map.layers[3]?.data,
     n,
     obj,
     entity
 
   for (n = 0; n < objects.length; n++) {
     obj = objects[n]
+
+    const entityType = obj.type || obj.class
+
+    const entityProperties = Array.isArray(obj.properties)
+      ? Object.fromEntries(
+          !!obj.properties &&
+            obj.properties?.map((obj) => [obj.name, obj.value])
+        )
+      : !!obj.properties
+      ? obj.properties
+      : {}
+
     // * Hier werden alle actors/entities in die entsprechenden Ojekte gepushed.
-    entity = setupEntity(obj)
-    switch (obj.type) {
+    entity = setupEntity(obj, entityType, entityProperties)
+
+    switch (entityType) {
       case 'player':
         player = entity
         break
       case 'monster':
         monsters.push(entity)
         break
+
       case 'treasure':
         treasure.push(entity)
+        break
       case 'door':
         doors.push(entity)
+
         break
     }
   }
 
   cells = data
+  bgCells = background
+  fgCells = foreground
 }
 
 // * Diese Funktion entspricht grob meiner actor init Funktion.
 // ? Muss ich noch eine Sprite Animation Funktion erstellen, die ihre Daten aus dem Entity Object für alle Entities (player, monster, etc.) erhält?
-function setupEntity(obj) {
+function setupEntity(obj, entityType, entityProperties) {
   let entitySprites =
-    obj.type == 'monster'
+    entityType == 'monster'
       ? bounderMonster.sprites
-      : obj.type == 'player'
+      : entityType == 'player'
       ? playerObject.sprites
-      : obj.type == 'treasure'
+      : entityType == 'treasure'
       ? coinTreasure.sprites
+      : entityType == 'door'
+      ? null
       : null
 
   const entityMaxHitpoints =
-    obj.type == 'player' ? playerObject.maxHitpoints : null
+    entityType == 'player' ? playerObject.maxHitpoints : null
 
   const entityCurrentHitpoints =
-    obj.type == 'player' ? playerObject.currentHitpoints : null
+    entityType == 'player' ? playerObject.currentHitpoints : null
 
   var entity = {}
   entity.x = obj.x
   entity.y = obj.y
   entity.dx = 0
   entity.dy = 0
-  entity.gravity = METER * (obj.properties.gravity || GRAVITY)
-  entity.maxdx = METER * (obj.properties.maxdx || MAXDX)
-  entity.maxdy = METER * (obj.properties.maxdy || MAXDY)
-  entity.impulse = METER * (obj.properties.impulse || IMPULSE)
-  entity.accel = entity.maxdx / (obj.properties.accel || ACCEL)
-  entity.friction = entity.maxdx / (obj.properties.friction || FRICTION)
-  entity.monster = obj.type == 'monster'
-  entity.player = obj.type == 'player'
-  entity.treasure = obj.type == 'treasure'
-  entity.left = obj.properties.left
-  entity.right = obj.properties.right
+  entity.gravity = METER * (entityProperties.gravity || GRAVITY)
+  entity.maxdx = METER * (entityProperties.maxdx || MAXDX)
+  entity.maxdy = METER * (entityProperties.maxdy || MAXDY)
+  entity.impulse = METER * (entityProperties.impulse || IMPULSE)
+  entity.accel = entity.maxdx / (entityProperties.accel || ACCEL)
+  entity.friction = entity.maxdx / (entityProperties.friction || FRICTION)
+  entity.monster = entityType == 'monster'
+  entity.player = entityType == 'player'
+  entity.treasure = entityType == 'treasure'
+  entity.door = entityType == 'door'
+  entity.left = entityProperties.left
+  entity.right = entityProperties.right
   entity.start = { x: obj.x, y: obj.y }
   entity.killed = entity.collected = 0
   entity.sprites = entitySprites

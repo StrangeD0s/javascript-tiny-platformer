@@ -22,22 +22,17 @@ Simple JS platformer to modify and extend.
 
 ## Todo
 
-- [ ] Refactor code. Alles sortieren (Helper, Utils, Functions, Main Function, Objects usw.)
+- [x] Refactor code. Alles sortieren (Helper, Utils, Functions, Main Function, Objects usw.)
 - [ ] Allgemeine btn() Funktion bauen, angelehnt an Pico-8.
 - [x] Robuste collision checks und collision maps bauen
 - [ ] Bessere flags bauen
 - [x] Irgendeine Art Dev Function bauen, die mir übersichtliche console logs ausgibt.
 - [ ] Alle Variablen und Funktionen, die nicht Platformer-spezifisch sind, als Engine auslagern.
 - [ ] "Doors" System entwickeln.
-- [ ] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten.
+- [ ] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten. Liegt das am Level selbst?
 - [x] Pause Function
 - [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
 - [ ] Maps umrüsten auf 16x16 px tiles
-
-## Sprites
-
-- Chest closed: 388, chest open: 389
--
 
 ### Welche Assets nutze ich
 
@@ -51,12 +46,15 @@ Simple JS platformer to modify and extend.
 
 ### Tiled
 
-
 Map Setup:
 
 - Orthogonal
 - CSV
 - Left Down (! das ist wichtig)
+
+### Beepbox
+
+- Inspiration für Soundtrack: Commander Keen 4 <https://www.youtube.com/watch?v=g8o1NObgsCQ&list=PLsQNBc1Davyu69-eYRoAqdvVdaGQDhEVU>
 
 ## Feature Roadmap
 

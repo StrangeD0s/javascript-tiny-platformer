@@ -79,6 +79,7 @@ Export als ".tmj"
   - [ ] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.
 - [ ] Global Player Object
 - [ ] Weapons
+- [ ] mehr Enemy Types (flying, wallcrawler, shooting)
 - [ ] Inventory System
 - [ ] Destructibles (haben eigenes "destructibles = {}" Objekt wie monsters oder treasure und haben hitpoints)
 - [ ] CameraBox

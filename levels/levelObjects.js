@@ -25,6 +25,13 @@ let playerObject = {
       loop: true,
       currentFrame: 0,
     },
+    shoot: {
+      tiles: [3],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
   },
 }
 

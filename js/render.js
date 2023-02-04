@@ -9,6 +9,7 @@ function render(ctx, frame, dt, thiscurrentLevel) {
   ctx.webkitImageSmoothingEnabled = false
   ctx.msImageSmoothingEnabled = false
   ctx.imageSmoothingEnabled = false
+
   ctx.save()
   ctx.scale(
     Math.round(thiscurrentLevel.scalingFactor / 2),
@@ -22,7 +23,7 @@ function render(ctx, frame, dt, thiscurrentLevel) {
   renderMap(ctx, thiscurrentLevel.levelAtlas, cells)
   renderTreasure(ctx, itemsAtlas, dt, frame)
   renderPlayer(ctx, playerAtlas, dt, frame)
-
+  renderBullets(ctx, itemsAtlas, dt, frame)
   renderMonsters(ctx, enemyAtlas, dt, frame)
   renderForeground(ctx, thiscurrentLevel.foregroundAtlas, fgCells)
 
@@ -32,7 +33,7 @@ function render(ctx, frame, dt, thiscurrentLevel) {
   renderPause()
   renderHud(ctx, frame)
   renderHudSprites()
-  fadeScreen(frame, dt)
+  //fadeScreen(frame, dt)
   renderDevInfos()
 }
 
@@ -108,11 +109,15 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
     (entity.right === true && !isJumping) ||
     (entity.left === true && !isJumping)
 
+  let isShooting = entity.shooting || false
+
   let sprite =
     !!sprites.run && isRunning
       ? sprites.run
       : !!sprites.jump && isJumping
       ? sprites.jump
+      : !!sprites.shoot && isShooting
+      ? sprites.shoot
       : sprites.idle
 
   const x = entity.x + entity.dx * dt
@@ -176,8 +181,12 @@ function renderHud(ctx, frame) {
   var n, max
   const hudScaling = scalingFactor / 2
 
+  const hitpoints = globalObject.hitpoints
+  const killed = globalObject.killed
+  const collected = globalObject.collected
+
   ctx.fillStyle = COLOR.GOLD
-  for (n = 0, max = player.collected; n < max; n++)
+  for (n = 0, max = collected; n < max; n++)
     ctx.fillRect(
       t2p(1 + n) * hudScaling,
       t2p(1) * hudScaling,
@@ -186,7 +195,7 @@ function renderHud(ctx, frame) {
     )
 
   ctx.fillStyle = COLOR.SLATE
-  for (n = 0, max = player.killed; n < max; n++)
+  for (n = 0, max = killed; n < max; n++)
     ctx.fillRect(
       t2p(1 + n) * hudScaling,
       t2p(2) * hudScaling,
@@ -196,10 +205,10 @@ function renderHud(ctx, frame) {
 
   // ! provisorische Hitpoint-Anzeige
   ctx.fillStyle = 'red'
-  if (player.currentHitpoints === 1) {
+  if (hitpoints === 1) {
     ctx.globalAlpha = 0.25 + tweenTreasure(frame, 60)
   }
-  for (n = 0, max = player.currentHitpoints; n < max; n++)
+  for (n = 0, max = hitpoints; n < max; n++)
     ctx.fillRect(
       t2p(1 + n) * hudScaling,
       t2p(3) * hudScaling,
@@ -226,9 +235,9 @@ function fadeScreen(frame, dt) {
   ctx.globalAlpha = opacity
 
   //setInterval(show(), 800)
-  console.log('log opacity ', opacity)
-  console.log('log fade frame ', frame)
-  console.log('log fade pulse ', pulse)
+  // console.log('log opacity ', opacity)
+  // console.log('log fade frame ', frame)
+  // console.log('log fade pulse ', pulse)
 }
 
 // * Render Pause Function
@@ -288,4 +297,17 @@ function tweenTreasure(frame, duration) {
   const half = duration / 2
   pulse = frame % duration
   return pulse < half ? pulse / half : 1 - (pulse - half) / half
+}
+
+function renderBullets(ctx, spriteAtlas, dt, frame) {
+  ctx.fillStyle = COLOR.GOLD
+  var n, max, bullet
+
+  for (n = 0, max = bullets.length; n < max; n++) {
+    bullet = bullets[n]
+
+    if (bullet !== undefined) {
+      ctx.fillRect(bullet.x, bullet.y, ammoType.width, ammoType.height)
+    }
+  }
 }

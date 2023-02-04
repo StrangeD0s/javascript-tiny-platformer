@@ -4,6 +4,7 @@
 
 function update(dt) {
   updatePlayer(dt)
+  updateBullets(dt)
   updateMonsters(dt)
   checkTreasure()
   // updateDoors(dt)
@@ -37,6 +38,76 @@ function updateMonster(monster, dt) {
   }
 }
 
+function shoot(player) {
+  sfx.shoot.play()
+  if (player.shooting) return
+  player.shooting = true
+  const bulletX = player.x
+  const bulletY = player.y
+  const direction = player.flipped
+  bullets.push({
+    originX: bulletX,
+    originY: bulletY,
+    x: bulletX,
+    y: bulletY + player.height / 2,
+    directionLeft: direction,
+  })
+  setTimeout(() => {
+    player.shooting = false
+  }, 200)
+}
+
+function updateBullets(dt) {
+  var n, max
+  for (n = 0, max = bullets.length; n < max; n++) updateBullet(bullets[n], dt)
+}
+
+function updateBullet(bullet, dt) {
+  if (!!bullet) {
+    if (bullet.directionLeft) {
+      bullet.x = bullet.x - ammoType.velocity
+    } else {
+      bullet.x = bullet.x + ammoType.velocity
+    }
+
+    var n, max, monster, thisBullet
+    for (n = 0, max = monsters.length; n < max; n++) {
+      monster = monsters[n]
+      thisBullet = bullet
+
+      if (!monster.dead) {
+        if (
+          overlap(
+            thisBullet.x,
+            thisBullet.y,
+            ammoType.width,
+            ammoType.height,
+            monster.x,
+            monster.y,
+            TILE,
+            TILE
+          )
+        )
+          killMonster(monster), sfx.explode.play()
+      }
+    }
+    if (
+      (!bullet.directionLeft &&
+        bullet.x > bullet.originX + ammoType.distance) ||
+      (bullet.directionLeft && bullet.x < bullet.originX - ammoType.distance)
+    ) {
+      destroyBullet(bullet)
+    }
+  }
+}
+
+function destroyBullet(bullet) {
+  const index = bullets.indexOf(bullet)
+  if (index > -1) {
+    bullets.splice(index, 1)
+  }
+}
+
 function checkTreasure() {
   var n, max, t
   for (n = 0, max = treasure.length; n < max; n++) {
@@ -55,7 +126,7 @@ function checkDoors() {
   var n, max, t
   for (n = 0, max = doors.length; n < max; n++) {
     t = doors[n]
-    console.log('Door ', t)
+    // console.log('Door ', t)
     if (
       overlap(
         player.x,
@@ -93,15 +164,19 @@ function levelTransition(level) {
 }
 
 function killMonster(monster) {
-  player.killed++
+  globalObject.killed++
   monster.dead = true
   sfx.killMonster.play()
 }
 
 // * Take Damage Function
 function reduceHitpoints(entity, damage) {
-  if (entity.currentHitpoints > 1) {
-    entity.currentHitpoints -= damage
+  if (
+    entity.player ? globalObject.hitpoints > 1 : entity.currentHitpoints > 1
+  ) {
+    entity.player
+      ? (globalObject.hitpoints -= damage)
+      : (entity.currentHitpoints -= damage)
     entity.vul = false
     entity.hurt = true
     sfx.takeDamage.play()
@@ -127,11 +202,13 @@ function killPlayer(player) {
   player.x = player.start.x
   player.y = player.start.y
   player.dx = player.dy = 0
-  player.currentHitpoints = player.maxHitpoints
+  globalObject.hitpoints = player.maxHitpoints
+  globalObject.lifes--
+  console.log('log globalObject: ', globalObject.lifes)
 }
 
 function collectTreasure(t) {
-  player.collected++
+  globalObject.collected++
   t.collected = true
   sfx.pickup.play()
 }

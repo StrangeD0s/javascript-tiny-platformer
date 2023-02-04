@@ -2,6 +2,14 @@
 // 2. GAME CONSTANTS AND VARIABLES
 //-------------------------------------------------------------------------
 
+// ! Globales Test-Objekt
+let globalObject = {
+  lifes: 3,
+  hitpoints: 3,
+  collected: null,
+  killed: null,
+}
+
 // * Import tiles and level map //
 
 const tileAtlas1 = new Image()
@@ -153,17 +161,24 @@ let GRAVITY = 9.8 * 6, // default (exagerated) gravity
   },
   COLORS = [COLOR.YELLOW, COLOR.BRICK, COLOR.PINK, COLOR.PURPLE, COLOR.GREY],
   KEY = {
-    SPACE: 'Space',
+    SPACE: ' ',
     LEFT: 'ArrowLeft',
     UP: 'ArrowUp',
     RIGHT: 'ArrowRight',
     DOWN: 'ArrowDown',
-    PAUSE: 'KeyP',
+    PAUSE: 'p',
     ENTER: 'Enter',
-    X: 'KeyX',
-    Y: 'KeyY',
-    L: 'KeyL',
+    X: 'x',
+    Y: 'y',
+    L: 'l',
   }
+
+const ammoType = {
+  width: 4,
+  height: 4,
+  distance: 100,
+  velocity: 3,
+}
 
 let fps = 60,
   step = 1 / fps,
@@ -173,6 +188,7 @@ let fps = 60,
   monsters = [],
   treasure = [],
   doors = [], // ! Hier sammel ich alle Door Objekte.
+  bullets = [],
   cells = [], // ! vielleicht kann ich hieraus aber auch einfach ein Objekt machen, das Arrays für collCells, bgCells und fgCells beinhaltet
   // cells = {
   // collCells: [],
@@ -257,6 +273,8 @@ let sfx = {
   killMonster: new sound('./audio/Randomize.wav', sfxVolume),
   powerup: new sound('./audio/Powerup.wav', sfxVolume),
   openDoor: new sound('./audio/LA_Chest_Open.wav', sfxVolume),
+  shoot: new sound('./audio/Laser2.wav', sfxVolume),
+  explode: new sound('./audio/Explosion.wav', sfxVolume),
 }
 
 let theme = {
@@ -271,6 +289,7 @@ let globalPlayer = {
   vul: true,
   hurt: false,
   interact: false,
+  shooting: false,
   sprites: {
     idle: {
       tiles: [5],
@@ -288,6 +307,13 @@ let globalPlayer = {
     },
     jump: {
       tiles: [4],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+    shoot: {
+      tiles: [3],
       framerate: 5,
       framebuffer: 8,
       loop: true,

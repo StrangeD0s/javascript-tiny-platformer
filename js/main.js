@@ -28,6 +28,7 @@ function main() {
     }
 
     render(ctx, counter, dt, currentLevel)
+
     last = now
     counter++
     fpsmeter.tick()
@@ -37,30 +38,30 @@ function main() {
   document.addEventListener(
     'keydown',
     function (ev) {
-      return onkey(ev, ev.code, true)
+      return onkey(ev, ev.key, true)
     },
     false
   )
   document.addEventListener(
     'keyup',
     function (ev) {
-      return onkey(ev, ev.code, false)
+      return onkey(ev, ev.key, false)
     },
     false
   )
 
   // * EventListener für Pause-Taste
   window.addEventListener('keydown', function (e) {
-    var key = e.code
-    if (key === 'KeyP') {
+    var key = e.key
+    if (key === 'p') {
       // p key
       togglePause()
     }
   })
   // * EventListener für DevInfos Toggle
   window.addEventListener('keydown', function (e) {
-    var key = e.code
-    if (key === 'KeyO') {
+    var key = e.key
+    if (key === 'o') {
       // p key
       toggleDevInfos()
     }

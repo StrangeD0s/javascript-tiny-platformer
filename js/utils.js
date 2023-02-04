@@ -87,6 +87,7 @@ function renderHudSprites() {
   const hudObject = {
     player_hitpoints: player.currentHitpoints,
     player_collected: player.collected,
+    player_lifes: globalObject.lifes,
   }
 
   function hitpoints() {
@@ -96,7 +97,7 @@ function renderHudSprites() {
     ctx.font = '12px C64 TrueType'
 
     ctx.fillStyle = 'white'
-    ctx.fillText(`health: ${hudObject.player_hitpoints}`, 50, 50)
+    ctx.fillText(`lifes: ${hudObject.player_lifes}`, 50, 50)
     ctx.restore()
   }
   hitpoints()
@@ -123,6 +124,7 @@ function renderDevInfos() {
       player_gravity: player.gravity,
       player_impulse: player.impulse,
       player_jumping: player.jumping,
+      player_shooting: player.shooting,
       player_left: player.left,
       player_maxdx: player.maxdx,
       player_maxdy: player.maxdy,

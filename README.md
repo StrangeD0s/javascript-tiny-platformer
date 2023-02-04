@@ -29,14 +29,14 @@ Simple JS platformer to modify and extend.
 - [x] Irgendeine Art Dev Function bauen, die mir übersichtliche console logs ausgibt.
 - [ ] Alle Variablen und Funktionen, die nicht Platformer-spezifisch sind, als Engine auslagern.
 - [x] "Doors" System entwickeln.
-- [ ] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten. Liegt das am Level selbst?
+- [x] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten. Liegt das am Level selbst?
 - [x] Pause Function
 - [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
 - [x] Maps umrüsten auf 16x16 px tiles. Ist in den Variablen schon vorbereitet, muss nur die Maps noch mal aus Tiled exportieren
   - [x] Aus Tiled werden die Custom Properties nicht richtig exportiert
   - [x] "type" muss ich ändern in "class" in der setup Funktion
   - [x] Die properties werden als Array exportiert. Da brauche ich in der setup Funktion noch eine Function um die zu Konviertieren.
-- [ ] Globales Objekt bauen mit einem einzigen Wert ("life = 3" z.B.), den ich immer Anzeige und der über die Level hinaus bestehen bleibt.
+- [x] Globales Objekt bauen mit einem einzigen Wert ("life = 3" z.B.), den ich immer Anzeige und der über die Level hinaus bestehen bleibt.
 - [ ] Verschiedene Biomes
   - [ ] Ice World
   - [ ] Desert World
@@ -84,9 +84,10 @@ Export als ".tmj"
 - [x] Map Transitions (mit einem Doors Object)
 - [x] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
   - [x] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.
+- [x] Global Player Object
+- [x] Shooting
 - [ ] Game Start/Game Over Screen
-- [ ] Global Player Object
-- [ ] Weapons
+- [ ] mehr Weapons
 - [ ] mehr Enemy Types (flying, wallcrawler, shooting)
 - [ ] Inventory System
 - [ ] Destructibles (haben eigenes "destructibles = {}" Objekt wie monsters oder treasure und haben hitpoints)

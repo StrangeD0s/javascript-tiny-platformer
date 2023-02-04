@@ -117,6 +117,7 @@ function renderDevInfos() {
       player_ddy: player.ddy,
       player_dx: player.dx,
       player_dy: player.dy,
+      player_interact: player.interact,
       player_falling: player.falling,
       player_friction: player.friction,
       player_gravity: player.gravity,

@@ -89,6 +89,7 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.player = entityType == 'player'
   entity.treasure = entityType == 'treasure'
   entity.door = entityType == 'door'
+  entity.leadsTo = entityProperties.leadsTo
   entity.left = entityProperties.left
   entity.right = entityProperties.right
   entity.start = { x: obj.x, y: obj.y }
@@ -101,6 +102,8 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.currentHitpoints = entityCurrentHitpoints
   entity.hurt = false
   entity.vul = true
+
+  entityType == 'door' && console.log('log door ', entity)
 
   return entity
 }

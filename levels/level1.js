@@ -688,6 +688,13 @@ const level1 = {
           height: 34,
           id: 18,
           name: 'exit',
+          properties: [
+            {
+              name: 'leadsTo',
+              type: 'string',
+              value: 'level2',
+            },
+          ],
           rotation: 0,
           visible: true,
           width: 30,

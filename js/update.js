@@ -6,17 +6,15 @@ function update(dt) {
   updatePlayer(dt)
   updateMonsters(dt)
   checkTreasure()
+  // updateDoors(dt)
+  checkDoors()
+
   // ! Vielleicht eigene update Funktion für Musik schreiben
   // theme.level1.play()
 }
 
 function updatePlayer(dt) {
   updateEntity(player, dt)
-  // ! Hier habe ich rudimentär einen Levelwechsel eingebaut.
-  // ! Was noch fehlt ist, dass ein globales Player-Objekt beibehalten wird.
-  if (player.collected >= 2) {
-    _initLevel(levelObject.level2)
-  }
 }
 
 function updateMonsters(dt) {
@@ -49,6 +47,49 @@ function checkTreasure() {
     )
       collectTreasure(t)
   }
+}
+
+function checkDoors() {
+  // ! Hier habe ich rudimentär einen Levelwechsel eingebaut.
+  // ! Was noch fehlt ist, dass ein globales Player-Objekt beibehalten wird.
+  var n, max, t
+  for (n = 0, max = doors.length; n < max; n++) {
+    t = doors[n]
+    console.log('Door ', t)
+    if (
+      overlap(
+        player.x,
+        player.y,
+        TILE * 2,
+        TILE * 2,
+        t.x,
+        t.y,
+        TILE * 2,
+        TILE * 2
+      )
+    )
+      player.interact && useDoor(t)
+  }
+}
+
+function useDoor(t) {
+  let leadsTo
+  switch (t.leadsTo) {
+    case 'level1':
+      leadsTo = levelObject.level1
+      break
+    case 'level2':
+      leadsTo = levelObject.level2
+      break
+  }
+  sfx.openDoor.play()
+  levelTransition(leadsTo)
+}
+
+function levelTransition(level) {
+  setTimeout(() => {
+    _initLevel(level)
+  }, 800)
 }
 
 function killMonster(monster) {

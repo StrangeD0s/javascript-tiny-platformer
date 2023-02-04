@@ -153,6 +153,13 @@ const level2 = {
           height: 32,
           id: 4,
           name: 'exit',
+          properties: [
+            {
+              name: 'leadsTo',
+              type: 'string',
+              value: 'level1',
+            },
+          ],
           rotation: 0,
           visible: true,
           width: 32,

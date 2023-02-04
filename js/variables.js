@@ -256,6 +256,7 @@ let sfx = {
   takeDamage: new sound('./audio/Randomize3.wav', sfxVolume),
   killMonster: new sound('./audio/Randomize.wav', sfxVolume),
   powerup: new sound('./audio/Powerup.wav', sfxVolume),
+  openDoor: new sound('./audio/LA_Chest_Open.wav', sfxVolume),
 }
 
 let theme = {
@@ -269,6 +270,7 @@ let globalPlayer = {
   currentHitpoints: 3,
   vul: true,
   hurt: false,
+  interact: false,
   sprites: {
     idle: {
       tiles: [5],

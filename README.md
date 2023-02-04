@@ -28,7 +28,7 @@ Simple JS platformer to modify and extend.
 - [ ] Bessere flags bauen
 - [x] Irgendeine Art Dev Function bauen, die mir übersichtliche console logs ausgibt.
 - [ ] Alle Variablen und Funktionen, die nicht Platformer-spezifisch sind, als Engine auslagern.
-- [ ] "Doors" System entwickeln.
+- [x] "Doors" System entwickeln.
 - [ ] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten. Liegt das am Level selbst?
 - [x] Pause Function
 - [x] Sprite Animation (<https://codehs.com/tutorial/andy/Programming_Sprites_in_JavaScript>)
@@ -74,7 +74,7 @@ Export als ".tmj"
   - [x] Variablen für alle Props, die die Map betreffen (MAP.tw/.th, Scaling, HUD-Scaling, TileAtlas)
 - [x] Alphabet TileMap (oder font!)
 - [x] Map Layers (CollisionLayer, Background, Foreground, Object-Layer) inkl. Anleitung für Tiled
-- [ ] Map Transitions (mit einem Doors Object)
+- [x] Map Transitions (mit einem Doors Object)
 - [ ] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
   - [ ] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.
 - [ ] Global Player Object

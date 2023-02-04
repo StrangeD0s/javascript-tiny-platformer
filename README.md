@@ -38,7 +38,8 @@ Simple JS platformer to modify and extend.
   - [x] Die properties werden als Array exportiert. Da brauche ich in der setup Funktion noch eine Function um die zu Konviertieren.
 - [ ] Globales Objekt bauen mit einem einzigen Wert ("life = 3" z.B.), den ich immer Anzeige und der über die Level hinaus bestehen bleibt.
 - [ ] Verschiedene Biomes
-	- [ ] Ice World
+  - [ ] Ice World
+  - [ ] Desert World
   - [ ] Lava World
   - [ ] Underwater
   - [ ] Forest World

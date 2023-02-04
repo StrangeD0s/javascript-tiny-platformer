@@ -32,6 +32,7 @@ function render(ctx, frame, dt, thiscurrentLevel) {
   renderPause()
   renderHud(ctx, frame)
   renderHudSprites()
+  fadeScreen(frame, dt)
   renderDevInfos()
 }
 
@@ -206,6 +207,28 @@ function renderHud(ctx, frame) {
       (TILE / 2) * hudScaling
     )
   ctx.globalAlpha = 1
+}
+
+function fadeScreen(frame, dt) {
+  ctx.fillStyle = 'black'
+  ctx.globalAlpha = 0
+  let duration = 100
+
+  pulse = frame % duration
+
+  if (pulse < duration) {
+    opacity = pulse / duration
+  } else {
+    opacity = 0
+  }
+
+  ctx.fillRect(0, 0, width, height)
+  ctx.globalAlpha = opacity
+
+  //setInterval(show(), 800)
+  console.log('log opacity ', opacity)
+  console.log('log fade frame ', frame)
+  console.log('log fade pulse ', pulse)
 }
 
 // * Render Pause Function

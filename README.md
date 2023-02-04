@@ -36,6 +36,12 @@ Simple JS platformer to modify and extend.
   - [x] Aus Tiled werden die Custom Properties nicht richtig exportiert
   - [x] "type" muss ich ändern in "class" in der setup Funktion
   - [x] Die properties werden als Array exportiert. Da brauche ich in der setup Funktion noch eine Function um die zu Konviertieren.
+- [ ] Globales Objekt bauen mit einem einzigen Wert ("life = 3" z.B.), den ich immer Anzeige und der über die Level hinaus bestehen bleibt.
+- [ ] Verschiedene Biomes
+	- [ ] Ice World
+  - [ ] Lava World
+  - [ ] Underwater
+  - [ ] Forest World
 
 ### Welche Assets nutze ich
 
@@ -75,8 +81,9 @@ Export als ".tmj"
 - [x] Alphabet TileMap (oder font!)
 - [x] Map Layers (CollisionLayer, Background, Foreground, Object-Layer) inkl. Anleitung für Tiled
 - [x] Map Transitions (mit einem Doors Object)
-- [ ] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
-  - [ ] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.
+- [x] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
+  - [x] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.
+- [ ] Game Start/Game Over Screen
 - [ ] Global Player Object
 - [ ] Weapons
 - [ ] mehr Enemy Types (flying, wallcrawler, shooting)

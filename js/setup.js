@@ -10,6 +10,7 @@ function setup(map) {
     data = map.layers[1].data,
     objects = map.layers[2].objects,
     foreground = map.layers[3]?.data,
+    liquidTiles = map.layers[4]?.data,
     n,
     obj,
     entity
@@ -38,13 +39,16 @@ function setup(map) {
       case 'monster':
         monsters.push(entity)
         break
-
       case 'treasure':
         treasure.push(entity)
         break
+      case 'water':
+        liquids.push(entity)
+        console.log('log liquids ', liquids)
+        break
       case 'door':
         doors.push(entity)
-
+        console.log('log doors ', doors)
         break
     }
   }
@@ -52,6 +56,7 @@ function setup(map) {
   cells = data
   bgCells = background
   fgCells = foreground
+  lqCells = liquidTiles
 }
 
 // * Diese Funktion entspricht grob meiner actor init Funktion.
@@ -80,6 +85,7 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.dx = 0
   entity.dy = 0
   entity.gravity = METER * (entityProperties.gravity || GRAVITY)
+  //entity.gravity = 1450
   entity.maxdx = METER * (entityProperties.maxdx || MAXDX)
   entity.maxdy = METER * (entityProperties.maxdy || MAXDY)
   entity.impulse = METER * (entityProperties.impulse || IMPULSE)
@@ -88,6 +94,7 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.monster = entityType == 'monster'
   entity.player = entityType == 'player'
   entity.treasure = entityType == 'treasure'
+  entity.water = entityType == 'water'
   entity.door = entityType == 'door'
   entity.leadsTo = entityProperties.leadsTo
   entity.left = entityProperties.left
@@ -104,6 +111,10 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.vul = true
 
   entityType == 'door' && console.log('log door ', entity)
+
+  console.log('entity gravity: ', entity.gravity)
+  console.log('entity water: ', entity.water)
+  console.log('METER: ', METER)
 
   return entity
 }

@@ -124,6 +124,7 @@ function renderDevInfos() {
       player_gravity: player.gravity,
       player_impulse: player.impulse,
       player_jumping: player.jumping,
+      player_swimming: player.swimming,
       player_shooting: player.shooting,
       player_left: player.left,
       player_maxdx: player.maxdx,

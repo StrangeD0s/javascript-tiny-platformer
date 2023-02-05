@@ -37,6 +37,7 @@ Simple JS platformer to modify and extend.
   - [x] "type" muss ich ändern in "class" in der setup Funktion
   - [x] Die properties werden als Array exportiert. Da brauche ich in der setup Funktion noch eine Function um die zu Konviertieren.
 - [x] Globales Objekt bauen mit einem einzigen Wert ("life = 3" z.B.), den ich immer Anzeige und der über die Level hinaus bestehen bleibt.
+- [ ] Gravity Variable für verschiedene Umgebungen (Land, Wasser, Space)
 - [ ] Verschiedene Biomes
   - [ ] Ice World
   - [ ] Desert World

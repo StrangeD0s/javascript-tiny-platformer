@@ -26,6 +26,7 @@ function render(ctx, frame, dt, thiscurrentLevel) {
   renderBullets(ctx, itemsAtlas, dt, frame)
   renderMonsters(ctx, enemyAtlas, dt, frame)
   renderForeground(ctx, thiscurrentLevel.foregroundAtlas, fgCells)
+  renderLiquids(ctx, thiscurrentLevel.foregroundAtlas, fgCells)
 
   // * Draw CameraBox
   //renderCameraBox()
@@ -40,11 +41,13 @@ function render(ctx, frame, dt, thiscurrentLevel) {
 // Map Limit Variables
 
 // * Das hier ist die allgemeine Funktion um Tiles aus dem TileAtlas auf den Canvas zu malen.
-function drawTile(levelAtlas, cell, dx, dy) {
+function drawTile(levelAtlas, cell, dx, dy, opacity) {
   levelAtlas.sourceY =
     Math.floor(cell / levelAtlas.atlasCol) * levelAtlas.tileSize
   levelAtlas.sourceX = (cell % levelAtlas.atlasCol) * levelAtlas.tileSize
   // ? Wofür stehen die Werte sWidth, sHeight, dWidth, dHeight
+
+  ctx.globalAlpha = opacity
   // ! Kann ich die ganzen festen Zahlen als Variablen aus der Map holen?
   ctx.drawImage(
     levelAtlas.tileAtlas,
@@ -78,6 +81,18 @@ function renderForeground(ctx, levelAtlas) {
       cell = fgTcell(x, y, mapWidth)
       if (cell) {
         drawTile(levelAtlas, cell - levelAtlas.offset, x, y)
+      }
+    }
+  }
+}
+
+function renderLiquids(ctx, levelAtlas) {
+  var x, y, cell
+  for (y = 0; y < mapHeight; y++) {
+    for (x = 0; x < mapWidth; x++) {
+      cell = lqTcell(x, y, mapWidth)
+      if (cell) {
+        drawTile(levelAtlas, cell - levelAtlas.offset, x, y, 0.5)
       }
     }
   }

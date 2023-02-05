@@ -7,6 +7,7 @@ function update(dt) {
   updateBullets(dt)
   updateMonsters(dt)
   checkTreasure()
+  checkLiquids()
   // updateDoors(dt)
   checkDoors()
 
@@ -120,6 +121,32 @@ function checkTreasure() {
   }
 }
 
+function updateLiquids(dt) {
+  var n, max
+  for (n = 0, max = liquids.length; n < max; n++)
+    updateLiquid(liquids[n], dt), console.log('liquid!')
+}
+
+function updateLiquid(liquid, dt) {
+  if (overlap(player.x, player.y, TILE, TILE, liquid.x, liquid.y, TILE, TILE)) {
+    if (player.dy > 0 && liquid.y - player.y > TILE / 2)
+      console.log('swimming!')
+  }
+}
+
+function checkLiquids() {
+  var n, max, l
+  for (n = 0, max = liquids.length; n < max; n++) {
+    l = liquids[n]
+
+    if (overlap(player.x, player.y, TILE, TILE, l.x, l.y, l.width, l.height)) {
+      player.swimming = true
+    } else {
+      player.swimming = false
+    }
+  }
+}
+
 function checkDoors() {
   // ! Hier habe ich rudimentär einen Levelwechsel eingebaut.
   // ! Was noch fehlt ist, dass ein globales Player-Objekt beibehalten wird.
@@ -220,8 +247,13 @@ function updateEntity(entity, dt) {
     friction = entity.friction * (falling ? 0.5 : 1),
     accel = entity.accel * (falling ? 0.5 : 1)
 
+  entity.gravity = player.swimming ? METER * 2 * 6 : METER * 9.8 * 6
+
+  console.log('log entity gravity', entity.gravity)
+  // ! gravity bei falling stimmt noch nicht
+
   entity.ddx = 0
-  entity.ddy = entity.gravity
+  entity.ddy = entity.gravity // ! Hier wir gravity angewandt
 
   // * Hier wird die Entity bewegt.
   if (entity.left) (entity.ddx = entity.ddx - accel), (entity.flipped = true)

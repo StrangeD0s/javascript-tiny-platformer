@@ -106,9 +106,9 @@ function renderHudSprites() {
 // * Renderfunktion für DevInfos
 function renderDevInfos() {
   ctx.save()
-  ctx.scale(scalingFactor / 4, scalingFactor / 4)
+  ctx.scale(scalingFactor / 6, scalingFactor / 6)
   if (showDevInfo) {
-    const backgroundColor = 'rgba(18, 64, 90, 0.85)'
+    const backgroundColor = 'rgba(18, 64, 90, 0.15)'
     const color = 'white'
     const lineHeight = 18
 

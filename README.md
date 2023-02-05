@@ -44,6 +44,7 @@ Simple JS platformer to modify and extend.
   - [ ] Lava World
   - [ ] Underwater
   - [ ] Forest World
+- [ ] Fix Scaling bei verschiedenen Level-Größen (hochkant ist broken)
 
 ### Welche Assets nutze ich
 

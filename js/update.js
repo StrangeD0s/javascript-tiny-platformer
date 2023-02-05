@@ -70,12 +70,10 @@ function updateBullet(bullet, dt) {
     } else {
       bullet.x = bullet.x + ammoType.velocity
     }
-
     var n, max, monster, thisBullet
     for (n = 0, max = monsters.length; n < max; n++) {
       monster = monsters[n]
       thisBullet = bullet
-
       if (!monster.dead) {
         if (
           overlap(
@@ -121,25 +119,18 @@ function checkTreasure() {
   }
 }
 
-function updateLiquids(dt) {
-  var n, max
-  for (n = 0, max = liquids.length; n < max; n++)
-    updateLiquid(liquids[n], dt), console.log('liquid!')
-}
-
-function updateLiquid(liquid, dt) {
-  if (overlap(player.x, player.y, TILE, TILE, liquid.x, liquid.y, TILE, TILE)) {
-    if (player.dy > 0 && liquid.y - player.y > TILE / 2)
-      console.log('swimming!')
-  }
-}
-
 function checkLiquids() {
   var n, max, l
   for (n = 0, max = liquids.length; n < max; n++) {
     l = liquids[n]
 
     if (overlap(player.x, player.y, TILE, TILE, l.x, l.y, l.width, l.height)) {
+      !player.swimming && sfx.splash.play()
+      console.log('log player gravity: ', player.gravity)
+      // player.dy = player.dy / 1.2
+      console.log('log player maxdy: ', player.dy)
+      player.dy = player.dy / 1.15
+      if (!player.swimming) player.jumping = false
       player.swimming = true
     } else {
       player.swimming = false
@@ -250,18 +241,21 @@ function updateEntity(entity, dt) {
     swimming = entity.swimming || false,
     friction =
       entity.friction * (falling && !swimming ? 0.5 : swimming ? 0.1 : 1),
-    impulse = swimming ? METER * 500 : entity.impulse,
+    impulse = swimming ? (METER * 500) / 2 : entity.impulse,
+    //impulse = entity.impulse,
     accel = entity.accel * (falling && !swimming ? 0.5 : swimming ? 0.1 : 1),
     gravity = swimming ? METER * 2 * 4 : METER * 9.8 * 6
 
   // entity.player && console.log('log entity swimming', swimming)
-  // entity.player && console.log('log entity accel', accel)
-  // entity.player && console.log('log entity gravity', gravity)
+  //entity.player && console.log('log entity accel', accel)
+  entity.player && console.log('log entity gravity', gravity)
   // ! gravity bei falling stimmt noch nicht
   // ! friction und accel muss bei isSwimming auch noch angepasst werden
 
   entity.ddx = 0
   entity.ddy = gravity // ! Hier wir gravity angewandt
+
+  //entity.player && falling && console.log('log entity.ddy', entity.ddy)
 
   // * Hier wird die Entity bewegt.
   if (entity.left) (entity.ddx = entity.ddx - accel), (entity.flipped = true)
@@ -286,11 +280,12 @@ function updateEntity(entity, dt) {
 
   function swim(entity) {
     sfx.jump.play()
-    entity.ddy = entity.ddy - impulse / 2
+    // ! Kann ich hier noch einbauen, dass er nicht einfach springt, sondern man die Richtung noch angeben kann? Hoch, runter.
+    entity.ddy = entity.ddy - impulse * 2
     entity.jumping = true
     setTimeout(() => {
       entity.jumping = false
-    }, 800)
+    }, 400)
   }
 
   // ! "dt" ist hier identisch mit "step", was in der index.js in die update() gegeben wird. Konstant bei ca. 0.01666

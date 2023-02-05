@@ -44,11 +44,11 @@ function setup(map) {
         break
       case 'water':
         liquids.push(entity)
-        console.log('log liquids ', liquids)
+        // console.log('log liquids ', liquids)
         break
       case 'door':
         doors.push(entity)
-        console.log('log doors ', doors)
+        // console.log('log doors ', doors)
         break
     }
   }
@@ -112,9 +112,9 @@ function setupEntity(obj, entityType, entityProperties) {
 
   entityType == 'door' && console.log('log door ', entity)
 
-  console.log('entity gravity: ', entity.gravity)
-  console.log('entity water: ', entity.water)
-  console.log('METER: ', METER)
+  // console.log('entity gravity: ', entity.gravity)
+  // console.log('entity water: ', entity.water)
+  // console.log('METER: ', METER)
 
   return entity
 }

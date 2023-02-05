@@ -256,7 +256,7 @@ let t2p = function (t) {
 
 // * Init Level Funtion
 function _initLevel(newLevel) {
-  console.log('log collected 2! ', newLevel)
+  // console.log('log collected 2! ', newLevel)
   monsters = []
   treasure = []
   doors = []
@@ -278,9 +278,9 @@ function _initLevel(newLevel) {
     height: canvas.height / scalingFactor,
   }
 
-  console.log('log canvas.width ', canvas.width)
-  console.log('log scalingFactor ', scalingFactor)
-  console.log('log scaledCanvas ', scaledCanvas)
+  // console.log('log canvas.width ', canvas.width)
+  // console.log('log scalingFactor ', scalingFactor)
+  // console.log('log scaledCanvas ', scaledCanvas)
 
   setup(newLevel.levelData)
 }
@@ -301,6 +301,7 @@ let sfx = {
   openDoor: new sound('./audio/LA_Chest_Open.wav', sfxVolume),
   shoot: new sound('./audio/Laser2.wav', sfxVolume),
   explode: new sound('./audio/Explosion.wav', sfxVolume),
+  splash: new sound('./audio/Oracle_Rock_Shatter.wav', sfxVolume),
 }
 
 let theme = {

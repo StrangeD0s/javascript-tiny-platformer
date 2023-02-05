@@ -244,13 +244,16 @@ function updateEntity(entity, dt) {
   var wasleft = entity.dx < 0,
     wasright = entity.dx > 0,
     falling = entity.falling,
+    swimming = entity.swimming || false,
     friction = entity.friction * (falling ? 0.5 : 1),
     accel = entity.accel * (falling ? 0.5 : 1)
 
-  entity.gravity = player.swimming ? METER * 2 * 6 : METER * 9.8 * 6
+  entity.gravity = swimming ? METER * 2 * 6 : METER * 9.8 * 6
 
+  console.log('log entity swimming', swimming)
   console.log('log entity gravity', entity.gravity)
   // ! gravity bei falling stimmt noch nicht
+  // ! friction und accel muss bei isSwimming auch noch angepasst werden
 
   entity.ddx = 0
   entity.ddy = entity.gravity // ! Hier wir gravity angewandt

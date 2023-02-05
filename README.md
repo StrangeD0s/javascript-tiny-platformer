@@ -93,6 +93,7 @@ Export als ".tmj"
 - [ ] Inventory System
 - [ ] Destructibles (haben eigenes "destructibles = {}" Objekt wie monsters oder treasure und haben hitpoints)
 - [ ] CameraBox
+- [ ] Swimming
 
 ## Story
 

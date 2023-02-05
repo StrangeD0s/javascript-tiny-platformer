@@ -179,6 +179,9 @@ function useDoor(t) {
     case 'level2':
       leadsTo = levelObject.level2
       break
+    case 'level3':
+      leadsTo = levelObject.level3
+      break
   }
   sfx.openDoor.play()
   levelTransition(leadsTo)
@@ -245,18 +248,20 @@ function updateEntity(entity, dt) {
     wasright = entity.dx > 0,
     falling = entity.falling,
     swimming = entity.swimming || false,
-    friction = entity.friction * (falling ? 0.5 : 1),
-    accel = entity.accel * (falling ? 0.5 : 1)
+    friction =
+      entity.friction * (falling && !swimming ? 0.5 : swimming ? 0.1 : 1),
+    impulse = swimming ? METER * 500 : entity.impulse,
+    accel = entity.accel * (falling && !swimming ? 0.5 : swimming ? 0.1 : 1),
+    gravity = swimming ? METER * 2 * 4 : METER * 9.8 * 6
 
-  entity.gravity = swimming ? METER * 2 * 6 : METER * 9.8 * 6
-
-  console.log('log entity swimming', swimming)
-  console.log('log entity gravity', entity.gravity)
+  // entity.player && console.log('log entity swimming', swimming)
+  // entity.player && console.log('log entity accel', accel)
+  // entity.player && console.log('log entity gravity', gravity)
   // ! gravity bei falling stimmt noch nicht
   // ! friction und accel muss bei isSwimming auch noch angepasst werden
 
   entity.ddx = 0
-  entity.ddy = entity.gravity // ! Hier wir gravity angewandt
+  entity.ddy = gravity // ! Hier wir gravity angewandt
 
   // * Hier wird die Entity bewegt.
   if (entity.left) (entity.ddx = entity.ddx - accel), (entity.flipped = true)
@@ -265,10 +270,27 @@ function updateEntity(entity, dt) {
   if (entity.right) (entity.ddx = entity.ddx + accel), (entity.flipped = false)
   else if (wasright) entity.ddx = entity.ddx - friction
 
-  if (entity.jump && !entity.jumping && !falling) {
-    entity.ddy = entity.ddy - entity.impulse // an instant big force impulse
-    entity.jumping = true
+  if (entity.jump) {
+    if (!entity.jumping && !falling && !swimming) {
+      jump(entity)
+    } else if (!entity.jumping && swimming) {
+      swim(entity)
+    }
+  }
+
+  function jump(entity) {
     sfx.jump.play()
+    entity.ddy = entity.ddy - impulse // an instant big force impulse
+    entity.jumping = true
+  }
+
+  function swim(entity) {
+    sfx.jump.play()
+    entity.ddy = entity.ddy - impulse / 2
+    entity.jumping = true
+    setTimeout(() => {
+      entity.jumping = false
+    }, 800)
   }
 
   // ! "dt" ist hier identisch mit "step", was in der index.js in die update() gegeben wird. Konstant bei ca. 0.01666

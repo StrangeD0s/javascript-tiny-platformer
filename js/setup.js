@@ -10,7 +10,7 @@ function setup(map) {
     data = map.layers[1].data,
     objects = map.layers[2].objects,
     foreground = map.layers[3]?.data,
-    liquidTiles = map.layers[4]?.data,
+    liquidTiles = map.layers[4]?.data || null,
     n,
     obj,
     entity

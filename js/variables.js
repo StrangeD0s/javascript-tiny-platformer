@@ -133,6 +133,14 @@ let levelObject = {
     foregroundAtlas: level2Atlas,
     playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
   },
+  level3: {
+    scalingFactor: 8,
+    levelData: level3,
+    levelAtlas: level2Atlas,
+    backgroundAtlas: backgroundAtlas,
+    foregroundAtlas: level2Atlas,
+    playerStartCoordinates: { x: 96, y: 480 }, // * Für wenn man das Level durch eine Tür erneut betritt.
+  },
 }
 
 let currentLevel = levelObject.level1 // ! hier kann ich noch eine function draus machen, die das currentLevel immer auf dem aktuellen Stand hält. Vorläufig erstmal mit einem Button-Press
@@ -243,7 +251,7 @@ let t2p = function (t) {
     return fgCells[tx + ty * mapWidth]
   },
   lqTcell = function (tx, ty, mapWidth) {
-    return lqCells[tx + ty * mapWidth]
+    return !!lqCells && lqCells[tx + ty * mapWidth]
   }
 
 // * Init Level Funtion
@@ -269,6 +277,10 @@ function _initLevel(newLevel) {
     width: canvas.width / scalingFactor,
     height: canvas.height / scalingFactor,
   }
+
+  console.log('log canvas.width ', canvas.width)
+  console.log('log scalingFactor ', scalingFactor)
+  console.log('log scaledCanvas ', scaledCanvas)
 
   setup(newLevel.levelData)
 }

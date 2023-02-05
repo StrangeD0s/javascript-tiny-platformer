@@ -88,6 +88,7 @@ function renderHudSprites() {
     player_hitpoints: player.currentHitpoints,
     player_collected: player.collected,
     player_lifes: globalObject.lifes,
+    player_ammo: globalObject.ammo,
   }
 
   function hitpoints() {
@@ -98,6 +99,7 @@ function renderHudSprites() {
 
     ctx.fillStyle = 'white'
     ctx.fillText(`lifes: ${hudObject.player_lifes}`, 50, 50)
+    ctx.fillText(`ammo: ${hudObject.player_ammo}`, 200, 50)
     ctx.restore()
   }
   hitpoints()

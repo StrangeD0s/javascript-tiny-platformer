@@ -8,6 +8,7 @@ let globalObject = {
   hitpoints: 3,
   collected: null,
   killed: null,
+  ammo: 10,
 }
 
 // * Import tiles and level map //
@@ -152,7 +153,7 @@ let MAP = { tw: mapWidth, th: mapHeight }
 let TILE = 16
 let METER = TILE
 
-let GRAVITY = 9.8 * 6 // default (exagerated) gravity
+let GRAVITY = 60
 
 let MAXDX = 15, // default max horizontal speed (15 tiles per second)
   MAXDY = 60, // default max vertical speed   (60 tiles per second)
@@ -183,12 +184,6 @@ let MAXDX = 15, // default max horizontal speed (15 tiles per second)
     L: 'l',
   }
 
-/* if (waterLevel) {
-  GRAVITY = 35
-} else {
-  GRAVITY = 59
-} */
-
 const ammoType = {
   width: 4,
   height: 4,
@@ -207,11 +202,6 @@ let fps = 60,
   liquids = [], // ! Alle Bereich, die mit Wasser gefüllt sind.
   bullets = [],
   cells = [], // ! vielleicht kann ich hieraus aber auch einfach ein Objekt machen, das Arrays für collCells, bgCells und fgCells beinhaltet
-  // cells = {
-  // collCells: [],
-  // bgCells: [],
-  // fgCells: [],
-  // }
   bgCells = [], // * Die sind für die background cells.
   fgCells = [], // * Die sind für die foreground cells.
   lqCells = [],
@@ -256,7 +246,6 @@ let t2p = function (t) {
 
 // * Init Level Funtion
 function _initLevel(newLevel) {
-  // console.log('log collected 2! ', newLevel)
   monsters = []
   treasure = []
   doors = []
@@ -278,10 +267,6 @@ function _initLevel(newLevel) {
     height: canvas.height / scalingFactor,
   }
 
-  // console.log('log canvas.width ', canvas.width)
-  // console.log('log scalingFactor ', scalingFactor)
-  // console.log('log scaledCanvas ', scaledCanvas)
-
   setup(newLevel.levelData)
 }
 
@@ -302,6 +287,8 @@ let sfx = {
   shoot: new sound('./audio/Laser2.wav', sfxVolume),
   explode: new sound('./audio/Explosion.wav', sfxVolume),
   splash: new sound('./audio/Oracle_Rock_Shatter.wav', sfxVolume),
+  swim: new sound('./audio/SML2_Swim.ogg', sfxVolume),
+  click: new sound('./audio/click.wav', sfxVolume),
 }
 
 let theme = {

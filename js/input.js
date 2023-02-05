@@ -23,13 +23,18 @@ function onkey(ev, key, down) {
     case KEY.Y:
       console.log('log shoot')
       //  player.shooting = down
-
       shoot(player)
       ev.preventDefault()
       return false
     case KEY.UP:
       console.log('log Key Up')
+      player.up = down
       shouldPanCameraDown({ canvas, cameraWithBox })
+      ev.preventDefault()
+      return false
+    case KEY.DOWN:
+      console.log('log Key Down')
+      player.down = down
       ev.preventDefault()
       return false
     case KEY.ENTER:
@@ -39,7 +44,6 @@ function onkey(ev, key, down) {
       return false
     case KEY.SPACE:
       console.log('log Key Space')
-
       ev.preventDefault()
       return false
   }

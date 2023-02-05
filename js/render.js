@@ -187,8 +187,6 @@ function renderPlayer(ctx, spriteAtlas, dt, frame) {
     ctx.globalAlpha = 0.25 + tweenTreasure(frame * 3, 60)
   }
   drawSprite(player, spriteAtlas, dt, frame)
-  ctx.fillStyle = COLOR.YELLOW
-  // ctx.fillRect(player.x + player.dx * dt, player.y + player.dy * dt, TILE, TILE)
   ctx.globalAlpha = 1
 }
 

@@ -44,6 +44,7 @@ Simple JS platformer to modify and extend.
   - [ ] Lava World
   - [ ] Underwater
   - [ ] Forest World
+  - [ ] Techno World
 - [ ] Fix Scaling bei verschiedenen Level-Größen (hochkant ist broken)
 
 ### Welche Assets nutze ich
@@ -88,14 +89,22 @@ Export als ".tmj"
   - [x] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.
 - [x] Global Player Object
 - [x] Shooting
-- [ ] Game Start/Game Over Screen
+- [x] Swimming
+- [x] Ammo
 - [ ] mehr Weapons
 - [ ] mehr Enemy Types (flying, wallcrawler, shooting)
-- [ ] Inventory System
+- [ ] Upgrades/Powerups
 - [ ] Destructibles (haben eigenes "destructibles = {}" Objekt wie monsters oder treasure und haben hitpoints)
+- [ ] Game Start/Game Over Screen
+- [ ] Inventory System
 - [ ] CameraBox
-- [ ] Swimming
+- [ ] Sprites
+  - [ ] Player
+  - [ ] Enemies
+  - [ ] Items
+  - [ ] Map
 
 ## Story
 
 Biff Bolton, sidekick to intergalactic space adventurer Ace Hunter, is stranded on a strange planet after several parts of his ship fail and he has to make an emergency landing. To repair his ship he must explore the planet and delve deep into its mysterious caves and catacombs.
+(Maybe he even needs to juryrig his escape pod into a makeshift submarine?)

@@ -40,19 +40,26 @@ function updateMonster(monster, dt) {
 }
 
 function shoot(player) {
-  sfx.shoot.play()
+  //globalObject.ammo > 0 ? sfx.shoot.play() : sfx.click.play()
   if (player.shooting) return
   player.shooting = true
   const bulletX = player.x
   const bulletY = player.y
   const direction = player.flipped
-  bullets.push({
-    originX: bulletX,
-    originY: bulletY,
-    x: bulletX,
-    y: bulletY + player.height / 2,
-    directionLeft: direction,
-  })
+
+  if (globalObject.ammo > 0) {
+    sfx.shoot.play()
+    globalObject.ammo--
+    bullets.push({
+      originX: bulletX,
+      originY: bulletY,
+      x: bulletX,
+      y: bulletY + player.height / 2,
+      directionLeft: direction,
+    })
+  } else {
+    sfx.click.play()
+  }
   setTimeout(() => {
     player.shooting = false
   }, 200)
@@ -123,12 +130,8 @@ function checkLiquids() {
   var n, max, l
   for (n = 0, max = liquids.length; n < max; n++) {
     l = liquids[n]
-
     if (overlap(player.x, player.y, TILE, TILE, l.x, l.y, l.width, l.height)) {
       !player.swimming && sfx.splash.play()
-      console.log('log player gravity: ', player.gravity)
-      // player.dy = player.dy / 1.2
-      console.log('log player maxdy: ', player.dy)
       player.dy = player.dy / 1.15
       if (!player.swimming) player.jumping = false
       player.swimming = true
@@ -144,7 +147,6 @@ function checkDoors() {
   var n, max, t
   for (n = 0, max = doors.length; n < max; n++) {
     t = doors[n]
-    // console.log('Door ', t)
     if (
       overlap(
         player.x,
@@ -204,7 +206,7 @@ function reduceHitpoints(entity, damage) {
     setTimeout(() => {
       entity.vul = true
       entity.hurt = false
-    }, '1500')
+    }, 1500)
   } else killEntity(entity)
 }
 
@@ -241,21 +243,13 @@ function updateEntity(entity, dt) {
     swimming = entity.swimming || false,
     friction =
       entity.friction * (falling && !swimming ? 0.5 : swimming ? 0.1 : 1),
-    impulse = swimming ? (METER * 500) / 2 : entity.impulse,
-    //impulse = entity.impulse,
+    impulse = entity.impulse,
+    swimImpulse = entity.impulse / 3,
     accel = entity.accel * (falling && !swimming ? 0.5 : swimming ? 0.1 : 1),
-    gravity = swimming ? METER * 2 * 4 : METER * 9.8 * 6
-
-  // entity.player && console.log('log entity swimming', swimming)
-  //entity.player && console.log('log entity accel', accel)
-  entity.player && console.log('log entity gravity', gravity)
-  // ! gravity bei falling stimmt noch nicht
-  // ! friction und accel muss bei isSwimming auch noch angepasst werden
+    gravity = swimming ? METER * 8 : METER * GRAVITY
 
   entity.ddx = 0
   entity.ddy = gravity // ! Hier wir gravity angewandt
-
-  //entity.player && falling && console.log('log entity.ddy', entity.ddy)
 
   // * Hier wird die Entity bewegt.
   if (entity.left) (entity.ddx = entity.ddx - accel), (entity.flipped = true)
@@ -279,9 +273,12 @@ function updateEntity(entity, dt) {
   }
 
   function swim(entity) {
-    sfx.jump.play()
-    // ! Kann ich hier noch einbauen, dass er nicht einfach springt, sondern man die Richtung noch angeben kann? Hoch, runter.
-    entity.ddy = entity.ddy - impulse * 2
+    sfx.swim.play()
+    entity.ddy = entity.down
+      ? entity.ddy + swimImpulse
+      : entity.up
+      ? entity.ddy - swimImpulse * 2
+      : entity.ddy - swimImpulse
     entity.jumping = true
     setTimeout(() => {
       entity.jumping = false
@@ -309,33 +306,7 @@ function updateEntity(entity, dt) {
     celldown = tcell(tx, ty + 1, mapWidth),
     celldiag = tcell(tx + 1, ty + 1, mapWidth)
 
-  if (entity.player === true) {
-    // console.log('log cell: ', cell)
-    // console.log('log celldown: ', (celldown && !cell) === true)
-  }
   // ? Ist das hier der Collision Check?
-  // ? kann ich das umbauen und je nach Flag zurückgeben, was passieren soll?
-  // z.B.
-  // (Flag 1 = solid)
-  // let isSolid = flags.${cell}.includes(1)
-  //
-  // if (entity.dy > 0) {
-  //   if ((celldown && !cell) || (celldiag && !cellright && nx)) {
-  // if (isSolid) {
-  // entity.y = t2p(ty)
-  // entity.dy = 0
-  // entity.falling = false
-  // entity.jumping = false
-  // ny = 0
-  // } else if (!isSolid) {
-  // entity.y = t2p(ty + 1)
-  // entity.dy = 0
-  // cell = celldown
-  // cellright = celldiag
-  // ny = 0
-  // }
-  //
-  // oder sowas.
 
   if (entity.dy > 0) {
     if ((celldown && !cell) || (celldiag && !cellright && nx)) {

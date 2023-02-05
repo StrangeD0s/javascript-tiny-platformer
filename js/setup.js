@@ -44,11 +44,9 @@ function setup(map) {
         break
       case 'water':
         liquids.push(entity)
-        // console.log('log liquids ', liquids)
         break
       case 'door':
         doors.push(entity)
-        // console.log('log doors ', doors)
         break
     }
   }
@@ -85,7 +83,6 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.dx = 0
   entity.dy = 0
   entity.gravity = METER * (entityProperties.gravity || GRAVITY)
-  //entity.gravity = 1450
   entity.maxdx = METER * (entityProperties.maxdx || MAXDX)
   entity.maxdy = METER * (entityProperties.maxdy || MAXDY)
   entity.impulse = METER * (entityProperties.impulse || IMPULSE)
@@ -99,6 +96,8 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.leadsTo = entityProperties.leadsTo
   entity.left = entityProperties.left
   entity.right = entityProperties.right
+  entity.up = entityProperties.up || false
+  entity.down = entityProperties.down || false
   entity.start = { x: obj.x, y: obj.y }
   entity.killed = entity.collected = 0
   entity.sprites = entitySprites
@@ -109,12 +108,6 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.currentHitpoints = entityCurrentHitpoints
   entity.hurt = false
   entity.vul = true
-
-  entityType == 'door' && console.log('log door ', entity)
-
-  // console.log('entity gravity: ', entity.gravity)
-  // console.log('entity water: ', entity.water)
-  // console.log('METER: ', METER)
 
   return entity
 }

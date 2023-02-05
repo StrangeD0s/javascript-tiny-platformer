@@ -95,6 +95,7 @@ Export als ".tmj"
 - [ ] mehr Enemy Types (flying, wallcrawler, shooting)
 - [ ] Upgrades/Powerups
 - [ ] Destructibles (haben eigenes "destructibles = {}" Objekt wie monsters oder treasure und haben hitpoints)
+- [ ] Ladders/Poles
 - [ ] Game Start/Game Over Screen
 - [ ] Inventory System
 - [ ] CameraBox

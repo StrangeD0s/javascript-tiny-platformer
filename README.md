@@ -85,8 +85,7 @@ Export als ".tmj"
 - [x] Alphabet TileMap (oder font!)
 - [x] Map Layers (CollisionLayer, Background, Foreground, Object-Layer) inkl. Anleitung für Tiled
 - [x] Map Transitions (mit einem Doors Object)
-- [x] Sprite Flags (gerade wird bei den Tiles nur nach cell 0 und !0 unterschieden)
-  - [x] oder: Ich arbeite mit mehreren Map Layers. Dann brauche ich nur einen Layer für Collision (das funktioniert ja schon) und Layer für Background und Foreground. Traps usw. kann ich genau wie Monster und Treasure handlen.
+- [x] Map Layers
 - [x] Global Player Object
 - [x] Shooting
 - [x] Swimming

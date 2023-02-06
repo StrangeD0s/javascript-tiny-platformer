@@ -100,7 +100,7 @@ function updateBullet(bullet, dt) {
             TILE
           )
         )
-          killMonster(monster), sfx.explode.play()
+          killMonster(monster), sfx.explode.play(), destroyBullet(bullet)
       }
     }
     if (

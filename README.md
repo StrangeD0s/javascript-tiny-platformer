@@ -93,7 +93,7 @@ Export als ".tmj"
 - [ ] mehr Weapons
 - [ ] mehr Enemy Types (flying, wallcrawler, shooting)
 - [ ] Upgrades/Powerups
-- [ ] Destructibles (haben eigenes "destructibles = {}" Objekt wie monsters oder treasure und haben hitpoints)
+- [ ] Destructibles (haben eigenes "destructibles = {}" Objekt wie monsters oder treasure und haben hitpoints, eigener Layer oder gehören die zu Objects?)
 - [ ] Ladders/Poles
 - [ ] Game Start/Game Over Screen
 - [ ] Inventory System

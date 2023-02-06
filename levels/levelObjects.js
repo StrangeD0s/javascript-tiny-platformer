@@ -84,3 +84,15 @@ let coinTreasure = {
     },
   },
 }
+
+let simpleBullet = {
+  sprites: {
+    idle: {
+      tiles: [8, 9, 10],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+  },
+}

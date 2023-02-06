@@ -118,6 +118,8 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
  */
   const sprites = entity.sprites
 
+  entity.bullet && console.log('log entity bullet', entity)
+
   let isJumping = entity.jumping || entity.falling
 
   let isRunning =
@@ -135,11 +137,13 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
       ? sprites.shoot
       : sprites.idle
 
-  const x = entity.x + entity.dx * dt
-  const y = entity.y + entity.dy * dt
+  const x = entity.bullet ? entity.x : entity.x + entity.dx * dt
+  const y = entity.bullet
+    ? entity.y - entity.height * 2
+    : entity.y + entity.dy * dt
   const flipped = entity.flipped
-  const width = entity.width
-  const height = entity.height
+  const width = entity.bullet ? entity.width * 4 : entity.width
+  const height = entity.bullet ? entity.height * 4 : entity.height
 
   function updateFrames() {
     /* entity.start.x === 48 &&
@@ -300,6 +304,7 @@ function renderTreasure(ctx, spriteAtlas, dt, frame) {
     //if (!t.collected) ctx.fillRect(t.x, t.y + TILE / 3, TILE, (TILE * 2) / 3)
 
     if (t.sprites !== undefined && !t.collected) {
+      // console.log('log treasure entity ', t)
       drawSprite(t, spriteAtlas, dt, frame)
     }
   }
@@ -314,13 +319,32 @@ function tweenTreasure(frame, duration) {
 
 function renderBullets(ctx, spriteAtlas, dt, frame) {
   ctx.fillStyle = COLOR.GOLD
+
   var n, max, bullet
 
   for (n = 0, max = bullets.length; n < max; n++) {
     bullet = bullets[n]
 
+    switch (bullet.ammoType) {
+      case 'simpleGun':
+        bullet.sprites = simpleBullet.sprites
+        break
+      case 'advancedGun':
+        bullet.sprites = simpleBullet.sprites
+        break
+    }
+
+    //console.log('log bullet ', bullet.sprites)
+    //console.log('log bullet spriteAtlas ', spriteAtlas)
+
     if (bullet !== undefined) {
-      ctx.fillRect(bullet.x, bullet.y, ammoType.width, ammoType.height)
+      if (bullet.sprites === undefined) {
+        ctx.fillRect(bullet.x, bullet.y, ammoType.width, ammoType.height)
+      }
+      if (bullet.sprites !== undefined) {
+        console.log('log bullet entity ', bullet)
+        drawSprite(bullet, spriteAtlas, dt, frame)
+      }
     }
   }
 }

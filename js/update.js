@@ -46,16 +46,22 @@ function shoot(player) {
   const bulletX = player.x
   const bulletY = player.y
   const direction = player.flipped
+  const weaponType = player?.currentWeapon || 'simpleGun'
 
   if (globalObject.ammo > 0) {
     sfx.shoot.play()
     globalObject.ammo--
     bullets.push({
+      bullet: true,
+      width: 4,
+      height: 4,
+      flipped: player.flipped,
       originX: bulletX,
       originY: bulletY,
       x: bulletX,
       y: bulletY + player.height / 2,
       directionLeft: direction,
+      ammoType: weaponType,
     })
   } else {
     sfx.click.play()

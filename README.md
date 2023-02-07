@@ -23,11 +23,8 @@ Simple JS platformer to modify and extend.
 ## Todo
 
 - [x] Refactor code. Alles sortieren (Helper, Utils, Functions, Main Function, Objects usw.)
-- [ ] Allgemeine btn() Funktion bauen, angelehnt an Pico-8.
 - [x] Robuste collision checks und collision maps bauen
-- [ ] Bessere flags bauen
 - [x] Irgendeine Art Dev Function bauen, die mir übersichtliche console logs ausgibt.
-- [ ] Alle Variablen und Funktionen, die nicht Platformer-spezifisch sind, als Engine auslagern.
 - [x] "Doors" System entwickeln.
 - [x] Die Camera funktioniert in Level2 noch nicht mit Begrenzung nach Rechts und Unten. Liegt das am Level selbst?
 - [x] Pause Function
@@ -45,7 +42,7 @@ Simple JS platformer to modify and extend.
   - [ ] Underwater
   - [ ] Forest World
   - [ ] Techno World
-- [ ] Fix Scaling bei verschiedenen Level-Größen (hochkant ist broken)
+- [ ] Fix Scaling bei verschiedenen Level-Größen (protrait ist broken)
 
 ### Welche Assets nutze ich
 
@@ -74,10 +71,6 @@ Layer in folgender Reihenfolge:
 
 Export als ".tmj"
 
-### Beepbox
-
-- Inspiration für Soundtrack: Commander Keen 4 <https://www.youtube.com/watch?v=g8o1NObgsCQ&list=PLsQNBc1Davyu69-eYRoAqdvVdaGQDhEVU>
-
 ## Feature Roadmap
 
 - [x] zweite Map
@@ -104,7 +97,6 @@ Export als ".tmj"
   - [ ] Items
   - [ ] Map
 
-## Story
+## Possible Story
 
 Biff Bolton, sidekick to intergalactic space adventurer Ace Hunter, is stranded on a strange planet after several parts of his ship fail and he has to make an emergency landing. To repair his ship he must explore the planet and delve deep into its mysterious caves and catacombs.
-(Maybe he even needs to juryrig his escape pod into a makeshift submarine?)

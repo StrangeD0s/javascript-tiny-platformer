@@ -84,6 +84,7 @@ Export als ".tmj"
 - [x] Swimming
 - [x] Ammo
 - [ ] mehr Weapons
+- [ ] animated Tiles
 - [ ] mehr Enemy Types (flying, wallcrawler, shooting)
 - [ ] Upgrades/Powerups
 - [ ] Destructibles (haben eigenes "destructibles = {}" Objekt wie monsters oder treasure und haben hitpoints, eigener Layer oder gehören die zu Objects?)

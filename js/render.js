@@ -21,11 +21,11 @@ function render(ctx, frame, dt, thiscurrentLevel) {
   //renderCameraWithBox()
   renderBackground(ctx, thiscurrentLevel.backgroundAtlas, bgCells)
   renderMap(ctx, thiscurrentLevel.levelAtlas, cells)
-  renderTreasure(ctx, itemsAtlas, dt, frame)
-  renderPickups(ctx, itemsAtlas, dt, frame)
   renderPlayer(ctx, playerAtlas, dt, frame)
   renderBullets(ctx, itemsAtlas, dt, frame)
   renderMonsters(ctx, enemyAtlas, dt, frame)
+  renderTreasure(ctx, itemsAtlas, dt, frame)
+  renderPickups(ctx, itemsAtlas, dt, frame)
   renderForeground(ctx, thiscurrentLevel.foregroundAtlas, fgCells)
   renderLiquids(ctx, thiscurrentLevel.foregroundAtlas, fgCells)
 
@@ -117,9 +117,8 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
     entity.start.y === 656 &&
     console.log('log frame ', entity.sprites.idle)
  */
-  const sprites = entity.sprites
 
-  entity.bullet && console.log('log entity bullet', entity)
+  let sprites = entity.sprites
 
   let isJumping = entity.jumping || entity.falling
 
@@ -146,18 +145,13 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
   const width = entity.bullet ? entity.width * 4 : entity.width
   const height = entity.bullet ? entity.height * 4 : entity.height
 
-  function updateFrames() {
-    /* entity.start.x === 48 &&
-      entity.start.y === 656 &&
-     console.log('log  frame ', entity) */
-
-    if (frame % sprite.framebuffer === 0) {
-      if (sprite.currentFrame + 1 < sprite.tiles.length) sprite.currentFrame++
-      else if (sprite.loop) sprite.currentFrame = 0
-    }
-  }
-
   let spriteTile = sprite.tiles[sprite.currentFrame]
+
+  /*   entity.pickups &&
+    console.log(
+      'log drawSprite currentFrame ',
+      sprite.tiles[sprite.currentFrame]
+    ) */
 
   // make an image position using the
   // current row and colum
@@ -182,10 +176,23 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
     width, // * player Höhe
     height // * player Breite
   )
+
   ctx.restore()
-  updateFrames()
+  updateFrames(frame, sprite)
+
+  entity.treasure && console.log('log drawSprite ', entity)
 }
 
+function updateFrames(frame, sprite) {
+  /* entity.start.x === 48 &&
+    entity.start.y === 656 &&
+   console.log('log  frame ', entity) */
+
+  if (frame % sprite.framebuffer === 0) {
+    if (sprite.currentFrame + 1 < sprite.tiles.length) sprite.currentFrame++
+    else if (sprite.loop) sprite.currentFrame = 0
+  }
+}
 // * Render Player
 function renderPlayer(ctx, spriteAtlas, dt, frame) {
   if (player.vul === false) {
@@ -297,16 +304,18 @@ function renderMonsters(ctx, spriteAtlas, dt, frame) {
 }
 
 function renderPickups(ctx, spriteAtlas, dt, frame) {
-  ctx.globalAlpha = 0.25 + tweenTreasure(frame, 60)
+  //ctx.globalAlpha = 0.25 + tweenTreasure(frame, 60)
   var n, max, p
   for (n = 0, max = pickups.length; n < max; n++) {
     p = pickups[n]
+
+    //console.log('log p.sprites.currentsprite ', p.sprites.currentFrame)
 
     if (p.sprites !== undefined && !p.collected) {
       drawSprite(p, spriteAtlas, dt, frame)
     }
   }
-  ctx.globalAlpha = 1
+  //ctx.globalAlpha = 1
 }
 
 function renderTreasure(ctx, spriteAtlas, dt, frame) {

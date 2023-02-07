@@ -119,7 +119,8 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.up = entityProperties.up || false
   entity.down = entityProperties.down || false
   entity.start = { x: obj.x, y: obj.y }
-  entity.killed = entity.collected = 0
+  entity.killed = 0
+  entity.collected = false
   entity.sprites = entitySprites
   entity.flipped = false
   entity.width = obj.width

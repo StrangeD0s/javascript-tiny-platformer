@@ -1,5 +1,5 @@
 let playerObject = {
-  maxHitpoints: 6,
+  maxHitpoints: 5,
   currentHitpoints: 3,
   vul: true,
   hurt: false,
@@ -89,6 +89,42 @@ let simpleBullet = {
   sprites: {
     idle: {
       tiles: [8, 9, 10],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+  },
+}
+
+let ammo = {
+  sprites: {
+    idle: {
+      tiles: [11],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+  },
+}
+
+let extralife = {
+  sprites: {
+    idle: {
+      tiles: [13],
+      framerate: 5,
+      framebuffer: 8,
+      loop: true,
+      currentFrame: 0,
+    },
+  },
+}
+
+let health = {
+  sprites: {
+    idle: {
+      tiles: [0, 1, 2],
       framerate: 5,
       framebuffer: 8,
       loop: true,

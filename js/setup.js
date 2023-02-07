@@ -42,6 +42,17 @@ function setup(map) {
       case 'treasure':
         treasure.push(entity)
         break
+
+      case 'ammo':
+        pickups.push(entity)
+        break
+      case 'health':
+        pickups.push(entity)
+        break
+      case 'extralife':
+        pickups.push(entity)
+        break
+
       case 'water':
         liquids.push(entity)
         break
@@ -67,6 +78,12 @@ function setupEntity(obj, entityType, entityProperties) {
       ? playerObject.sprites
       : entityType == 'treasure'
       ? coinTreasure.sprites
+      : entityType == 'ammo'
+      ? ammo.sprites
+      : entityType == 'health'
+      ? health.sprites
+      : entityType == 'extralife'
+      ? extralife.sprites
       : entityType == 'door'
       ? null
       : null
@@ -91,6 +108,9 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.monster = entityType == 'monster'
   entity.player = entityType == 'player'
   entity.treasure = entityType == 'treasure'
+  entity.ammo = entityType == 'ammo'
+  entity.health = entityType == 'health'
+  entity.extralife = entityType == 'extralife'
   entity.water = entityType == 'water'
   entity.door = entityType == 'door'
   entity.leadsTo = entityProperties.leadsTo

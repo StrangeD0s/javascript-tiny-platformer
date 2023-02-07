@@ -22,6 +22,7 @@ function render(ctx, frame, dt, thiscurrentLevel) {
   renderBackground(ctx, thiscurrentLevel.backgroundAtlas, bgCells)
   renderMap(ctx, thiscurrentLevel.levelAtlas, cells)
   renderTreasure(ctx, itemsAtlas, dt, frame)
+  renderPickups(ctx, itemsAtlas, dt, frame)
   renderPlayer(ctx, playerAtlas, dt, frame)
   renderBullets(ctx, itemsAtlas, dt, frame)
   renderMonsters(ctx, enemyAtlas, dt, frame)
@@ -293,6 +294,19 @@ function renderMonsters(ctx, spriteAtlas, dt, frame) {
       drawSprite(monster, spriteAtlas, dt, frame)
     }
   }
+}
+
+function renderPickups(ctx, spriteAtlas, dt, frame) {
+  ctx.globalAlpha = 0.25 + tweenTreasure(frame, 60)
+  var n, max, p
+  for (n = 0, max = pickups.length; n < max; n++) {
+    p = pickups[n]
+
+    if (p.sprites !== undefined && !p.collected) {
+      drawSprite(p, spriteAtlas, dt, frame)
+    }
+  }
+  ctx.globalAlpha = 1
 }
 
 function renderTreasure(ctx, spriteAtlas, dt, frame) {

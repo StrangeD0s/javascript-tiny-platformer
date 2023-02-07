@@ -6,9 +6,11 @@
 let globalObject = {
   lifes: 3,
   hitpoints: 3,
+  maxHitpoints: 5,
   collected: null,
   killed: null,
   ammo: 10,
+  maxAmmo: 10,
 }
 
 // * Import tiles and level map //
@@ -197,6 +199,7 @@ let fps = 60,
   ctx = canvas.getContext('2d'),
   player = {},
   monsters = [],
+  pickups = [],
   treasure = [],
   doors = [], // ! Hier sammel ich alle Door Objekte.
   liquids = [], // ! Alle Bereich, die mit Wasser gefüllt sind.
@@ -248,6 +251,7 @@ let t2p = function (t) {
 function _initLevel(newLevel) {
   monsters = []
   treasure = []
+  pickups = []
   doors = []
   liquids = []
   cells = []
@@ -279,6 +283,7 @@ let musicVolume = 0.5
 let sfx = {
   jump: new sound('./audio/Jump.wav', sfxVolume),
   pickup: new sound('./audio/Pickup_Coin.wav', sfxVolume),
+  lowHealth: new sound('./audio/LA_LowHealth.wav', sfxVolume),
   die: new sound('./audio/Explosion.wav', sfxVolume),
   takeDamage: new sound('./audio/Randomize3.wav', sfxVolume),
   killMonster: new sound('./audio/Randomize.wav', sfxVolume),
@@ -289,6 +294,11 @@ let sfx = {
   splash: new sound('./audio/Oracle_Rock_Shatter.wav', sfxVolume),
   swim: new sound('./audio/SML2_Swim.ogg', sfxVolume),
   click: new sound('./audio/click.wav', sfxVolume),
+
+  stomp: new sound('./audio/smb_stomp.wav', sfxVolume),
+  kick: new sound('./audio/smb_kick.wav', sfxVolume),
+  extraLife: new sound('./audio/smb_1-up.wav', sfxVolume),
+  smb_powerup: new sound('./audio/smb_powerup.wav', sfxVolume),
 }
 
 let theme = {
@@ -298,7 +308,7 @@ let theme = {
 let globalPlayer = {
   collected: 0,
   killed: 0,
-  maxHitpoints: 6,
+  maxHitpoints: 5,
   currentHitpoints: 3,
   vul: true,
   hurt: false,

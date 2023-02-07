@@ -7,6 +7,7 @@ function update(dt) {
   updateBullets(dt)
   updateMonsters(dt)
   checkTreasure()
+  checkPickups()
   checkLiquids()
   // updateDoors(dt)
   checkDoors()
@@ -129,6 +130,54 @@ function checkTreasure() {
       overlap(player.x, player.y, TILE, TILE, t.x, t.y, TILE, TILE)
     )
       collectTreasure(t)
+  }
+}
+
+function checkPickups() {
+  var n, max, p
+  for (n = 0, max = pickups.length; n < max; n++) {
+    p = pickups[n]
+    if (
+      !p.collected &&
+      overlap(player.x, player.y, TILE, TILE, p.x, p.y, TILE, TILE)
+    )
+      collectPickup(p)
+  }
+}
+
+function collectPickup(p) {
+  console.log('log pickup ', p)
+
+  if (p.extralife) {
+    addExtraLife(p)
+  }
+  if (p.ammo) {
+    addAmmo(p)
+  }
+  if (p.health) {
+    addHitPoints(p)
+  }
+}
+
+function addExtraLife(p) {
+  globalObject.lifes++
+  p.collected = true
+  sfx.smb_powerup.play()
+}
+
+function addHitPoints(p) {
+  if (globalObject.hitpoints < globalObject.maxHitpoints) {
+    globalObject.hitpoints++
+    p.collected = true
+    sfx.stomp.play()
+  }
+}
+
+function addAmmo(p) {
+  if (globalObject.ammo < globalObject.maxAmmo) {
+    globalObject.ammo++
+    p.collected = true
+    sfx.kick.play()
   }
 }
 

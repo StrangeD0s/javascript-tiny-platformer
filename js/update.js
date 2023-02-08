@@ -27,6 +27,7 @@ function updateMonsters(dt) {
 }
 
 function updateMonster(monster, dt) {
+  monster.slimeMonster && console.log('log monster ', monster)
   if (!monster.dead) {
     updateEntity(monster, dt)
     if (
@@ -63,6 +64,7 @@ function shoot(player) {
       y: bulletY + player.height / 2,
       directionLeft: direction,
       ammoType: weaponType,
+      damage: 1,
     })
   } else {
     sfx.click.play()
@@ -101,7 +103,9 @@ function updateBullet(bullet, dt) {
             TILE
           )
         )
-          killMonster(monster), sfx.explode.play(), destroyBullet(bullet)
+          reduceHitpoints(monster, bullet.damage),
+            sfx.explode.play(),
+            destroyBullet(bullet)
       }
     }
     if (
@@ -146,7 +150,7 @@ function checkPickups() {
 }
 
 function collectPickup(p) {
-  console.log('log pickup ', p)
+  // console.log('log pickup ', p)
 
   if (p.extralife) {
     addExtraLife(p)
@@ -271,7 +275,7 @@ function killEntity(entity) {
     killPlayer(entity)
   }
   if (entity.monster === true) {
-    killMonster(monster)
+    killMonster(entity)
   }
 }
 
@@ -393,7 +397,7 @@ function updateEntity(entity, dt) {
     }
   }
 
-  if (entity.monster) {
+  if (entity.monster || entity.slimeMonster) {
     if (entity.left && (cell || !celldown)) {
       entity.left = false
       entity.right = true

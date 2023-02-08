@@ -19,6 +19,8 @@ function setup(map) {
     obj = objects[n]
 
     const entityType = obj.type || obj.class
+    const entityName = obj.name
+    const entityClass = obj.class
 
     const entityProperties = Array.isArray(obj.properties)
       ? Object.fromEntries(
@@ -30,13 +32,16 @@ function setup(map) {
       : {}
 
     // * Hier werden alle actors/entities in die entsprechenden Ojekte gepushed.
-    entity = setupEntity(obj, entityType, entityProperties)
+    entity = setupEntity(obj, entityType, entityProperties, entityName)
 
     switch (entityType) {
       case 'player':
         player = entity
         break
       case 'monster':
+        monsters.push(entity)
+        break
+      case 'slimeMonster':
         monsters.push(entity)
         break
       case 'treasure':
@@ -70,29 +75,39 @@ function setup(map) {
 
 // * Diese Funktion entspricht grob meiner actor init Funktion.
 // ? Muss ich noch eine Sprite Animation Funktion erstellen, die ihre Daten aus dem Entity Object für alle Entities (player, monster, etc.) erhält?
-function setupEntity(obj, entityType, entityProperties) {
-  let entitySprites =
-    entityType == 'monster'
-      ? bounderMonster.sprites
-      : entityType == 'player'
-      ? playerObject.sprites
-      : entityType == 'treasure'
-      ? coinTreasure.sprites
-      : entityType == 'ammo'
-      ? ammo.sprites
-      : entityType == 'health'
-      ? health.sprites
-      : entityType == 'extralife'
-      ? extralife.sprites
-      : entityType == 'door'
+function setupEntity(obj, entityType, entityProperties, entityName) {
+  let entityTemplate =
+    entityName == 'monster'
+      ? bounderMonster
+      : entityName == 'player'
+      ? playerObject
+      : entityName == 'slimeMonster'
+      ? slimeMonster
+      : entityName == 'treasure'
+      ? coinTreasure
+      : entityName == 'ammo'
+      ? ammo
+      : entityName == 'health'
+      ? health
+      : entityName == 'extralife'
+      ? extralife
+      : entityName == 'door'
       ? null
       : null
 
+  let entitySprites = entityTemplate?.sprites
+
   const entityMaxHitpoints =
-    entityType == 'player' ? playerObject.maxHitpoints : null
+    entityType == 'player' ? playerObject.maxHitpoints : 1
 
   const entityCurrentHitpoints =
-    entityType == 'player' ? playerObject.currentHitpoints : null
+    entityType == 'player'
+      ? playerObject.currentHitpoints
+      : !!entityTemplate?.currentHitpoints
+      ? entityTemplate?.currentHitpoints
+      : 1
+
+  console.log('log entity ', entity)
 
   var entity = {}
   entity.x = obj.x
@@ -106,6 +121,7 @@ function setupEntity(obj, entityType, entityProperties) {
   entity.accel = entity.maxdx / (entityProperties.accel || ACCEL)
   entity.friction = entity.maxdx / (entityProperties.friction || FRICTION)
   entity.monster = entityType == 'monster'
+  entity.slimeMonster = entityType == 'slimeMonster'
   entity.player = entityType == 'player'
   entity.treasure = entityType == 'treasure'
   entity.ammo = entityType == 'ammo'

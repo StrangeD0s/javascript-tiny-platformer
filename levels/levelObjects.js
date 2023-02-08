@@ -36,6 +36,8 @@ let playerObject = {
 }
 
 let bounderMonster = {
+  class: 'monster',
+  currentHitpoints: 2,
   sprites: {
     idle: {
       tiles: [3],
@@ -55,6 +57,8 @@ let bounderMonster = {
 }
 
 let slimeMonster = {
+  class: 'monster',
+  currentHitpoints: 1,
   sprites: {
     idle: {
       tiles: [0],

@@ -115,6 +115,21 @@ const itemsAtlas = {
   sourceY: 0,
 }
 
+const meterSpriteAtlas = new Image()
+meterSpriteAtlas.src = './img/meter.png'
+
+const meterAtlas = {
+  tileAtlas: meterSpriteAtlas,
+  tileSize: 7,
+  tileOutputSize: 2,
+  updatedTileSize: tileSize * tileOutputSize,
+  atlasCol: 4,
+  atlasRow: 6,
+  mapIndex: 0,
+  sourceX: 0,
+  sourceY: 0,
+}
+
 // * End Test Sprite Imports
 
 // * Das currentLevel Objekt sollte durch irgendeine Funktion befüllt werden, wenn ein Level gewechselt wird.
@@ -157,11 +172,11 @@ let METER = TILE
 
 let GRAVITY = 60
 
-let MAXDX = 15, // default max horizontal speed (15 tiles per second)
-  MAXDY = 60, // default max vertical speed   (60 tiles per second)
-  ACCEL = 1 / 2, // default take 1/2 second to reach maxdx (horizontal acceleration)
-  FRICTION = 1 / 6, // default take 1/6 second to stop from maxdx (horizontal friction)
-  IMPULSE = 1500, // default player jump impulse
+let MAXDX = 15, // * default max horizontal speed (15 tiles per second)
+  MAXDY = 60, // * default max vertical speed   (60 tiles per second)
+  ACCEL = 1 / 2, // * default take 1/2 second to reach maxdx (horizontal acceleration)
+  FRICTION = 1 / 6, // * default take 1/6 second to stop from maxdx (horizontal friction)
+  IMPULSE = 1500, // * default player jump impulse
   COLOR = {
     BLACK: '#000000',
     YELLOW: '#ECD078',

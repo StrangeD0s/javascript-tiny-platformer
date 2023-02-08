@@ -596,12 +596,12 @@ const level1 = {
           class: 'monster',
           height: 16.0022,
           id: 13,
-          name: 'monster',
+          name: 'slimeMonster',
           properties: [
             {
               name: 'maxdx',
               type: 'string',
-              value: '10',
+              value: '1',
             },
             {
               name: 'right',
@@ -624,7 +624,7 @@ const level1 = {
             {
               name: 'maxdx',
               type: 'string',
-              value: '10',
+              value: '2',
             },
             {
               name: 'right',

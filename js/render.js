@@ -33,7 +33,7 @@ function render(ctx, frame, dt, thiscurrentLevel) {
   //renderCameraBox()
   ctx.restore()
   renderPause()
-  renderHud(ctx, frame)
+  renderHud(ctx, meterAtlas, dt, frame)
   renderHudSprites()
   //fadeScreen(frame, dt)
   renderDevInfos()
@@ -180,7 +180,7 @@ function drawSprite(entity, spriteAtlas, dt, frame) {
   ctx.restore()
   updateFrames(frame, sprite)
 
-  entity.treasure && console.log('log drawSprite ', entity)
+  // entity.treasure && console.log('log drawSprite ', entity)
 }
 
 function updateFrames(frame, sprite) {
@@ -202,7 +202,7 @@ function renderPlayer(ctx, spriteAtlas, dt, frame) {
   ctx.globalAlpha = 1
 }
 
-function renderHud(ctx, frame) {
+function renderHud(ctx, spriteAtlas, dt, frame) {
   var n, max
   const hudScaling = scalingFactor / 2
 
@@ -240,6 +240,8 @@ function renderHud(ctx, frame) {
       (TILE / 2) * hudScaling,
       (TILE / 2) * hudScaling
     )
+  // ! Der Atlas funktioniert so nicht weil die Tiles nicht quadratisch sind.
+  // drawSprite(t, spriteAtlas, dt, frame)
   ctx.globalAlpha = 1
 }
 
